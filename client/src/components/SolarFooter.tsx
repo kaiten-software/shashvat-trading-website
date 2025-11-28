@@ -190,6 +190,23 @@ export default function SolarFooter() {
           </div>
         </div>
       </div>
+
+      {/* Built By Credit */}
+      <div className="bg-gray-950 border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-4">
+          <div className="text-center text-sm text-gray-500">
+            Built with excellence by{" "}
+            <a 
+              href="https://kaitensoftware.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-green-400 hover:text-green-300 font-medium transition-colors"
+            >
+              Kaiten Software
+            </a>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }
