@@ -159,16 +159,16 @@ export default function SolarHeroSection() {
               <div className="text-sm text-muted-foreground">Years ROI</div>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Location Badge */
-      <div className="relative z-10 flex justify-center mt-12">
-        <div className="inline-flex items-center gap-3 px-8 py-4 bg-white/80 backdrop-blur-sm rounded-full border border-green-200 shadow-lg">
-          <span className="text-2xl">📍</span>
-          <span className="text-base font-medium text-foreground">Based in Jaipur, Rajasthan</span>
-          <span className="text-2xl">☀️</span>
-          <span className="text-base font-medium text-foreground">Serving Pan-India</span>
+          {/* Location Badge */}
+          <div className="mt-12">
+            <div className="inline-flex items-center gap-3 px-8 py-4 bg-white/80 backdrop-blur-sm rounded-full border border-green-200 shadow-lg">
+              <span className="text-2xl">📍</span>
+              <span className="text-base font-medium text-foreground">Based in Jaipur, Rajasthan</span>
+              <span className="text-2xl">☀️</span>
+              <span className="text-base font-medium text-foreground">Serving Pan-India</span>
+            </div>
+          </div>
         </div>
       </div>
 
