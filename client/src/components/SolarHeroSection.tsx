@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 
 export default function SolarHeroSection() {
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 150]);
-  const y2 = useTransform(scrollY, [0, 500], [0, -100]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const y1 = useTransform(scrollY, [0, 800], [0, 200]);
+  const y2 = useTransform(scrollY, [0, 800], [0, -150]);
+  const y3 = useTransform(scrollY, [0, 600], [0, 100]);
 
   // Typing effect
   const [displayText, setDisplayText] = useState("");
@@ -46,7 +46,7 @@ export default function SolarHeroSection() {
 
       <motion.div 
         className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8"
-        style={{ opacity }}
+        style={{ y: y3 }}
       >
         <div className="text-center max-w-5xl mx-auto">
           {/* Premium Badge */}

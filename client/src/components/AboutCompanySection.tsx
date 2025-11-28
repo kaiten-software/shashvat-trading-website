@@ -1,12 +1,19 @@
 import { Award, Users, Zap, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 export default function AboutCompanySection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  const imageY = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
   return (
     <section className="py-24" style={{ background: 'var(--section-bg-3)' }} ref={ref}>
@@ -103,7 +110,7 @@ export default function AboutCompanySection() {
           </motion.div>
 
           {/* Image */}
-          <div className="relative">
+          <motion.div className="relative" style={{ y: imageY }}>
             <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
               <img 
                 src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=1000&fit=crop" 
@@ -125,8 +132,8 @@ export default function AboutCompanySection() {
                 </div>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
         {/* Subtle CTA */}
         <div className="mt-16 text-center">

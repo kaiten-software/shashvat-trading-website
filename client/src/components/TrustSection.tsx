@@ -1,6 +1,15 @@
 import { Shield, Award, FileCheck, IndianRupee, Headphones, CheckCircle } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export default function TrustSection() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
   const trustBadges = [
     {
       icon: Award,
@@ -35,17 +44,17 @@ export default function TrustSection() {
   ];
 
   return (
-    <section className="py-24" style={{ background: 'var(--section-bg-2)' }}>
+    <section className="py-24" style={{ background: 'var(--section-bg-2)' }} ref={ref}>
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <motion.div className="text-center mb-16" style={{ y }}>
           <h2 className="text-4xl md:text-5xl font-light text-foreground mb-4">
             Why Choose <span className="font-semibold text-green-600">Rajasthan Green Energy Solar</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Engineering excellence meets customer trust. We deliver solar solutions built to last.
           </p>
-        </div>
+        </motion.div>
 
         {/* Trust Badges Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
