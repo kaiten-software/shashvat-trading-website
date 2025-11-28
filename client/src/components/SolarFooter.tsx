@@ -1,0 +1,195 @@
+import { Link } from "wouter";
+import { Sun, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+
+export default function SolarFooter() {
+  const currentYear = new Date().getFullYear();
+
+  const quickLinks = [
+    { name: "Home", path: "/" },
+    { name: "About Us", path: "/about" },
+    { name: "Solar Solutions", path: "/products" },
+    { name: "Technology", path: "/technology" },
+    { name: "Contact", path: "/contact" }
+  ];
+
+  const services = [
+    "Residential Solar",
+    "Commercial Solar",
+    "Industrial Solar",
+    "On-Grid Systems",
+    "Hybrid Systems",
+    "Solar AMC"
+  ];
+
+  return (
+    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+      {/* Main Footer Content */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Company Info */}
+          <div>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-600 to-green-500 flex items-center justify-center shadow-lg">
+                <Sun className="w-7 h-7 text-white" />
+              </div>
+              <div>
+                <div className="text-lg font-bold leading-tight">
+                  Rajasthan Green Energy
+                </div>
+                <div className="text-xs text-green-400 font-medium">
+                  Solar Solutions
+                </div>
+              </div>
+            </div>
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              Premium EPC solutions for residential, commercial, and industrial solar installations. 
+              Engineering excellence meets customer trust.
+            </p>
+            <div className="flex gap-4">
+              <a 
+                href="#" 
+                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-green-600 flex items-center justify-center transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a 
+                href="#" 
+                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-green-600 flex items-center justify-center transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a 
+                href="#" 
+                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-green-600 flex items-center justify-center transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a 
+                href="#" 
+                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-green-600 flex items-center justify-center transition-colors"
+                aria-label="Twitter"
+              >
+                <Twitter className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
+            <ul className="space-y-3">
+              {quickLinks.map((link) => (
+                <li key={link.path}>
+                  <Link href={link.path}>
+                    <a className="text-gray-400 hover:text-green-400 transition-colors text-sm">
+                      {link.name}
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h3 className="text-lg font-semibold mb-6">Our Services</h3>
+            <ul className="space-y-3">
+              {services.map((service) => (
+                <li key={service}>
+                  <span className="text-gray-400 text-sm">
+                    {service}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-lg font-semibold mb-6">Contact Us</h3>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <MapPin className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-400 text-sm">
+                  Jaipur, Rajasthan<br />
+                  India
+                </span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone className="w-5 h-5 text-green-500 flex-shrink-0" />
+                <a href="tel:+919876543210" className="text-gray-400 hover:text-green-400 transition-colors text-sm">
+                  +91 98677 40809
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail className="w-5 h-5 text-green-500 flex-shrink-0" />
+                <a href="mailto:info@rajasthanenergy.com
+" className="text-gray-400 hover:text-green-400 transition-colors text-sm">
+                  info@rajasthanenergy.com
+
+                </a>
+              </li>
+            </ul>
+
+            {/* WhatsApp Button */}
+            <a 
+              href="https://wa.me/919876543210"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 rounded-lg transition-all shadow-lg hover:shadow-xl"
+            >
+              <span className="text-xl">💬</span>
+              <span className="font-semibold">WhatsApp Us</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-gray-400 text-sm text-center md:text-left">
+              © {currentYear} Rajasthan Green Energy Solar. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6 text-sm text-gray-400">
+              <a href="#" className="hover:text-green-400 transition-colors">
+                Privacy Policy
+              </a>
+              <a href="#" className="hover:text-green-400 transition-colors">
+                Terms of Service
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Trust Badge */}
+      <div className="bg-gradient-to-r from-green-900/50 to-emerald-900/50 border-t border-green-800">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-4">
+          <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-300">
+            <div className="flex items-center gap-2">
+              <span className="text-green-400">✓</span>
+              <span>MNRE Certified</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-green-400">✓</span>
+              <span>25-Year Warranty</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-green-400">✓</span>
+              <span>500+ Installations</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-green-400">✓</span>
+              <span>Tier-1 Brands Only</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
