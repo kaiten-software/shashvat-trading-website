@@ -220,6 +220,25 @@ export default function PricingEstimatorSection() {
               <span>Free Site Visit</span>
             </div>
           </div>
+
+          {/* Subtle CTA */}
+          <div className="mt-12 text-center">
+            <p className="text-muted-foreground mb-4">
+              Prefer to discuss your requirements directly?
+            </p>
+            <div className="flex items-center justify-center gap-4 flex-wrap">
+              <a href="tel:+919876543210">
+                <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
+                  📞 Call Us Now
+                </Button>
+              </a>
+              <a href="https://wa.me/919876543210?text=Hi, I'd like to discuss solar installation pricing and options">
+                <Button variant="ghost" className="text-green-600 hover:bg-green-50">
+                  💬 WhatsApp Chat
+                </Button>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

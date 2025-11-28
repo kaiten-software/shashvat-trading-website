@@ -1,5 +1,6 @@
 import { Star, Quote } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function TestimonialsSection() {
   const testimonials = [
@@ -111,7 +112,7 @@ export default function TestimonialsSection() {
 
         {/* Trust Badge */}
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full border border-green-200">
+          <div className="inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full border border-green-200 mb-8">
             <div className="flex items-center gap-1">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
@@ -121,6 +122,15 @@ export default function TestimonialsSection() {
             <span className="text-muted-foreground">|</span>
             <span className="text-base text-muted-foreground">500+ Happy Customers</span>
           </div>
+          
+          <p className="text-muted-foreground mb-6">
+            Join hundreds of satisfied customers making the switch to solar
+          </p>
+          <a href="https://wa.me/919876543210?text=Hi, I'd like to learn more about solar installation. Can we discuss?">
+            <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
+              💬 Connect with Our Team
+            </Button>
+          </a>
         </div>
       </div>
     </section>

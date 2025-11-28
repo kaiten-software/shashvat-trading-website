@@ -1,4 +1,5 @@
 import { TrendingDown, DollarSign, TrendingUp, Home } from "lucide-react";
+import { Link } from "wouter";
 
 export default function BenefitsSection() {
   const benefits = [
@@ -80,6 +81,16 @@ export default function BenefitsSection() {
             <p className="text-muted-foreground leading-relaxed">
               Protect yourself from rising electricity tariffs. Generate your own clean power and gain energy security.
             </p>
+          </div>
+        </div>
+
+        {/* Soft CTA */}
+        <div className="mt-16 text-center">
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-green-50 rounded-full border border-green-200">
+            <span className="text-muted-foreground">Want to calculate your potential savings?</span>
+            <Link href="/contact" className="text-green-600 font-semibold hover:text-green-700">
+              Get a Free Quote →
+            </Link>
           </div>
         </div>
       </div>

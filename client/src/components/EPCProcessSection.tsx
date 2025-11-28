@@ -1,4 +1,6 @@
 import { Search, PenTool, Package, Wrench, FileCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 export default function EPCProcessSection() {
   const steps = [
@@ -114,9 +116,25 @@ export default function EPCProcessSection() {
 
         {/* Bottom Info */}
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-4 px-8 py-4 bg-white rounded-full border border-green-200 shadow-lg">
+          <div className="inline-flex items-center gap-4 px-8 py-4 bg-white rounded-full border border-green-200 shadow-lg mb-8">
             <span className="text-2xl">⚡</span>
             <span className="text-base font-medium text-foreground">Average Installation Time: 7-10 Days</span>
+          </div>
+          
+          <p className="text-muted-foreground mb-6">
+            Ready to start your solar journey?
+          </p>
+          <div className="flex items-center justify-center gap-4 flex-wrap">
+            <Link href="/contact">
+              <Button className="bg-green-600 hover:bg-green-700">
+                Schedule Site Visit
+              </Button>
+            </Link>
+            <a href="tel:+919876543210">
+              <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
+                📞 Call +91 98765 43210
+              </Button>
+            </a>
           </div>
         </div>
       </div>

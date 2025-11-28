@@ -145,14 +145,27 @@ export default function CaseStudiesSection() {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <p className="text-lg text-muted-foreground mb-6">
-            Want to see your property featured here?
+            Curious how much you could save?
           </p>
-          <Button 
-            size="lg"
-            className="px-10 py-6 text-lg bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600"
-          >
-            Start Your Solar Journey
-          </Button>
+          <div className="flex items-center justify-center gap-4 flex-wrap">
+            <a href="/contact">
+              <Button 
+                size="lg"
+                className="px-10 py-6 text-lg bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600"
+              >
+                Get Your Custom Quote
+              </Button>
+            </a>
+            <a href="https://wa.me/919876543210?text=Hi, I saw your case studies. I'd like to discuss a solar installation for my property">
+              <Button 
+                size="lg"
+                variant="ghost"
+                className="px-10 py-6 text-lg text-green-600 hover:bg-green-50"
+              >
+                💬 Quick Chat
+              </Button>
+            </a>
+          </div>
         </div>
       </div>
     </section>

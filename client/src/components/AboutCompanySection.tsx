@@ -1,4 +1,6 @@
 import { Award, Users, Zap, Target } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 export default function AboutCompanySection() {
   return (
@@ -94,6 +96,31 @@ export default function AboutCompanySection() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Subtle CTA */}
+        <div className="mt-16 text-center">
+          <p className="text-lg text-muted-foreground mb-6">
+            Curious about how solar works for your property?
+          </p>
+          <div className="flex items-center justify-center gap-4">
+            <Link href="/contact">
+              <Button 
+                variant="outline" 
+                className="border-green-600 text-green-600 hover:bg-green-50"
+              >
+                Start a Conversation
+              </Button>
+            </Link>
+            <a href="https://wa.me/919876543210?text=Hi, I'd like to learn more about solar for my property">
+              <Button 
+                variant="ghost" 
+                className="text-green-600 hover:text-green-700 hover:bg-green-50"
+              >
+                💬 Quick WhatsApp Chat
+              </Button>
+            </a>
           </div>
         </div>
       </div>

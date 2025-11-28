@@ -112,14 +112,25 @@ export default function SolutionsSection() {
           <p className="text-lg text-muted-foreground mb-6">
             Not sure which solution is right for you?
           </p>
-          <Link href="/contact">
-            <Button 
-              size="lg"
-              className="px-10 py-6 text-lg bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600"
-            >
-              Get Free Consultation
-            </Button>
-          </Link>
+          <div className="flex items-center justify-center gap-4 flex-wrap">
+            <Link href="/contact">
+              <Button 
+                size="lg"
+                className="px-10 py-6 text-lg bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600"
+              >
+                Get Free Consultation
+              </Button>
+            </Link>
+            <a href="https://wa.me/919876543210?text=Hi, I need help choosing the right solar solution">
+              <Button 
+                size="lg"
+                variant="outline"
+                className="px-10 py-6 text-lg border-green-600 text-green-600 hover:bg-green-50"
+              >
+                💬 Chat on WhatsApp
+              </Button>
+            </a>
+          </div>
         </div>
       </div>
     </section>
