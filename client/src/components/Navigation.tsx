@@ -10,11 +10,9 @@ export default function Navigation() {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { name: "Philosophy", path: "/philosophy" },
+    { name: "Solutions", path: "/products" },
     { name: "Technology", path: "/technology" },
-    { name: "Products", path: "/products" },
-    { name: "Water Life Series", path: "/water-life-series" },
-    { name: "Health", path: "/health" },
+    { name: "Projects", path: "/projects" },
     { name: "Contact", path: "/contact" }
   ];
 
@@ -27,11 +25,12 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/">
             <div className="flex items-center gap-2 cursor-pointer" data-testid="text-logo">
-              <img 
-                src="/images/logo.png" 
-                alt="Shizensui Logo" 
-                className="h-10 w-auto"
-              />
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-600 to-green-500 flex items-center justify-center">
+                  <span className="text-2xl">☀️</span>
+                </div>
+                <span className="text-xl font-bold text-green-600">Rajasthan Green Energy</span>
+              </div>
             </div>
           </Link>
           

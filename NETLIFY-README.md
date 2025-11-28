@@ -64,23 +64,22 @@ npm run build
 
 - ✅ Logo image: Save to `/client/public/images/logo.png`
 - ✅ Calendly URL: https://calendly.com/kaiten/koristu
-- ✅ All 8 pages configured:
+- ✅ All 6 pages configured:
   - Home
   - About
-  - Philosophy
+  - Solutions (Solar Products)
   - Technology
-  - Products
-  - Water Life Series
-  - Health
+  - Projects (Case Studies)
   - Contact
 
 ## Site Structure
 
-- **Pages:** 8 main pages with full content
-- **Navigation:** 8-item navigation menu
-- **Styling:** Mesh gradients, Poppins + Helvetica fonts
-- **Features:** Calendly integration, scroll-to-top, responsive design
+- **Pages:** 6 main pages with full solar EPC content
+- **Navigation:** 6-item navigation menu (Home, About, Solutions, Technology, Projects, Contact)
+- **Styling:** Green & gold gradients, Poppins + Helvetica fonts
+- **Features:** WhatsApp integration, pricing estimator, scroll-to-top, responsive design
 - **Tech Stack:** React, TypeScript, Tailwind CSS, shadcn/ui
+- **Business:** Rajasthan Green Energy Solar - Solar EPC Company in Jaipur
 
 ## Support
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 Building Shizensui India Website for Netlify..."
+echo "🚀 Building Rajasthan Green Energy Solar Website for Netlify..."
 echo ""
 
 # Install dependencies

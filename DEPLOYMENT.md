@@ -87,4 +87,4 @@ Before deploying, ensure:
 
 For issues, contact:
 - Kaiten Software: www.kaitensoftware.com
-- Shizensui India: Jaipur, Rajasthan
+- Rajasthan Green Energy Solar: Jaipur, Rajasthan

@@ -24,7 +24,7 @@ Your project builds successfully! Ready for Netlify deployment.
    ```
    EMAIL_USER=kaitensolution@gmail.com
    EMAIL_PASSWORD=rmes irrz ovnf gqro
-   EMAIL_TO=partnerships@shizensui.com
+   EMAIL_TO=info@rajgreenenergy.com
    ```
 
 4. **Deploy!**
@@ -102,7 +102,7 @@ Location: `netlify/functions/contact.ts`
 1. Visit `/contact` page
 2. Fill out the form
 3. Submit
-4. Check email: `partnerships@shizensui.com`
+4. Check email: `info@rajgreenenergy.com`
 
 ## 📱 Pages Included
 

@@ -47,7 +47,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Email options
       const mailOptions = {
         from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_TO || "partnerships@shizensui.com",
+        to: process.env.EMAIL_TO || "info@rajgreenenergy.com",
         subject: `Contact Request from ${name}`,
         html: `
           <h2>New Contact Form Submission</h2>
