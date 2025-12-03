@@ -190,7 +190,7 @@ export default function ResidentialSolar() {
                 Schedule Free Survey
               </Button>
             </Link>
-            <a href="tel:+919876543210">
+            <a href="tel:+919785277913">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
                 Call Now
               </Button>

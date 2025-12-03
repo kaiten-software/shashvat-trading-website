@@ -227,12 +227,12 @@ export default function PricingEstimatorSection() {
               Prefer to discuss your requirements directly?
             </p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
-              <a href="tel:+919876543210">
+              <a href="tel:+919785277913">
                 <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
                   📞 Call Us Now
                 </Button>
               </a>
-              <a href="https://wa.me/919876543210?text=Hi, I'd like to discuss solar installation pricing and options">
+              <a href="https://wa.me/919785277913?text=Hi, I'd like to discuss solar installation pricing and options">
                 <Button variant="ghost" className="text-green-600 hover:bg-green-50">
                   💬 WhatsApp Chat
                 </Button>

@@ -153,7 +153,7 @@ export default function TestimonialsSection() {
           <p className="text-muted-foreground mb-6">
             Join hundreds of satisfied customers making the switch to solar
           </p>
-          <a href="https://wa.me/919876543210?text=Hi, I'd like to learn more about solar installation. Can we discuss?">
+          <a href="https://wa.me/919785277913?text=Hi, I'd like to learn more about solar installation. Can we discuss?">
             <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
               💬 Connect with Our Team
             </Button>

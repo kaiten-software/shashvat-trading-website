@@ -156,7 +156,7 @@ export default function CaseStudiesSection() {
                 Get Your Custom Quote
               </Button>
             </a>
-            <a href="https://wa.me/919876543210?text=Hi, I saw your case studies. I'd like to discuss a solar installation for my property">
+            <a href="https://wa.me/919785277913?text=Hi, I saw your case studies. I'd like to discuss a solar installation for my property">
               <Button 
                 size="lg"
                 variant="ghost"

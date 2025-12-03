@@ -139,7 +139,7 @@ export default function SolutionsSection() {
                 Get Free Consultation
               </Button>
             </Link>
-            <a href="https://wa.me/919876543210?text=Hi, I need help choosing the right solar solution">
+            <a href="https://wa.me/919785277913?text=Hi, I need help choosing the right solar solution">
               <Button 
                 size="lg"
                 variant="outline"

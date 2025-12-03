@@ -26,7 +26,7 @@ export default function Footer() {
       title: "Contact",
       links: [
         { name: "Jaipur, Rajasthan", path: "/contact" },
-        { name: "info@rajgreenenergy.com", path: "/contact" }
+        { name: "hello@rajasthanenergy.com", path: "/contact" }
       ]
     }
   ];

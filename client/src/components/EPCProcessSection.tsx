@@ -130,7 +130,7 @@ export default function EPCProcessSection() {
                 Schedule Site Visit
               </Button>
             </Link>
-            <a href="tel:+919876543210">
+            <a href="tel:+919785277913">
               <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
                 📞 Call +91 98765 43210
               </Button>

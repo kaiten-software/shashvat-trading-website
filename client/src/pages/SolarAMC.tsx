@@ -304,7 +304,7 @@ export default function SolarAMC() {
                 Subscribe to AMC
               </Button>
             </Link>
-            <a href="tel:+919876543210">
+            <a href="tel:+919785277913">
               <Button size="lg" variant="outline" className="border-orange-600 text-orange-600 hover:bg-orange-50">
                 Call for Details
               </Button>

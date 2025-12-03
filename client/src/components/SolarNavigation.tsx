@@ -109,7 +109,7 @@ export default function SolarNavigation() {
                 </Link>
               ))}
               <div className="flex flex-col gap-2 pt-4">
-                <a href="tel:+919876543210">
+                <a href="tel:+919785277913">
                   <Button variant="outline" size="sm" className="w-full border-green-600 text-green-700">
                     📞 Call Now
                   </Button>

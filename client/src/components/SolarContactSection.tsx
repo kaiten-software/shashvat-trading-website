@@ -128,7 +128,7 @@ export default function SolarContactSection() {
                   <div>
                     <h4 className="text-lg font-semibold text-foreground mb-2">Call Us</h4>
                     <a 
-                      href="tel:+919876543210" 
+                      href="tel:+919785277913" 
                       className="text-green-600 hover:text-green-700 font-semibold text-lg"
                     >
                       +91 98677 40809
@@ -184,7 +184,7 @@ export default function SolarContactSection() {
                 Get instant responses to your queries. Our solar experts are available on WhatsApp.
               </p>
               <a
-                href="https://wa.me/919876543210?text=Hi, I'm interested in solar installation. Please provide more details."
+                href="https://wa.me/919785277913?text=Hi, I'm interested in solar installation. Please provide more details."
                 target="_blank"
                 rel="noopener noreferrer"
               >

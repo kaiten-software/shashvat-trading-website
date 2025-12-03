@@ -217,7 +217,7 @@ export default function Technology() {
                 Get Free Consultation
               </button>
             </a>
-            <a href="tel:+919876543210">
+            <a href="tel:+919785277913">
               <button className="px-10 py-4 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white/10 transition-colors font-semibold text-lg">
                 📞 Call Now
               </button>

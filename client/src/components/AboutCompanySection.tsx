@@ -149,7 +149,7 @@ export default function AboutCompanySection() {
                 Start a Conversation
               </Button>
             </Link>
-            <a href="https://wa.me/919876543210?text=Hi, I'd like to learn more about solar for my property">
+            <a href="https://wa.me/919785277913?text=Hi, I'd like to learn more about solar for my property">
               <Button 
                 variant="ghost" 
                 className="text-green-600 hover:text-green-700 hover:bg-green-50"

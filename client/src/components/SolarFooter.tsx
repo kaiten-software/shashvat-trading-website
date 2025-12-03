@@ -122,15 +122,14 @@ export default function SolarFooter() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-green-500 flex-shrink-0" />
-                <a href="tel:+919876543210" className="text-gray-400 hover:text-green-400 transition-colors text-sm">
-                  +91 98677 40809
+                <a href="tel:+919785277913" className="text-gray-400 hover:text-green-400 transition-colors text-sm">
+                  +91 97852 77913
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-green-500 flex-shrink-0" />
-                <a href="mailto:info@rajasthanenergy.com
-" className="text-gray-400 hover:text-green-400 transition-colors text-sm">
-                  info@rajasthanenergy.com
+                <a href="mailto:hello@rajasthanenergy.com" className="text-gray-400 hover:text-green-400 transition-colors text-sm">
+                  hello@rajasthanenergy.com
 
                 </a>
               </li>
@@ -138,7 +137,7 @@ export default function SolarFooter() {
 
             {/* WhatsApp Button */}
             <a 
-              href="https://wa.me/919876543210"
+              href="https://wa.me/919785277913"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 rounded-lg transition-all shadow-lg hover:shadow-xl"
