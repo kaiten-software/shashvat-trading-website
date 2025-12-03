@@ -2,7 +2,7 @@ export default function BrandsSection() {
   const brands = [
     {
       name: "Adani Solar",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Adani_2012.svg/320px-Adani_2012.svg.png",
+      logo: "https://www.adanigreenenergy.com/-/media/Project/Adani/Businesses/Green-Energy/Adani-Green-Energy/logo/logo-agel.svg",
       category: "Solar Panels"
     },
     {
@@ -22,7 +22,7 @@ export default function BrandsSection() {
     },
     {
       name: "Havells",
-      logo: "https://www.havells.com/content/dam/havells/global/logos/havells-logo.png",
+      logo: "https://www.havells.com/content/dam/havells/india/images/logo.png",
       category: "Inverters"
     },
     {
@@ -32,12 +32,12 @@ export default function BrandsSection() {
     },
     {
       name: "SMA",
-      logo: "https://www.sma.de/typo3conf/ext/wwt_sma/Resources/Public/Images/logo.svg",
+      logo: "https://files.sma.de/downloads/SMA_Logo-2023.svg",
       category: "Inverters"
     },
     {
       name: "Growatt",
-      logo: "https://www.ginverter.com/images/logo.png",
+      logo: "https://en.growatt.com/Content/images/logo.png",
       category: "Inverters"
     }
   ];
@@ -63,12 +63,24 @@ export default function BrandsSection() {
               className="group"
             >
               <div className="p-8 bg-white rounded-2xl border border-gray-200 hover:border-green-300 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center min-h-[160px]">
-                {/* Logo placeholder - using text since actual logos need proper attribution */}
-                <div className="text-center mb-3">
-                  <div className="text-2xl font-bold text-gray-700 group-hover:text-green-600 transition-colors mb-2">
-                    {brand.name}
+                <div className="flex flex-col items-center justify-center w-full">
+                  <div className="h-16 flex items-center justify-center mb-4 w-full">
+                    <img 
+                      src={brand.logo} 
+                      alt={`${brand.name} logo`}
+                      className="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-300"
+                      onError={(e) => {
+                        // Fallback to text if image fails to load
+                        e.currentTarget.style.display = 'none';
+                        const textFallback = e.currentTarget.nextElementSibling;
+                        if (textFallback) textFallback.style.display = 'block';
+                      }}
+                    />
+                    <div className="text-xl font-bold text-gray-700 group-hover:text-green-600 transition-colors hidden">
+                      {brand.name}
+                    </div>
                   </div>
-                  <div className="text-xs text-muted-foreground px-3 py-1 bg-gray-100 rounded-full inline-block">
+                  <div className="text-xs text-muted-foreground px-3 py-1 bg-gray-100 rounded-full">
                     {brand.category}
                   </div>
                 </div>
