@@ -72,7 +72,7 @@ export default function SolarNavigation() {
             </a>
             <a href="tel:+919785277913">
               <Button variant="outline" size="sm" className="border-green-600 text-green-700 hover:bg-green-50">
-                📞 Call
+                📞 +91 97852 77913
               </Button>
             </a>
           </div>
@@ -119,7 +119,7 @@ export default function SolarNavigation() {
                 </a>
                 <a href="tel:+919785277913">
                   <Button variant="outline" size="sm" className="w-full border-green-600 text-green-700">
-                    📞 Call
+                    📞 +91 97852 77913
                   </Button>
                 </a>
               </div>

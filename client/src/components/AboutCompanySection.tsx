@@ -141,20 +141,19 @@ export default function AboutCompanySection() {
             Curious about how solar works for your property?
           </p>
           <div className="flex items-center justify-center gap-4">
-            <Link href="/contact">
+            <a href="https://wa.me/919785277913?text=Hi, I'd like to learn more about solar for my property" target="_blank" rel="noopener noreferrer">
+              <Button 
+                className="bg-green-600 hover:bg-green-700 text-white shadow-lg"
+              >
+                💬 Chat Instantly on WhatsApp
+              </Button>
+            </a>
+            <a href="tel:+919785277913">
               <Button 
                 variant="outline" 
                 className="border-green-600 text-green-600 hover:bg-green-50"
               >
-                Start a Conversation
-              </Button>
-            </Link>
-            <a href="https://wa.me/919785277913?text=Hi, I'd like to learn more about solar for my property">
-              <Button 
-                variant="ghost" 
-                className="text-green-600 hover:text-green-700 hover:bg-green-50"
-              >
-                💬 Quick WhatsApp Chat
+                📞 Call +91 97852 77913
               </Button>
             </a>
           </div>

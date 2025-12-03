@@ -306,7 +306,7 @@ export default function SolarAMC() {
             </a>
             <a href="tel:+919785277913">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                📞 Call for Details
+                📞 Call +91 97852 77913
               </Button>
             </a>
           </div>

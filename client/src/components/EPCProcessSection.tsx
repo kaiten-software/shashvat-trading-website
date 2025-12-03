@@ -125,14 +125,14 @@ export default function EPCProcessSection() {
             Ready to start your solar journey?
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <Link href="/contact">
-              <Button className="bg-green-600 hover:bg-green-700">
-                Schedule Site Visit
+            <a href="https://wa.me/919785277913?text=Hi, I'd like to schedule a site visit" target="_blank" rel="noopener noreferrer">
+              <Button className="bg-green-600 hover:bg-green-700 shadow-lg">
+                💬 Chat Instantly on WhatsApp
               </Button>
-            </Link>
+            </a>
             <a href="tel:+919785277913">
               <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
-                📞 Call +91 98765 43210
+                📞 Call +91 97852 77913
               </Button>
             </a>
           </div>

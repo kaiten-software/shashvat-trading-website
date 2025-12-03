@@ -131,7 +131,7 @@ export default function SolarContactSection() {
                       href="tel:+919785277913" 
                       className="text-green-600 hover:text-green-700 font-semibold text-lg"
                     >
-                      +91 98677 40809
+                      +91 97852 77913
                     </a>
                     <p className="text-sm text-muted-foreground mt-1">Mon-Sat, 9 AM - 7 PM</p>
                   </div>
@@ -147,12 +147,10 @@ export default function SolarContactSection() {
                   <div>
                     <h4 className="text-lg font-semibold text-foreground mb-2">Email Us</h4>
                     <a 
-                      href="mailto:info@rajasthanenergy.com
-" 
+                      href="mailto:hello@rajasthanenergy.com" 
                       className="text-green-600 hover:text-green-700 font-semibold"
                     >
-                      info@rajasthanenergy.com
-
+                      hello@rajasthanenergy.com
                     </a>
                     <p className="text-sm text-muted-foreground mt-1">We reply within 24 hours</p>
                   </div>

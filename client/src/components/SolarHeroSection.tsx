@@ -10,23 +10,50 @@ export default function SolarHeroSection() {
   const y2 = useTransform(scrollY, [0, 800], [0, -150]);
   const y3 = useTransform(scrollY, [0, 600], [0, 100]);
 
-  // Typing effect
+  // Rotating phrases with typing effect
+  const phrases = [
+    { text: "Affordable Solar", gradient: "from-green-600 via-green-500 to-amber-500" },
+    { text: "Sustainable Energy", gradient: "from-blue-600 via-cyan-500 to-teal-500" },
+    { text: "Smart Investment", gradient: "from-purple-600 via-pink-500 to-rose-500" },
+    { text: "Energy Independence", gradient: "from-orange-600 via-amber-500 to-yellow-500" },
+    { text: "Future Ready", gradient: "from-emerald-600 via-green-500 to-lime-500" }
+  ];
+  
   const [displayText, setDisplayText] = useState("");
-  const fullText = "Affordable Solar";
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
   
   useEffect(() => {
-    let currentIndex = 0;
-    const typingInterval = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setDisplayText(fullText.slice(0, currentIndex));
-        currentIndex++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 100);
+    const currentPhrase = phrases[currentPhraseIndex].text;
     
-    return () => clearInterval(typingInterval);
-  }, []);
+    const typingSpeed = isDeleting ? 50 : 100;
+    const pauseDuration = 5000; // 5 seconds pause after typing complete
+    
+    if (!isDeleting && displayText === currentPhrase) {
+      // Pause before starting to delete
+      const pauseTimeout = setTimeout(() => {
+        setIsDeleting(true);
+      }, pauseDuration);
+      return () => clearTimeout(pauseTimeout);
+    }
+    
+    if (isDeleting && displayText === "") {
+      // Move to next phrase
+      setIsDeleting(false);
+      setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
+      return;
+    }
+    
+    const typingTimeout = setTimeout(() => {
+      if (!isDeleting) {
+        setDisplayText(currentPhrase.slice(0, displayText.length + 1));
+      } else {
+        setDisplayText(currentPhrase.slice(0, displayText.length - 1));
+      }
+    }, typingSpeed);
+    
+    return () => clearTimeout(typingTimeout);
+  }, [displayText, currentPhraseIndex, isDeleting]);
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-white via-green-50/30 to-amber-50/20 pt-20 flex flex-col items-center justify-center" style={{ background: 'var(--section-bg-1)' }}>
@@ -72,12 +99,12 @@ export default function SolarHeroSection() {
               Clean. Powerful.
             </motion.span>
             <br />
-            <span className="bg-gradient-to-r from-green-600 via-green-500 to-amber-500 bg-clip-text text-transparent font-semibold">
+            <span className={`bg-gradient-to-r ${phrases[currentPhraseIndex].gradient} bg-clip-text text-transparent font-semibold inline-block`}>
               {displayText}
               <motion.span
                 animate={{ opacity: [1, 0] }}
                 transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
-                className="inline-block w-1 h-16 md:h-20 bg-green-600 ml-2"
+                className={`inline-block w-1 h-16 md:h-20 ml-2 align-middle bg-gradient-to-r ${phrases[currentPhraseIndex].gradient}`}
               />
             </span>
             <br />
