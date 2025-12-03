@@ -99,8 +99,8 @@ export default function SolarHeroSection() {
               Clean. Powerful.
             </motion.span>
             <br />
-            <span className={`bg-gradient-to-r ${phrases[currentPhraseIndex].gradient} bg-clip-text text-transparent font-semibold inline-flex items-center`}>
-              <span>{displayText}</span>
+            <span className={`bg-gradient-to-r ${phrases[currentPhraseIndex].gradient} bg-clip-text text-transparent font-semibold inline-flex items-center pb-2`} style={{ WebkitBoxDecorationBreak: 'clone' }}>
+              <span className="pb-2">{displayText}</span>
               <motion.span
                 animate={{ opacity: [1, 0] }}
                 transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
