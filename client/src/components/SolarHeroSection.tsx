@@ -86,7 +86,7 @@ export default function SolarHeroSection() {
           
           {/* Main Headline with Animations */}
           <motion.h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-foreground mb-6 leading-[1.1]"
+            className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-foreground mb-6 leading-[1.2] pb-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -99,12 +99,12 @@ export default function SolarHeroSection() {
               Clean. Powerful.
             </motion.span>
             <br />
-            <span className={`bg-gradient-to-r ${phrases[currentPhraseIndex].gradient} bg-clip-text text-transparent font-semibold inline-block`}>
-              {displayText}
+            <span className={`bg-gradient-to-r ${phrases[currentPhraseIndex].gradient} bg-clip-text text-transparent font-semibold inline-flex items-center`}>
+              <span>{displayText}</span>
               <motion.span
                 animate={{ opacity: [1, 0] }}
                 transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
-                className={`inline-block w-1 h-16 md:h-20 ml-2 align-middle bg-gradient-to-r ${phrases[currentPhraseIndex].gradient}`}
+                className={`inline-block w-1 h-16 md:h-20 ml-2 bg-gradient-to-r ${phrases[currentPhraseIndex].gradient}`}
               />
             </span>
             <br />
