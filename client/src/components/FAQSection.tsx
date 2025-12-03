@@ -48,6 +48,10 @@ export default function FAQSection() {
     {
       question: "What happens to my solar system during hailstorms?",
       answer: "Quality solar panels are tested to withstand hail stones up to 25mm diameter at high velocity. All our Tier-1 panels are certified for extreme weather conditions. Additionally, we recommend solar insurance to cover rare events. Proper installation with secure mounting also prevents storm damage."
+    },
+    {
+      question: "What is the most important component in a solar plant?",
+      answer: "Mounting structure and electrical accessories are the most important components. They ensure the life of plant is longer and safe. A robust mounting structure withstands wind loads, prevents panel damage, and ensures optimal tilt angles. Quality electrical accessories (cables, connectors, earthing, protection devices) prevent failures, reduce losses, and ensure safety for decades."
     }
   ];
 
