@@ -68,11 +68,12 @@ export default function BrandsSection() {
                     <img 
                       src={brand.logo} 
                       alt={`${brand.name} logo`}
-                      className="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-300"
+                      crossOrigin="anonymous"
+                      className="max-h-full max-w-full object-contain opacity-80 group-hover:opacity-100 transition-all duration-300"
                       onError={(e) => {
                         // Fallback to text if image fails to load
                         e.currentTarget.style.display = 'none';
-                        const textFallback = e.currentTarget.nextElementSibling;
+                        const textFallback = e.currentTarget.nextElementSibling as HTMLElement;
                         if (textFallback) textFallback.style.display = 'block';
                       }}
                     />

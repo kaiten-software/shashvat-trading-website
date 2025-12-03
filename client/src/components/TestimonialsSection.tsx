@@ -5,49 +5,76 @@ import { Button } from "@/components/ui/button";
 export default function TestimonialsSection() {
   const testimonials = [
     {
-      name: "Rajesh Sharma",
-      location: "Malviya Nagar, Jaipur",
+      name: "Vishes Sharma",
+      location: "Pani Pech - JAIPUR",
+      role: "Customer",
+      rating: 5,
+      text: "The service from Rajasthan Green Energy Solar Power Pvt. Ltd. was excellent. Installation was on time and the team was highly professional.",
+      image: "https://ui-avatars.com/api/?name=Vishes+Sharma&size=128&background=22c55e&color=fff",
+      system: "5 kW"
+    },
+    {
+      name: "Radheshyam Sharma",
+      location: "Chomu - JAIPUR",
       role: "Homeowner",
       rating: 5,
-      text: "Excellent service from start to finish. The team was professional, installation was completed in 8 days, and my electricity bill has reduced by 55%. Highly recommended!",
-      image: "https://ui-avatars.com/api/?name=Rajesh+Sharma&size=128&background=22c55e&color=fff",
-      system: "5 kW Residential"
+      text: "After installing solar, our electricity bill has reduced by almost 80%. Truly the best investment for our home.",
+      image: "https://ui-avatars.com/api/?name=Radheshyam+Sharma&size=128&background=22c55e&color=fff",
+      system: "3 kW"
     },
     {
-      name: "Priya Mehta",
-      location: "Vaishali Nagar, Jaipur",
-      role: "Business Owner",
+      name: "Colonel Pratap Singh",
+      location: "Kirni Phatak - JAIPUR",
+      role: "Customer",
       rating: 5,
-      text: "Best decision for our office. The ROI calculations were accurate, and we're saving ₹18,000 monthly. The net metering process was handled smoothly by their team.",
-      image: "https://ui-avatars.com/api/?name=Priya+Mehta&size=128&background=22c55e&color=fff",
-      system: "20 kW Commercial"
+      text: "Excellent service and top-quality solar panels. My bills dropped significantly – truly worth it!",
+      image: "https://ui-avatars.com/api/?name=Pratap+Singh&size=128&background=22c55e&color=fff",
+      system: "3 kW"
     },
     {
-      name: "Anil Kumar",
-      location: "Mansarovar, Jaipur",
-      role: "Society President",
+      name: "Parveen Bhai Sitapara",
+      location: "Chomu - JAIPUR",
+      role: "Customer",
       rating: 5,
-      text: "Our housing society chose Rajasthan Green Energy Solar and we're thrilled. Professional installation, transparent pricing, and excellent after-sales support.",
-      image: "https://ui-avatars.com/api/?name=Anil+Kumar&size=128&background=22c55e&color=fff",
-      system: "30 kW Society"
+      text: "Best decision! No tension of high bills, solar is working perfectly at home.",
+      image: "https://ui-avatars.com/api/?name=Parveen+Sitapara&size=128&background=22c55e&color=fff",
+      system: "5 kW"
     },
     {
-      name: "Sunita Rathore",
-      location: "Civil Lines, Jaipur",
+      name: "Dr. N. C. Nitharwal",
+      location: "Jankalyan Hospital - CHOMU",
+      role: "Hospital Owner",
+      rating: 5,
+      text: "Reliable solar power for our hospital, ensuring uninterrupted service and big savings. Highly recommended!",
+      image: "https://ui-avatars.com/api/?name=N+C+Nitharwal&size=128&background=22c55e&color=fff",
+      system: "20 kW"
+    },
+    {
+      name: "Bansidhar Jaat",
+      location: "Chomu - JAIPUR",
       role: "Homeowner",
       rating: 5,
-      text: "The hybrid system with battery backup was perfect for our needs. No more power cuts, and our bills are down by 60%. Great team and quality equipment!",
-      image: "https://ui-avatars.com/api/?name=Sunita+Rathore&size=128&background=22c55e&color=fff",
-      system: "10 kW Hybrid"
+      text: "Best service! My home solar installation was quick and my bills are much lower now.",
+      image: "https://ui-avatars.com/api/?name=Bansidhar+Jaat&size=128&background=22c55e&color=fff",
+      system: "3 kW"
     },
     {
-      name: "Vikram Singh",
-      location: "Sitapura, Jaipur",
-      role: "Factory Owner",
+      name: "Vijay pal Yadav",
+      location: "Kaladera - JAIPUR",
+      role: "Customer",
       rating: 5,
-      text: "Industrial installation was completed without disrupting operations. The engineering team was knowledgeable and the system performance exceeds expectations.",
-      image: "https://ui-avatars.com/api/?name=Vikram+Singh&size=128&background=22c55e&color=fff",
-      system: "50 kW Industrial"
+      text: "Best service! Just one call and they arrived the very next day. Fast and reliable.",
+      image: "https://ui-avatars.com/api/?name=Vijay+Yadav&size=128&background=22c55e&color=fff",
+      system: "17 kW"
+    },
+    {
+      name: "Dr Punit Lekhra",
+      location: "Banipark - JAIPUR",
+      role: "Doctor",
+      rating: 5,
+      text: "After installing solar, my electricity bill is almost half. Very happy with the service.",
+      image: "https://ui-avatars.com/api/?name=Punit+Lekhra&size=128&background=22c55e&color=fff",
+      system: "3 kW"
     }
   ];
 

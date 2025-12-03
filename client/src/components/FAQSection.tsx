@@ -43,7 +43,7 @@ export default function FAQSection() {
     },
     {
       question: "Do I get government subsidy for solar installation?",
-      answer: "Yes, residential solar systems in Rajasthan are eligible for ₹78,000 government subsidy. We assist with the entire subsidy application process and ensure you receive the maximum benefit, handling all documentation and approvals on your behalf."
+      answer: "Yes, residential solar systems in Rajasthan are eligible for government subsidy: ₹30,000 for 1kW system, ₹60,000 for 2kW system, and ₹78,000 for 3kW system. We assist with the entire subsidy application process and ensure you receive the maximum benefit, handling all documentation and approvals on your behalf."
     },
     {
       question: "What happens to my solar system during hailstorms?",
