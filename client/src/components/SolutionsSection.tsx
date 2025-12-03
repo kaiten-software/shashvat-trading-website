@@ -12,42 +12,48 @@ export default function SolutionsSection() {
       title: "Residential Rooftop Solar",
       description: "Custom solar solutions for homes, reducing electricity bills by 30-60%",
       image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=400&fit=crop",
-      gradient: "from-blue-500 to-cyan-500"
+      gradient: "from-blue-500 to-cyan-500",
+      link: "/residential-solar"
     },
     {
       icon: Building2,
       title: "Commercial Solar",
       description: "Cost-effective solar installations for offices and commercial buildings",
       image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=600&h=400&fit=crop",
-      gradient: "from-green-500 to-emerald-500"
+      gradient: "from-green-500 to-emerald-500",
+      link: "/commercial-solar"
     },
     {
       icon: Factory,
       title: "Industrial Solar",
       description: "High-capacity solar systems for manufacturing and industrial facilities",
       image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&h=400&fit=crop",
-      gradient: "from-purple-500 to-pink-500"
+      gradient: "from-purple-500 to-pink-500",
+      link: "/industrial-solar"
     },
     {
       icon: Zap,
       title: "On-Grid / Hybrid Systems",
       description: "Flexible grid-tied and battery backup solar solutions",
       image: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=600&h=400&fit=crop",
-      gradient: "from-amber-500 to-orange-500"
+      gradient: "from-amber-500 to-orange-500",
+      link: "/on-grid-solar"
     },
     {
       icon: Construction,
-      title: "Solar Structure & Civil Work",
-      description: "Expert structural design and foundation work for solar installations",
+      title: "Hybrid Solar Systems",
+      description: "Solar with battery backup for 24/7 power supply",
       image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=400&fit=crop",
-      gradient: "from-teal-500 to-cyan-500"
+      gradient: "from-teal-500 to-cyan-500",
+      link: "/hybrid-solar"
     },
     {
       icon: Settings,
       title: "Annual Maintenance (AMC)",
       description: "Comprehensive maintenance contracts for optimal system performance",
       image: "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&h=400&fit=crop",
-      gradient: "from-indigo-500 to-purple-500"
+      gradient: "from-indigo-500 to-purple-500",
+      link: "/solar-amc"
     }
   ];
 
@@ -105,7 +111,7 @@ export default function SolutionsSection() {
                   <p className="text-muted-foreground leading-relaxed mb-4">
                     {solution.description}
                   </p>
-                  <Link href="/contact">
+                  <Link href={solution.link}>
                     <Button 
                       variant="ghost" 
                       className="text-green-600 hover:text-green-700 hover:bg-green-50 p-0 h-auto font-semibold"

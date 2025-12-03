@@ -10,6 +10,12 @@ import Technology from "@/pages/Technology";
 import Products from "@/pages/Products";
 import Projects from "@/pages/Projects";
 import Contact from "@/pages/Contact";
+import ResidentialSolar from "@/pages/ResidentialSolar";
+import CommercialSolar from "@/pages/CommercialSolar";
+import IndustrialSolar from "@/pages/IndustrialSolar";
+import OnGridSolar from "@/pages/OnGridSolar";
+import HybridSolar from "@/pages/HybridSolar";
+import SolarAMC from "@/pages/SolarAMC";
 import NotFound from "@/pages/not-found";
 
 function ScrollToTop() {
@@ -34,6 +40,12 @@ function Router() {
         <Route path="/solutions" component={Products} />
         <Route path="/projects" component={Projects} />
         <Route path="/contact" component={Contact} />
+        <Route path="/residential-solar" component={ResidentialSolar} />
+        <Route path="/commercial-solar" component={CommercialSolar} />
+        <Route path="/industrial-solar" component={IndustrialSolar} />
+        <Route path="/on-grid-solar" component={OnGridSolar} />
+        <Route path="/hybrid-solar" component={HybridSolar} />
+        <Route path="/solar-amc" component={SolarAMC} />
         <Route component={NotFound} />
       </Switch>
     </>

@@ -24,9 +24,11 @@ export default function SolarNavigation() {
           {/* Logo */}
           <Link href="/">
             <div className="flex items-center gap-3 cursor-pointer group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-600 to-green-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                <Sun className="w-7 h-7 text-white" />
-              </div>
+              <img 
+                src="/images/company-logo.png" 
+                alt="Rajasthan Green Energy Solar Power" 
+                className="h-16 w-auto object-contain group-hover:scale-105 transition-transform"
+              />
               <div>
                 <div className="text-lg font-bold text-foreground leading-tight">
                   Rajasthan Green Energy

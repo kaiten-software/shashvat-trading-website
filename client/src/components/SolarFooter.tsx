@@ -13,12 +13,12 @@ export default function SolarFooter() {
   ];
 
   const services = [
-    "Residential Solar",
-    "Commercial Solar",
-    "Industrial Solar",
-    "On-Grid Systems",
-    "Hybrid Systems",
-    "Solar AMC"
+    { name: "Residential Solar", path: "/residential-solar" },
+    { name: "Commercial Solar", path: "/commercial-solar" },
+    { name: "Industrial Solar", path: "/industrial-solar" },
+    { name: "On-Grid Systems", path: "/on-grid-solar" },
+    { name: "Hybrid Systems", path: "/hybrid-solar" },
+    { name: "Solar AMC", path: "/solar-amc" }
   ];
 
   return (
@@ -98,10 +98,12 @@ export default function SolarFooter() {
             <h3 className="text-lg font-semibold mb-6">Our Services</h3>
             <ul className="space-y-3">
               {services.map((service) => (
-                <li key={service}>
-                  <span className="text-gray-400 text-sm">
-                    {service}
-                  </span>
+                <li key={service.name}>
+                  <Link href={service.path}>
+                    <a className="text-gray-400 hover:text-green-400 transition-colors text-sm">
+                      {service.name}
+                    </a>
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -39,13 +39,13 @@ export default function Footer() {
           <div className="md:col-span-1">
             <div className="mb-4">
               <img 
-                src="/images/logo.png" 
-                alt="Shizensui Logo" 
-                className="h-10 w-auto brightness-0 invert"
+                src="/images/company-logo.png" 
+                alt="Rajasthan Green Energy Solar Power Logo" 
+                className="h-14 w-auto"
               />
             </div>
             <p className="text-sm text-gray-400 mb-4 leading-relaxed">
-              Japanese water purification technology for healthier living.
+              Premium solar EPC solutions with 7-year mounting warranty in Rajasthan.
             </p>
             <div className="flex items-center gap-2 text-sm">
               <span>🇯🇵</span>
