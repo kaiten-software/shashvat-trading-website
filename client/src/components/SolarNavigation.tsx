@@ -65,16 +65,16 @@ export default function SolarNavigation() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <a href="tel:+919876543210">
-              <Button variant="outline" size="sm" className="border-green-600 text-green-700 hover:bg-green-50">
-                📞 Call Now
+            <a href="https://wa.me/919785277913?text=Hi, I'm interested in solar solutions" target="_blank" rel="noopener noreferrer">
+              <Button size="sm" className="bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 shadow-lg">
+                💬 Chat on WhatsApp
               </Button>
             </a>
-            <Link href="/contact">
-              <Button size="sm" className="bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600">
-                Get Quote
+            <a href="tel:+919785277913">
+              <Button variant="outline" size="sm" className="border-green-600 text-green-700 hover:bg-green-50">
+                📞 Call
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -109,20 +109,19 @@ export default function SolarNavigation() {
                 </Link>
               ))}
               <div className="flex flex-col gap-2 pt-4">
-                <a href="tel:+919785277913">
-                  <Button variant="outline" size="sm" className="w-full border-green-600 text-green-700">
-                    📞 Call Now
-                  </Button>
-                </a>
-                <Link href="/contact">
+                <a href="https://wa.me/919785277913?text=Hi, I'm interested in solar solutions" target="_blank" rel="noopener noreferrer">
                   <Button 
                     size="sm" 
-                    className="w-full bg-gradient-to-r from-green-600 to-green-500" 
-                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full bg-gradient-to-r from-green-600 to-green-500 shadow-lg" 
                   >
-                    Get Quote
+                    💬 Chat Instantly on WhatsApp
                   </Button>
-                </Link>
+                </a>
+                <a href="tel:+919785277913">
+                  <Button variant="outline" size="sm" className="w-full border-green-600 text-green-700">
+                    📞 Call
+                  </Button>
+                </a>
               </div>
             </div>
           </div>

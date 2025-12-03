@@ -98,18 +98,18 @@ export default function FAQSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="tel:+919785277913"
-              className="inline-flex items-center justify-center px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold"
-            >
-              📞 Call: +91 98677 40809
-            </a>
-            <a 
-              href="https://wa.me/919785277913"
+              href="https://wa.me/919785277913?text=Hi, I have questions about solar installation"
               target="_blank"
               rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold shadow-lg"
+            >
+              💬 Chat Instantly on WhatsApp
+            </a>
+            <a 
+              href="tel:+919785277913"
               className="inline-flex items-center justify-center px-8 py-3 bg-white border-2 border-green-600 text-green-700 rounded-lg hover:bg-green-50 transition-colors font-semibold"
             >
-              💬 WhatsApp Us
+              📞 Call: +91 97852 77913
             </a>
           </div>
         </div>

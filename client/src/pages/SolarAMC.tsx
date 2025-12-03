@@ -1,5 +1,5 @@
 import SolarNavigation from "@/components/SolarNavigation";
-import Footer from "@/components/Footer";
+import SolarFooter from "@/components/SolarFooter";
 import { Button } from "@/components/ui/button";
 import { Wrench, Shield, Calendar, TrendingUp, CheckCircle2, AlertTriangle, Zap, Settings } from "lucide-react";
 import { Link } from "wouter";
@@ -299,21 +299,21 @@ export default function SolarAMC() {
             Sign up for AMC and ensure your solar system delivers optimal performance for years
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
-                Subscribe to AMC
+            <a href="https://wa.me/919785277913?text=Hi, I want to subscribe to Solar AMC" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 shadow-xl">
+                💬 Chat Instantly on WhatsApp
               </Button>
-            </Link>
+            </a>
             <a href="tel:+919785277913">
-              <Button size="lg" variant="outline" className="border-orange-600 text-orange-600 hover:bg-orange-50">
-                Call for Details
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                📞 Call for Details
               </Button>
             </a>
           </div>
         </div>
       </section>
 
-      <Footer />
+      <SolarFooter />
     </div>
   );
 }

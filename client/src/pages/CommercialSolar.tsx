@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import SolarNavigation from "@/components/SolarNavigation";
-import Footer from "@/components/Footer";
+import SolarFooter from "@/components/SolarFooter";
 import { Building2 } from "lucide-react";
 
 export default function CommercialSolar() {
-  const [countdown, setCountdown] = useState(3);
+  const [countdown, setCountdown] = useState(10);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -65,7 +65,7 @@ export default function CommercialSolar() {
         </div>
       </div>
 
-      <Footer />
+      <SolarFooter />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import SolarNavigation from "@/components/SolarNavigation";
-import Footer from "@/components/Footer";
+import SolarFooter from "@/components/SolarFooter";
 import { Button } from "@/components/ui/button";
 import { Grid3x3, TrendingDown, Zap, ChevronRight, Shield, BadgeCheck } from "lucide-react";
 import { Link } from "wouter";
@@ -238,21 +238,21 @@ export default function OnGridSolar() {
             Get a customized on-grid solar proposal for your property
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
-                Request Free Consultation
+            <a href="https://wa.me/919785277913?text=Hi, I need consultation for on-grid solar system" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 shadow-xl">
+                💬 Chat Instantly on WhatsApp
               </Button>
-            </Link>
-            <Link href="/residential-solar">
+            </a>
+            <a href="tel:+919785277913">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                View All Systems
+                📞 Call Now
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
 
-      <Footer />
+      <SolarFooter />
     </div>
   );
 }

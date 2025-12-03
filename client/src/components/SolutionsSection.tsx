@@ -131,21 +131,21 @@ export default function SolutionsSection() {
             Not sure which solution is right for you?
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <Link href="/contact">
+            <a href="https://wa.me/919785277913?text=Hi, I need help choosing the right solar solution" target="_blank" rel="noopener noreferrer">
               <Button 
                 size="lg"
-                className="px-10 py-6 text-lg bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600"
+                className="px-10 py-6 text-lg bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 shadow-xl"
               >
-                Get Free Consultation
+                💬 Chat Instantly on WhatsApp
               </Button>
-            </Link>
-            <a href="https://wa.me/919785277913?text=Hi, I need help choosing the right solar solution">
+            </a>
+            <a href="tel:+919785277913">
               <Button 
                 size="lg"
                 variant="outline"
                 className="px-10 py-6 text-lg border-green-600 text-green-600 hover:bg-green-50"
               >
-                💬 Chat on WhatsApp
+                📞 Call Now
               </Button>
             </a>
           </div>

@@ -1,5 +1,5 @@
 import SolarNavigation from "@/components/SolarNavigation";
-import Footer from "@/components/Footer";
+import SolarFooter from "@/components/SolarFooter";
 import { Button } from "@/components/ui/button";
 import { Home, Shield, TrendingDown, Battery, Sun, Zap } from "lucide-react";
 import { Link } from "wouter";
@@ -185,21 +185,21 @@ export default function ResidentialSolar() {
             Get a free site survey and personalized solar proposal for your home
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100">
-                Schedule Free Survey
+            <a href="https://wa.me/919785277913?text=Hi, I want to schedule a free solar survey" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100 shadow-xl">
+                💬 Chat Instantly on WhatsApp
               </Button>
-            </Link>
+            </a>
             <a href="tel:+919785277913">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                Call Now
+                📞 Call Now
               </Button>
             </a>
           </div>
         </div>
       </section>
 
-      <Footer />
+      <SolarFooter />
     </div>
   );
 }

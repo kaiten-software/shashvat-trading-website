@@ -1,5 +1,5 @@
 import SolarNavigation from "@/components/SolarNavigation";
-import Footer from "@/components/Footer";
+import SolarFooter from "@/components/SolarFooter";
 import { Button } from "@/components/ui/button";
 import { Battery, Zap, Shield, Sun, Moon, Power, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
@@ -289,21 +289,21 @@ export default function HybridSolar() {
             Get a customized hybrid solar system designed for your needs
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">
-                Request Custom Quote
+            <a href="https://wa.me/919785277913?text=Hi, I need a custom quote for hybrid solar system" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 shadow-xl">
+                💬 Chat Instantly on WhatsApp
               </Button>
-            </Link>
+            </a>
             <a href="tel:+919785277913">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                Call Expert
+                📞 Call Expert
               </Button>
             </a>
           </div>
         </div>
       </section>
 
-      <Footer />
+      <SolarFooter />
     </div>
   );
 }

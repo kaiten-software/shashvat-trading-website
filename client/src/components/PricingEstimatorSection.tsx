@@ -227,14 +227,14 @@ export default function PricingEstimatorSection() {
               Prefer to discuss your requirements directly?
             </p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
-              <a href="tel:+919785277913">
-                <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
-                  📞 Call Us Now
+              <a href="https://wa.me/919785277913?text=Hi, I'd like to discuss solar installation pricing and options" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-green-600 hover:bg-green-700 shadow-lg">
+                  💬 Chat Instantly on WhatsApp
                 </Button>
               </a>
-              <a href="https://wa.me/919785277913?text=Hi, I'd like to discuss solar installation pricing and options">
-                <Button variant="ghost" className="text-green-600 hover:bg-green-50">
-                  💬 WhatsApp Chat
+              <a href="tel:+919785277913">
+                <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
+                  📞 Call Us
                 </Button>
               </a>
             </div>
