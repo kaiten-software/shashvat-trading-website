@@ -15,7 +15,7 @@ export default function SolarHeroSection() {
     { text: "Affordable Solar", gradient: "from-green-600 via-green-500 to-amber-500" },
     { text: "Sustainable Energy", gradient: "from-blue-600 via-cyan-500 to-teal-500" },
     { text: "Smart Investment", gradient: "from-purple-600 via-pink-500 to-rose-500" },
-    { text: "Energy Independence", gradient: "from-orange-600 via-amber-500 to-yellow-500" },
+    { text: "Energy Freedom", gradient: "from-orange-600 via-amber-500 to-yellow-500" },
     { text: "Future Ready", gradient: "from-emerald-600 via-green-500 to-lime-500" }
   ];
   
@@ -86,7 +86,7 @@ export default function SolarHeroSection() {
           
           {/* Main Headline with Animations */}
           <motion.h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-foreground mb-6 leading-[1.2] pb-4"
+            className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-foreground mb-6 leading-[1.3] pb-6 overflow-visible"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
