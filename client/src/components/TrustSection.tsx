@@ -82,7 +82,7 @@ export default function TrustSection() {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <p className="text-lg text-muted-foreground mb-6">
-            Join 500+ satisfied customers who trust us for their solar needs
+            Join 800+ satisfied customers who trust us for their solar needs
           </p>
           <div className="flex items-center justify-center gap-2">
             <div className="flex -space-x-3">

@@ -120,7 +120,7 @@ export default function TestimonialsSection() {
             </div>
             <span className="text-base font-semibold text-foreground">4.9/5 Average Rating</span>
             <span className="text-muted-foreground">|</span>
-            <span className="text-base text-muted-foreground">500+ Happy Customers</span>
+            <span className="text-base text-muted-foreground">800+ Happy Customers</span>
           </div>
           
           <p className="text-muted-foreground mb-6">

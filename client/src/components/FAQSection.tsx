@@ -11,7 +11,7 @@ export default function FAQSection() {
   const faqs = [
     {
       question: "How much does a 3kW/5kW solar system cost?",
-      answer: "A 3kW system costs approximately ₹1.5-1.8 lakhs (after subsidy), while a 5kW system costs around ₹2.5-3 lakhs (after subsidy). Final cost depends on component selection, roof type, and installation complexity. Government subsidy of up to ₹18,000 per kW is available for residential systems up to 3kW."
+      answer: "A 3kW system costs approximately ₹1.5-1.8 lakhs (after subsidy), while a 5kW system costs around ₹2.5-3 lakhs (after subsidy). Final cost depends on component selection, roof type, and installation complexity. Government subsidy of ₹78,000 is available for residential solar systems in Rajasthan."
     },
     {
       question: "What is the warranty on panels and inverters?",
@@ -43,7 +43,7 @@ export default function FAQSection() {
     },
     {
       question: "Do I get government subsidy for solar installation?",
-      answer: "Yes, residential systems up to 3kW are eligible for 40% central subsidy (₹18,000 per kW for first 3kW, ₹9,000 per kW for 3-10kW). Some states offer additional subsidies. We assist with the entire subsidy application process and ensure you receive the maximum benefit."
+      answer: "Yes, residential solar systems in Rajasthan are eligible for ₹78,000 government subsidy. We assist with the entire subsidy application process and ensure you receive the maximum benefit, handling all documentation and approvals on your behalf."
     },
     {
       question: "What happens to my solar system during hailstorms?",

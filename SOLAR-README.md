@@ -49,7 +49,7 @@ A modern, premium solar EPC company website built for B2C customers. Features a 
    - Lead capture form
 
 7. **Solar Benefits Section**
-   - 30-60% bill reduction
+   - 80-95% bill reduction
    - ROI in 3-5 years
    - Government subsidies
    - Property value increase

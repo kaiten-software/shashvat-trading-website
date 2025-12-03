@@ -61,7 +61,7 @@ export default function AboutCompanySection() {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               Based in Jaipur, Rajasthan, we bring engineering-grade reliability and customer-first service 
-              to every solar installation. With 500+ successful projects and a commitment to transparency, 
+              to every solar installation. With 800+ successful projects and a commitment to transparency, 
               we're helping families and businesses transition to clean, affordable energy.
             </motion.p>
 
@@ -72,7 +72,7 @@ export default function AboutCompanySection() {
                   <div className="w-12 h-12 rounded-lg bg-green-600 flex items-center justify-center">
                     <Users className="w-6 h-6 text-white" />
                   </div>
-                  <div className="text-3xl font-bold text-green-600">500+</div>
+                  <div className="text-3xl font-bold text-green-600">800+</div>
                 </div>
                 <div className="text-sm text-muted-foreground">Projects Completed</div>
               </div>

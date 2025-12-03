@@ -201,7 +201,7 @@ export default function SolarContactSection() {
             {/* Trust Indicators */}
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-white rounded-xl p-4 border border-green-100 text-center">
-                <div className="text-2xl font-bold text-green-600 mb-1">500+</div>
+                <div className="text-2xl font-bold text-green-600 mb-1">800+</div>
                 <div className="text-xs text-muted-foreground">Happy Customers</div>
               </div>
               <div className="bg-white rounded-xl p-4 border border-green-100 text-center">

@@ -181,7 +181,7 @@ export default function SolarFooter() {
             </div>
             <div className="flex items-center gap-2">
               <span className="text-green-400">✓</span>
-              <span>500+ Installations</span>
+              <span>800+ Installations</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-green-400">✓</span>

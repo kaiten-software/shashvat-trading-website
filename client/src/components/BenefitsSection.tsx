@@ -5,7 +5,7 @@ export default function BenefitsSection() {
   const benefits = [
     {
       icon: TrendingDown,
-      title: "30-60% Bill Reduction",
+      title: "80-95% Bill Reduction",
       description: "Significantly lower your monthly electricity expenses",
       gradient: "from-blue-500 to-cyan-500"
     },
@@ -18,7 +18,7 @@ export default function BenefitsSection() {
     {
       icon: TrendingUp,
       title: "Government Subsidies",
-      description: "Up to ₹18,000 per kW subsidy available",
+      description: "₹78,000 subsidy available in Rajasthan",
       gradient: "from-amber-500 to-orange-500"
     },
     {

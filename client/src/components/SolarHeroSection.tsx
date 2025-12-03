@@ -147,7 +147,7 @@ export default function SolarHeroSection() {
             
             <div className="text-center">
               <div className="text-4xl md:text-5xl font-bold bg-gradient-to-br from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2">
-                500+
+                800+
               </div>
               <div className="text-sm text-muted-foreground">Happy Customers</div>
             </div>

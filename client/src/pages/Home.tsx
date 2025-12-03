@@ -2,6 +2,7 @@ import SolarNavigation from "@/components/SolarNavigation";
 import SolarHeroSection from "@/components/SolarHeroSection";
 import AboutCompanySection from "@/components/AboutCompanySection";
 import TrustSection from "@/components/TrustSection";
+import WarrantySection from "@/components/WarrantySection";
 import EPCProcessSection from "@/components/EPCProcessSection";
 import SolutionsSection from "@/components/SolutionsSection";
 import PricingEstimatorSection from "@/components/PricingEstimatorSection";
@@ -19,6 +20,7 @@ export default function Home() {
       <SolarNavigation />
       <SolarHeroSection />
       <TrustSection />
+      <WarrantySection />
       <AboutCompanySection />
       <EPCProcessSection />
       <SolutionsSection />

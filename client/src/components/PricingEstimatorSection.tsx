@@ -28,7 +28,7 @@ export default function PricingEstimatorSection() {
   const monthlySavings = parseInt(capacity) * 150 * 5.5; // Approx monthly savings
   const yearlyBillReduction = monthlySavings * 12;
   const roiYears = (estimatedCost / yearlyBillReduction).toFixed(1);
-  const subsidyAmount = parseInt(capacity) <= 3 ? parseInt(capacity) * 18000 : 3 * 18000; // Subsidy for up to 3kW
+  const subsidyAmount = 78000; // Government subsidy in Rajasthan
 
   const handleCalculate = () => {
     if (name && phone && location) {
