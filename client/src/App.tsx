@@ -16,6 +16,12 @@ import IndustrialSolar from "@/pages/IndustrialSolar";
 import OnGridSolar from "@/pages/OnGridSolar";
 import HybridSolar from "@/pages/HybridSolar";
 import SolarAMC from "@/pages/SolarAMC";
+import EPCInstallation from "@/pages/EPCInstallation";
+import SiteSurvey from "@/pages/SiteSurvey";
+import DesignSimulation from "@/pages/DesignSimulation";
+import HowItWorks from "@/pages/HowItWorks";
+import CostsSubsidy from "@/pages/CostsSubsidy";
+import SolarTechnologies from "@/pages/SolarTechnologies";
 import NotFound from "@/pages/not-found";
 
 function ScrollToTop() {
@@ -46,6 +52,12 @@ function Router() {
         <Route path="/on-grid-solar" component={OnGridSolar} />
         <Route path="/hybrid-solar" component={HybridSolar} />
         <Route path="/solar-amc" component={SolarAMC} />
+        <Route path="/epc-installation" component={EPCInstallation} />
+        <Route path="/site-survey" component={SiteSurvey} />
+        <Route path="/design-simulation" component={DesignSimulation} />
+        <Route path="/how-it-works" component={HowItWorks} />
+        <Route path="/costs-subsidy" component={CostsSubsidy} />
+        <Route path="/solar-technologies" component={SolarTechnologies} />
         <Route component={NotFound} />
       </Switch>
     </>

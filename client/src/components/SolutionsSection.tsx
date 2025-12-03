@@ -10,7 +10,7 @@ export default function SolutionsSection() {
     {
       icon: Home,
       title: "Residential Rooftop Solar",
-      description: "Custom solar solutions for homes, reducing electricity bills by 30-60%",
+      description: "Custom solar solutions for homes, reducing electricity bills by 80-95%",
       image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=400&fit=crop",
       gradient: "from-blue-500 to-cyan-500",
       link: "/residential-solar"

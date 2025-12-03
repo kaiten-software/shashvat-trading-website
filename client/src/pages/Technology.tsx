@@ -46,7 +46,7 @@ export default function Technology() {
     {
       title: "Cost Savings",
       icon: "💰",
-      description: "30-60% reduction in electricity bills from day one."
+      description: "80-95% reduction in electricity bills from day one."
     },
     {
       title: "Low Maintenance",

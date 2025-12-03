@@ -21,13 +21,22 @@ export default function SolarFooter() {
     { name: "Solar AMC", path: "/solar-amc" }
   ];
 
+  const resources = [
+    { name: "EPC & Installation", path: "/epc-installation" },
+    { name: "Site Survey", path: "/site-survey" },
+    { name: "Design & Simulation", path: "/design-simulation" },
+    { name: "How It Works", path: "/how-it-works" },
+    { name: "Costs & Subsidy", path: "/costs-subsidy" },
+    { name: "Solar Technologies", path: "/solar-technologies" }
+  ];
+
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
-          <div>
+          <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-600 to-green-500 flex items-center justify-center shadow-lg">
                 <Sun className="w-7 h-7 text-white" />
@@ -77,22 +86,6 @@ export default function SolarFooter() {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.path}>
-                  <Link href={link.path}>
-                    <a className="text-gray-400 hover:text-green-400 transition-colors text-sm">
-                      {link.name}
-                    </a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Services */}
           <div>
             <h3 className="text-lg font-semibold mb-6">Our Services</h3>
@@ -102,6 +95,22 @@ export default function SolarFooter() {
                   <Link href={service.path}>
                     <a className="text-gray-400 hover:text-green-400 transition-colors text-sm">
                       {service.name}
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h3 className="text-lg font-semibold mb-6">Resources</h3>
+            <ul className="space-y-3">
+              {resources.map((resource) => (
+                <li key={resource.path}>
+                  <Link href={resource.path}>
+                    <a className="text-gray-400 hover:text-green-400 transition-colors text-sm">
+                      {resource.name}
                     </a>
                   </Link>
                 </li>

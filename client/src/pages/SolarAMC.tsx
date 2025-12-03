@@ -300,12 +300,12 @@ export default function SolarAMC() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="https://wa.me/919785277913?text=Hi, I want to subscribe to Solar AMC" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 shadow-xl">
+              <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white shadow-xl">
                 💬 Chat Instantly on WhatsApp
               </Button>
             </a>
             <a href="tel:+919785277913">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="lg" variant="outline" className="border-orange-600 text-orange-600 bg-white hover:bg-orange-50">
                 📞 Call +91 97852 77913
               </Button>
             </a>
