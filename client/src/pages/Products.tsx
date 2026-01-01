@@ -2,6 +2,7 @@ import SolarNavigation from "@/components/SolarNavigation";
 import SolarFooter from "@/components/SolarFooter";
 import SolutionsSection from "@/components/SolutionsSection";
 import PricingEstimatorSection from "@/components/PricingEstimatorSection";
+import IndustrialBanner from "@/components/IndustrialBanner";
 import BenefitsSection from "@/components/BenefitsSection";
 import SolarContactSection from "@/components/SolarContactSection";
 
@@ -11,6 +12,7 @@ export default function Products() {
       <SolarNavigation />
       
       <div className="pt-20"></div>
+      <IndustrialBanner />
       <SolutionsSection />
       <PricingEstimatorSection />
       <BenefitsSection />

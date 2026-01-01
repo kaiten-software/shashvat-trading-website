@@ -220,7 +220,7 @@ export default function SiteSurvey() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-amber-600 font-bold">•</span>
-                    <span><strong>Electrical Issues:</strong> Single-phase supply when three-phase needed for >10 kW systems</span>
+                    <span><strong>Electrical Issues:</strong> Single-phase supply when three-phase needed for systems above 10 kW</span>
                   </li>
                 </ul>
               </div>
@@ -242,14 +242,14 @@ export default function SiteSurvey() {
             Get professional assessment within 48 hours — completely FREE with no obligations
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://wa.me/919785277913?text=Hi, I want to schedule a free site survey" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/919772533559?text=Hi, I want to schedule a free site survey" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-white text-cyan-600 hover:bg-gray-100 shadow-xl">
                 💬 Book Survey on WhatsApp
               </Button>
             </a>
-            <a href="tel:+919785277913">
+            <a href="tel:+919772533559">
               <Button size="lg" variant="outline" className="border-white text-white bg-cyan-700 hover:bg-cyan-800">
-                📞 Call +91 97852 77913
+                📞 Call +91 97725 33559
               </Button>
             </a>
           </div>

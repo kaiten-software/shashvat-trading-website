@@ -258,7 +258,7 @@ export default function SolarTechnologies() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                scenario: "Small Rooftop (<50 m²)",
+                scenario: "Small Rooftop (under 50 m²)",
                 recommendation: "Monocrystalline",
                 reason: "Maximize generation from limited space with highest efficiency",
                 color: "from-blue-500 to-cyan-500"
@@ -270,7 +270,7 @@ export default function SolarTechnologies() {
                 color: "from-indigo-500 to-purple-500"
               },
               {
-                scenario: "Large Roof (>100 m²)",
+                scenario: "Large Roof (over 100 m²)",
                 recommendation: "Polycrystalline",
                 reason: "Space isn't an issue — save upfront cost with slightly lower efficiency",
                 color: "from-purple-500 to-pink-500"
@@ -314,7 +314,7 @@ export default function SolarTechnologies() {
               </div>
               <div className="text-center p-6 bg-emerald-50 rounded-xl">
                 <p className="text-4xl mb-4">🏭</p>
-                <p className="font-bold text-lg mb-2">Industrial (>100 kW)</p>
+                <p className="font-bold text-lg mb-2">Industrial (over 100 kW)</p>
                 <p className="text-2xl font-bold text-emerald-600">Bifacial</p>
                 <p className="text-sm text-muted-foreground mt-2">Ground-mount or elevated structures</p>
               </div>
@@ -333,14 +333,14 @@ export default function SolarTechnologies() {
             Share your roof area, budget, and consumption — we'll recommend the best panel type
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://wa.me/919785277913?text=Hi, I need help choosing the right solar panel type for my project" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/919772533559?text=Hi, I need help choosing the right solar panel type for my project" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-white text-indigo-600 hover:bg-gray-100 shadow-xl px-12 py-7 text-lg">
                 💬 Get Expert Recommendation
               </Button>
             </a>
-            <a href="tel:+919785277913">
+            <a href="tel:+919772533559">
               <Button size="lg" variant="outline" className="border-white text-white bg-indigo-700 hover:bg-indigo-800 px-12 py-7 text-lg">
-                📞 Call +91 97852 77913
+                📞 Call +91 97725 33559
               </Button>
             </a>
           </div>

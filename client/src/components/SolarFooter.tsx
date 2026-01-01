@@ -38,9 +38,11 @@ export default function SolarFooter() {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-600 to-green-500 flex items-center justify-center shadow-lg">
-                <Sun className="w-7 h-7 text-white" />
-              </div>
+              <img 
+                src="/images/company-logo.png" 
+                alt="Rajasthan Green Energy Solar Solutions" 
+                className="h-12 w-auto"
+              />
               <div>
                 <div className="text-lg font-bold leading-tight">
                   Rajasthan Green Energy
@@ -56,32 +58,13 @@ export default function SolarFooter() {
             </p>
             <div className="flex gap-4">
               <a 
-                href="#" 
+                href="https://www.facebook.com/raajasthangreenenergy" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-white/10 hover:bg-green-600 flex items-center justify-center transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="w-5 h-5" />
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-green-600 flex items-center justify-center transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-green-600 flex items-center justify-center transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-green-600 flex items-center justify-center transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -131,14 +114,14 @@ export default function SolarFooter() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-green-500 flex-shrink-0" />
-                <a href="tel:+919785277913" className="text-gray-400 hover:text-green-400 transition-colors text-sm">
-                  +91 97852 77913
+                <a href="tel:+919772533559" className="text-gray-400 hover:text-green-400 transition-colors text-sm">
+                  +91 97725 33559
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-green-500 flex-shrink-0" />
-                <a href="mailto:hello@rajasthanenergy.com" className="text-gray-400 hover:text-green-400 transition-colors text-sm">
-                  hello@rajasthanenergy.com
+                <a href="mailto:info@rajasthanenergy.com" className="text-gray-400 hover:text-green-400 transition-colors text-sm">
+                  info@rajasthanenergy.com
 
                 </a>
               </li>
@@ -146,7 +129,7 @@ export default function SolarFooter() {
 
             {/* WhatsApp Button */}
             <a 
-              href="https://wa.me/919785277913"
+              href="https://wa.me/919772533559"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 rounded-lg transition-all shadow-lg hover:shadow-xl"
@@ -166,12 +149,16 @@ export default function SolarFooter() {
               © {currentYear} Rajasthan Green Energy Solar. All rights reserved.
             </p>
             <div className="flex items-center gap-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-green-400 transition-colors">
-                Privacy Policy
-              </a>
-              <a href="#" className="hover:text-green-400 transition-colors">
-                Terms of Service
-              </a>
+              <Link href="/privacy-policy">
+                <a className="hover:text-green-400 transition-colors">
+                  Privacy Policy
+                </a>
+              </Link>
+              <Link href="/terms-of-service">
+                <a className="hover:text-green-400 transition-colors">
+                  Terms of Service
+                </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -148,7 +148,7 @@ export default function CaseStudiesSection() {
             Curious how much you could save?
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <a href="https://wa.me/919785277913?text=Hi, I saw your case studies. I'd like to discuss a solar installation for my property" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/919772533559?text=Hi, I saw your case studies. I'd like to discuss a solar installation for my property" target="_blank" rel="noopener noreferrer">
               <Button 
                 size="lg"
                 className="px-10 py-6 text-lg bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 shadow-xl"
@@ -156,13 +156,13 @@ export default function CaseStudiesSection() {
                 💬 Chat Instantly on WhatsApp
               </Button>
             </a>
-            <a href="tel:+919785277913">
+            <a href="tel:+919772533559">
               <Button 
                 size="lg"
                 variant="outline"
                 className="px-10 py-6 text-lg border-green-600 text-green-600 hover:bg-green-50"
               >
-                📞 Call +91 97852 77913
+                📞 Call +91 97725 33559
               </Button>
             </a>
           </div>

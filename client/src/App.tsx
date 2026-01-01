@@ -22,6 +22,8 @@ import DesignSimulation from "@/pages/DesignSimulation";
 import HowItWorks from "@/pages/HowItWorks";
 import CostsSubsidy from "@/pages/CostsSubsidy";
 import SolarTechnologies from "@/pages/SolarTechnologies";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import TermsOfService from "@/pages/TermsOfService";
 import NotFound from "@/pages/not-found";
 
 function ScrollToTop() {
@@ -58,6 +60,8 @@ function Router() {
         <Route path="/how-it-works" component={HowItWorks} />
         <Route path="/costs-subsidy" component={CostsSubsidy} />
         <Route path="/solar-technologies" component={SolarTechnologies} />
+        <Route path="/privacy-policy" component={PrivacyPolicy} />
+        <Route path="/terms-of-service" component={TermsOfService} />
         <Route component={NotFound} />
       </Switch>
     </>

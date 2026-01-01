@@ -47,3 +47,6 @@ coverage/
 
 # Build outputs
 *.tsbuildinfo
+
+# SSH/SSL Keys
+*.pem

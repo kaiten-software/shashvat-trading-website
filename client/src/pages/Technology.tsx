@@ -212,14 +212,14 @@ export default function Technology() {
             Let our experts design the perfect solar system for your needs
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://wa.me/919785277913?text=Hi, I need consultation for solar technology" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/919772533559?text=Hi, I need consultation for solar technology" target="_blank" rel="noopener noreferrer">
               <button className="px-10 py-4 bg-white text-green-700 rounded-lg hover:bg-gray-100 transition-colors font-semibold text-lg shadow-xl">
                 💬 Chat Instantly on WhatsApp
               </button>
             </a>
-            <a href="tel:+919785277913">
+            <a href="tel:+919772533559">
               <button className="px-10 py-4 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white/10 transition-colors font-semibold text-lg">
-                📞 Call +91 97852 77913
+                📞 Call +91 97725 33559
               </button>
             </a>
           </div>

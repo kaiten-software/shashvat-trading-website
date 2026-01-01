@@ -299,14 +299,14 @@ export default function SolarAMC() {
             Sign up for AMC and ensure your solar system delivers optimal performance for years
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://wa.me/919785277913?text=Hi, I want to subscribe to Solar AMC" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/919772533559?text=Hi, I want to subscribe to Solar AMC" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white shadow-xl">
                 💬 Chat Instantly on WhatsApp
               </Button>
             </a>
-            <a href="tel:+919785277913">
+            <a href="tel:+919772533559">
               <Button size="lg" variant="outline" className="border-orange-600 text-orange-600 bg-white hover:bg-orange-50">
-                📞 Call +91 97852 77913
+                📞 Call +91 97725 33559
               </Button>
             </a>
           </div>

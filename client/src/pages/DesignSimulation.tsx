@@ -340,7 +340,7 @@ export default function DesignSimulation() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-600 font-bold">✓</span>
-                  <span><strong>Voltage Drop:</strong> Keep total DC cable run <2% voltage drop</span>
+                  <span><strong>Voltage Drop:</strong> Keep total DC cable run under 2% voltage drop</span>
                 </li>
               </ul>
             </div>
@@ -379,14 +379,14 @@ export default function DesignSimulation() {
             Professional PVsyst report + 3D layout included with every quote
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://wa.me/919785277913?text=Hi, I want a custom solar design with PVsyst report" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/919772533559?text=Hi, I want a custom solar design with PVsyst report" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 shadow-xl">
                 💬 Request Design Report
               </Button>
             </a>
-            <a href="tel:+919785277913">
+            <a href="tel:+919772533559">
               <Button size="lg" variant="outline" className="border-white text-white bg-purple-700 hover:bg-purple-800">
-                📞 Call +91 97852 77913
+                📞 Call +91 97725 33559
               </Button>
             </a>
           </div>

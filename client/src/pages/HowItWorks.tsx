@@ -59,7 +59,7 @@ export default function HowItWorks() {
       details: [
         "DISCOM net-metering application (online portal submission)",
         "Technical feasibility approval from distribution company",
-        "CEIG approval for systems >500 kW (where applicable)",
+        "CEIG approval for systems above 500 kW (where applicable)",
         "Building NOC from society/owner (if rented property)",
         "PM Surya Ghar Muft Bijli subsidy registration on national portal",
         "Documentation: ID proof, address proof, electricity bill, site photos"
@@ -106,7 +106,7 @@ export default function HowItWorks() {
       description: "Comprehensive system checks before grid connection",
       details: [
         "Visual inspection: panel cleanliness, cable routing, connections",
-        "Electrical tests: insulation resistance (>1 MΩ), polarity verification",
+        "Electrical tests: insulation resistance (over 1 MΩ), polarity verification",
         "Inverter commissioning: MPPT calibration, grid parameter settings",
         "Anti-islanding test: inverter shuts down within 2 seconds of grid loss",
         "Loss-of-mains protection check per IEEE 1547 standards",
@@ -271,14 +271,14 @@ export default function HowItWorks() {
             Step 1 is just a message away — get preliminary estimate in 2 hours
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://wa.me/919785277913?text=Hi, I want to start my solar journey. Please share preliminary estimate" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/919772533559?text=Hi, I want to start my solar journey. Please share preliminary estimate" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100 shadow-xl px-12 py-7 text-lg">
                 💬 Start Step 1 on WhatsApp
               </Button>
             </a>
-            <a href="tel:+919785277913">
+            <a href="tel:+919772533559">
               <Button size="lg" variant="outline" className="border-white text-white bg-green-700 hover:bg-green-800 px-12 py-7 text-lg">
-                📞 Call +91 97852 77913
+                📞 Call +91 97725 33559
               </Button>
             </a>
           </div>

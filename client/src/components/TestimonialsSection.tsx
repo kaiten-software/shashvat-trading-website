@@ -154,14 +154,14 @@ export default function TestimonialsSection() {
             Join hundreds of satisfied customers making the switch to solar
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <a href="https://wa.me/919785277913?text=Hi, I'd like to learn more about solar installation. Can we discuss?" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/919772533559?text=Hi, I'd like to learn more about solar installation. Can we discuss?" target="_blank" rel="noopener noreferrer">
               <Button className="bg-green-600 hover:bg-green-700 text-white shadow-lg">
                 💬 Chat Instantly on WhatsApp
               </Button>
             </a>
-            <a href="tel:+919785277913">
+            <a href="tel:+919772533559">
               <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
-                📞 Call +91 97852 77913
+                📞 Call +91 97725 33559
               </Button>
             </a>
           </div>

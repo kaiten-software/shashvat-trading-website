@@ -3,6 +3,7 @@ import SolarHeroSection from "@/components/SolarHeroSection";
 import AboutCompanySection from "@/components/AboutCompanySection";
 import TrustSection from "@/components/TrustSection";
 import WarrantySection from "@/components/WarrantySection";
+import IndustrialBanner from "@/components/IndustrialBanner";
 import EPCProcessSection from "@/components/EPCProcessSection";
 import SolutionsSection from "@/components/SolutionsSection";
 import PricingEstimatorSection from "@/components/PricingEstimatorSection";
@@ -19,6 +20,7 @@ export default function Home() {
     <div className="min-h-screen">
       <SolarNavigation />
       <SolarHeroSection />
+      <IndustrialBanner />
       <TrustSection />
       <WarrantySection />
       <AboutCompanySection />

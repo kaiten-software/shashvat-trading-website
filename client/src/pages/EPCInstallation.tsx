@@ -37,8 +37,8 @@ export default function EPCInstallation() {
               { icon: "🏗️", title: "Structure & Mounting", desc: "Hot-dip galvanized steel or aluminum structures designed for 150 km/h wind speeds with 1.5x safety factor" },
               { icon: "☀️", title: "Solar Panels", desc: "100% Made in India modules with 25-year performance warranty, 97% first year output, IEC 61215 certified" },
               { icon: "⚡", title: "Inverters & PCU", desc: "Smart MPPT inverters with ≥97% efficiency, anti-islanding protection, and grid synchronization" },
-              { icon: "🔌", title: "DC & AC Cabling", desc: "UV-resistant FRLS/XLPE cables with proper conduiting, voltage drop <2%, IS 694/IS 1554 compliant" },
-              { icon: "🌍", title: "Earthing System", desc: "Separate earth pits for DC, AC & lightning circuits, resistance <5 ohms as per IS 3043:2018" },
+              { icon: "🔌", title: "DC & AC Cabling", desc: "UV-resistant FRLS/XLPE cables with proper conduiting, voltage drop under 2%, IS 694/IS 1554 compliant" },
+              { icon: "🌍", title: "Earthing System", desc: "Separate earth pits for DC, AC & lightning circuits, resistance less than 5 ohms as per IS 3043:2018" },
               { icon: "⚡", title: "Lightning Protection", desc: "Full array field protection as per IEC 62305 with Type II surge protection devices" },
               { icon: "⚠️", title: "Safety Signage", desc: "Warning labels, emergency shut-off instructions, and electrical hazard markings" },
               { icon: "📊", title: "Metering Setup", desc: "Dual metering: Net meter (import/export) + Generation meter with DISCOM coordination" },
@@ -106,7 +106,7 @@ export default function EPCInstallation() {
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
-                  <span>Power Factor >0.9, THD <3%, IP65/IP54 rated</span>
+                  <span>Power Factor &gt;0.9, THD &lt;3%, IP65/IP54 rated</span>
                 </li>
               </ul>
             </div>
@@ -138,7 +138,7 @@ export default function EPCInstallation() {
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
-                  <span>Separate earthing for DC, AC & lightning (<5 ohms)</span>
+                  <span>Separate earthing for DC, AC & lightning (&lt;5 ohms)</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
@@ -193,7 +193,7 @@ export default function EPCInstallation() {
               { icon: "🦺", title: "PPE & Safety", desc: "Full Personal Protective Equipment and safety lines mandatory for sloped roofs" },
               { icon: "🏗️", title: "Structure Mounting", desc: "Precise mounting with earthing bonding, careful panel handling (no stepping on modules)" },
               { icon: "⚡", title: "DC String Rules", desc: "Strings not made live during module placement, proper polarity checks at every step" },
-              { icon: "🌡️", title: "Inverter Placement", desc: "Optimal siting with adequate ventilation, cable routing to keep voltage drop <2%" },
+              { icon: "🌡️", title: "Inverter Placement", desc: "Optimal siting with adequate ventilation, cable routing to keep voltage drop under 2%" },
               { icon: "⚠️", title: "Lightning & Signage", desc: "Lightning protection and warning signage installed per standards" },
               { icon: "🔍", title: "Testing & Checks", desc: "Visual inspection, anti-islanding tests, loss-of-mains protection verification" },
               { icon: "✅", title: "Commissioning", desc: "Grid synchronization, net-meter swap, full system handover with documentation" }
@@ -220,14 +220,14 @@ export default function EPCInstallation() {
             Get a detailed quote with component breakdown and timeline
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://wa.me/919785277913?text=Hi, I want a detailed EPC installation quote" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/919772533559?text=Hi, I want a detailed EPC installation quote" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100 shadow-xl">
                 💬 Chat on WhatsApp
               </Button>
             </a>
-            <a href="tel:+919785277913">
+            <a href="tel:+919772533559">
               <Button size="lg" variant="outline" className="border-white text-white bg-green-700 hover:bg-green-800">
-                📞 Call +91 97852 77913
+                📞 Call +91 97725 33559
               </Button>
             </a>
           </div>

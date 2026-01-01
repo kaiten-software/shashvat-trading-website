@@ -9,15 +9,55 @@ import { Phone, Mail, MapPin, Send } from "lucide-react";
 export default function SolarContactSection() {
   const [formData, setFormData] = useState({
     name: "",
+    email: "",
     phone: "",
     city: "",
     requirement: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{type: 'success' | 'error', message: string} | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Handle form submission
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch('/.netlify/functions/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: `City: ${formData.city}\n\nRequirement: ${formData.requirement}`
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitStatus({
+          type: 'success',
+          message: 'Thank you! We\'ll get back to you within 24 hours.'
+        });
+        setFormData({ name: "", email: "", phone: "", city: "", requirement: "" });
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: data.message || 'Failed to send message. Please try WhatsApp or call us directly.'
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Failed to send message. Please try WhatsApp or call us directly.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -52,6 +92,24 @@ export default function SolarContactSection() {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="h-12"
                   required
+                  disabled={isSubmitting}
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <Label htmlFor="contact-email" className="text-base font-medium mb-2 block">
+                  Email Address *
+                </Label>
+                <Input
+                  id="contact-email"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="h-12"
+                  required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -68,6 +126,7 @@ export default function SolarContactSection() {
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="h-12"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -84,6 +143,7 @@ export default function SolarContactSection() {
                   onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                   className="h-12"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -98,15 +158,28 @@ export default function SolarContactSection() {
                   value={formData.requirement}
                   onChange={(e) => setFormData({ ...formData, requirement: e.target.value })}
                   className="min-h-[120px]"
+                  disabled={isSubmitting}
                 />
               </div>
 
+              {/* Status Messages */}
+              {submitStatus && (
+                <div className={`p-4 rounded-lg ${
+                  submitStatus.type === 'success' 
+                    ? 'bg-green-50 text-green-800 border border-green-200' 
+                    : 'bg-red-50 text-red-800 border border-red-200'
+                }`}>
+                  {submitStatus.message}
+                </div>
+              )}
+
               <Button 
                 type="submit"
-                className="w-full h-12 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-lg font-semibold"
+                className="w-full h-12 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-lg font-semibold disabled:opacity-50"
+                disabled={isSubmitting}
               >
                 <Send className="w-5 h-5 mr-2" />
-                Request Callback
+                {isSubmitting ? 'Sending...' : 'Request Callback'}
               </Button>
             </form>
 
@@ -128,10 +201,10 @@ export default function SolarContactSection() {
                   <div>
                     <h4 className="text-lg font-semibold text-foreground mb-2">Call Us</h4>
                     <a 
-                      href="tel:+919785277913" 
+                      href="tel:+919772533559" 
                       className="text-green-600 hover:text-green-700 font-semibold text-lg"
                     >
-                      +91 97852 77913
+                      +91 97725 33559
                     </a>
                     <p className="text-sm text-muted-foreground mt-1">Mon-Sat, 9 AM - 7 PM</p>
                   </div>
@@ -147,10 +220,10 @@ export default function SolarContactSection() {
                   <div>
                     <h4 className="text-lg font-semibold text-foreground mb-2">Email Us</h4>
                     <a 
-                      href="mailto:hello@rajasthanenergy.com" 
+                      href="mailto:info@rajasthanenergy.com" 
                       className="text-green-600 hover:text-green-700 font-semibold"
                     >
-                      hello@rajasthanenergy.com
+                      info@rajasthanenergy.com
                     </a>
                     <p className="text-sm text-muted-foreground mt-1">We reply within 24 hours</p>
                   </div>
@@ -165,9 +238,12 @@ export default function SolarContactSection() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-foreground mb-2">Visit Us</h4>
-                    <p className="text-muted-foreground">
-                      Jaipur, Rajasthan<br />
-                      India
+                    <p className="text-muted-foreground leading-relaxed">
+                      <strong className="text-foreground">Rajasthan Green Energy Solar Power Pvt Ltd</strong><br />
+                      2nd Floor, B.L Tower<br />
+                      Arihant Nagar, Kalwar Road<br />
+                      Hatoj, Jaipur (Raj.) 302012<br />
+                      <span className="text-xs mt-2 block">GSTIN: 08AANCR3458B1ZA</span>
                     </p>
                   </div>
                 </div>
@@ -182,7 +258,7 @@ export default function SolarContactSection() {
                 Get instant responses to your queries. Our solar experts are available on WhatsApp.
               </p>
               <a
-                href="https://wa.me/919785277913?text=Hi, I'm interested in solar installation. Please provide more details."
+                href="https://wa.me/919772533559?text=Hi, I'm interested in solar installation. Please provide more details."
                 target="_blank"
                 rel="noopener noreferrer"
               >

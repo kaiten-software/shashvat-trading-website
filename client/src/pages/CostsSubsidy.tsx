@@ -390,14 +390,14 @@ export default function CostsSubsidy() {
             Detailed quote with component breakdown + subsidy calculation + ROI projection
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://wa.me/919785277913?text=Hi, I want a personalized cost estimate with subsidy details" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/919772533559?text=Hi, I want a personalized cost estimate with subsidy details" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 shadow-xl px-12 py-7 text-lg">
                 💬 Request Detailed Quote
               </Button>
             </a>
-            <a href="tel:+919785277913">
+            <a href="tel:+919772533559">
               <Button size="lg" variant="outline" className="border-white text-white bg-orange-700 hover:bg-orange-800 px-12 py-7 text-lg">
-                📞 Call +91 97852 77913
+                📞 Call +91 97725 33559
               </Button>
             </a>
           </div>

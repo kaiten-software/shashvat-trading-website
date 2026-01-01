@@ -161,7 +161,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="font-medium text-foreground mb-1">Email Us</p>
-                    <p className="text-muted-foreground">hello@rajasthanenergy.com</p>
+                    <p className="text-muted-foreground">info@rajasthanenergy.com</p>
                   </div>
                 </div>
               </div>
