@@ -1,4 +1,4 @@
-import { Award, Users, Zap, Target } from "lucide-react";
+import { Award, Users, Globe, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
@@ -40,7 +40,7 @@ export default function AboutCompanySection() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Engineering <span className="font-semibold text-green-600 bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">Excellence</span> in Solar
+              Global <span className="font-semibold text-green-600 bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">Excellence</span> in Plastics
             </motion.h2>
             
             <motion.p 
@@ -49,9 +49,9 @@ export default function AboutCompanySection() {
               animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              We design, build, and maintain rooftop solar systems engineered for long-term performance. 
-              Our team handles everything—site assessment, structure design, panel selection, procurement, 
-              installation, and approvals.
+              Established in 2017, Shashvat Trading has grown into a trusted global supplier of commodity 
+              thermoplastics. We specialize in sourcing, trading, and distributing virgin, near-prime, 
+              and reprocessed plastic resins to manufacturers worldwide.
             </motion.p>
 
             <motion.p 
@@ -60,9 +60,9 @@ export default function AboutCompanySection() {
               animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Based in Jaipur, Rajasthan, we bring engineering-grade reliability and customer-first service 
-              to every solar installation. With 800+ successful projects and a commitment to transparency, 
-              we're helping families and businesses transition to clean, affordable energy.
+              With offices in Canada and India, we bridge the gap between world-class petrochemical 
+              producers and processors globally. Our experienced team ensures you get the right product, 
+              at the right price, at the right time—every time.
             </motion.p>
 
             {/* Stats Grid */}
@@ -72,19 +72,19 @@ export default function AboutCompanySection() {
                   <div className="w-12 h-12 rounded-lg bg-green-600 flex items-center justify-center">
                     <Users className="w-6 h-6 text-white" />
                   </div>
-                  <div className="text-3xl font-bold text-green-600">800+</div>
+                  <div className="text-3xl font-bold text-green-600">500+</div>
                 </div>
-                <div className="text-sm text-muted-foreground">Projects Completed</div>
+                <div className="text-sm text-muted-foreground">Happy Customers</div>
               </div>
 
               <div className="p-6 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border border-amber-200">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-12 h-12 rounded-lg bg-amber-500 flex items-center justify-center">
-                    <Zap className="w-6 h-6 text-white" />
+                    <Globe className="w-6 h-6 text-white" />
                   </div>
-                  <div className="text-3xl font-bold text-amber-600">10MW+</div>
+                  <div className="text-3xl font-bold text-amber-600">25+</div>
                 </div>
-                <div className="text-sm text-muted-foreground">Capacity Installed</div>
+                <div className="text-sm text-muted-foreground">Countries Served</div>
               </div>
 
               <div className="p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl border border-blue-200">
@@ -92,9 +92,9 @@ export default function AboutCompanySection() {
                   <div className="w-12 h-12 rounded-lg bg-blue-500 flex items-center justify-center">
                     <Award className="w-6 h-6 text-white" />
                   </div>
-                  <div className="text-3xl font-bold text-blue-600">25</div>
+                  <div className="text-3xl font-bold text-blue-600">2017</div>
                 </div>
-                <div className="text-sm text-muted-foreground">Years Warranty</div>
+                <div className="text-sm text-muted-foreground">Since Established</div>
               </div>
 
               <div className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-200">
@@ -113,8 +113,8 @@ export default function AboutCompanySection() {
           <motion.div className="relative" style={{ y: imageY }}>
             <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=1000&fit=crop" 
-                alt="Solar Installation"
+                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=1000&fit=crop" 
+                alt="Plastic Resin Trading"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-green-900/50 via-transparent to-transparent"></div>
@@ -124,11 +124,11 @@ export default function AboutCompanySection() {
             <div className="absolute -bottom-8 -left-8 bg-white rounded-2xl shadow-2xl p-6 border border-green-100">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-green-600 to-green-500 flex items-center justify-center">
-                  <span className="text-3xl">🏆</span>
+                  <span className="text-3xl">🌍</span>
                 </div>
                 <div>
-                  <div className="text-sm text-muted-foreground">MNRE Certified</div>
-                  <div className="text-lg font-bold text-foreground">EPC Partner</div>
+                  <div className="text-sm text-muted-foreground">Global Presence</div>
+                  <div className="text-lg font-bold text-foreground">Canada & India</div>
                 </div>
               </div>
             </div>
@@ -138,22 +138,22 @@ export default function AboutCompanySection() {
         {/* Subtle CTA */}
         <div className="mt-16 text-center">
           <p className="text-lg text-muted-foreground mb-6">
-            Curious about how solar works for your property?
+            Looking for reliable plastic resin supply?
           </p>
           <div className="flex items-center justify-center gap-4">
-            <a href="https://wa.me/919772533559?text=Hi, I'd like to learn more about solar for my property" target="_blank" rel="noopener noreferrer">
+            <a href="mailto:info@shashvattrading.com">
               <Button 
                 className="bg-green-600 hover:bg-green-700 text-white shadow-lg"
               >
-                💬 Chat Instantly on WhatsApp
+                ✉️ Email Us for a Quote
               </Button>
             </a>
-            <a href="tel:+919772533559">
+            <a href="tel:+919820191117">
               <Button 
                 variant="outline" 
                 className="border-green-600 text-green-600 hover:bg-green-50"
               >
-                📞 Call +91 97725 33559
+                📞 Call +91 98201 91117
               </Button>
             </a>
           </div>

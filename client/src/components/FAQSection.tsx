@@ -10,48 +10,44 @@ import {
 export default function FAQSection() {
   const faqs = [
     {
-      question: "How much does a 3kW/5kW solar system cost?",
-      answer: "A 3kW system costs approximately ₹1.5-1.8 lakhs (after subsidy), while a 5kW system costs around ₹2.5-3 lakhs (after subsidy). Final cost depends on component selection, roof type, and installation complexity. Government subsidy of ₹78,000 is available for residential solar systems in Rajasthan."
+      question: "What types of plastic resins do you supply?",
+      answer: "We supply a comprehensive range of commodity thermoplastics including Polypropylene (PP), Polyethylene (LDPE, LLDPE, HDPE), Styrenics (GPPS, HIPS, EPS, ABS), PVC, PET, Engineering Plastics (Polyamides, Polycarbonate), as well as recycled resins and bio-polymers. We offer virgin, near-prime, and reprocessed grades to meet various application requirements and budgets."
     },
     {
-      question: "What is the warranty on panels and inverters?",
-      answer: "Solar panels come with a 25-year performance warranty (ensuring 80%+ efficiency) and a 10-12 year product warranty. Inverters typically have a 5-10 year warranty depending on the brand. We provide extended warranty options and comprehensive AMC packages for complete peace of mind."
+      question: "What is the minimum order quantity?",
+      answer: "Minimum order quantities vary by product type and origin. For most commodity resins, we can accommodate orders starting from one container load (typically 20-25 MT). For specialty materials or smaller quantities, please contact us to discuss availability. We're flexible and work with customers of all sizes."
     },
     {
-      question: "Is net-metering available in my area?",
-      answer: "Net metering is available across Rajasthan through JVVNL and other DISCOMs. We handle the entire net metering application process including documentation, approvals, and bi-directional meter installation. The process typically takes 2-4 weeks after system commissioning."
+      question: "Do you provide technical data sheets and quality certificates?",
+      answer: "Yes, all our products come with complete technical documentation including Material Safety Data Sheets (MSDS), Technical Data Sheets (TDS), and Certificates of Analysis (COA). We maintain rigorous quality standards and can provide test reports, lot traceability, and compliance certificates as required."
     },
     {
-      question: "How long does installation take?",
-      answer: "For residential systems (1-10kW), installation typically takes 7-10 days from site visit to commissioning. This includes design approval, material procurement, installation, testing, and net metering application. Commercial and industrial projects may take 2-4 weeks depending on system size."
+      question: "What are your payment terms?",
+      answer: "We offer flexible payment terms based on customer relationship and order volume. Standard terms include Letter of Credit (L/C), advance payment, and established accounts may qualify for credit terms. We work with customers to find mutually beneficial arrangements."
     },
     {
-      question: "What maintenance is required?",
-      answer: "Solar systems require minimal maintenance. Clean panels 2-3 times per year to remove dust (especially before monsoon). Monitor system performance monthly via inverter display or app. We offer Annual Maintenance Contracts (AMC) that include cleaning, inspection, performance testing, and preventive maintenance."
+      question: "How long does delivery typically take?",
+      answer: "Delivery timelines depend on product availability and destination. For in-stock items, we can ship within 1-2 weeks. Import shipments typically take 4-8 weeks door-to-door. We provide regular updates on shipment status and work with reliable freight partners to ensure timely delivery."
     },
     {
-      question: "What is the payback period for solar investment?",
-      answer: "Typical payback period is 3-5 years depending on your electricity consumption and system size. After payback, you enjoy 20+ years of free electricity generation. With rising electricity tariffs, the ROI becomes even better over time."
+      question: "What's the difference between virgin, near-prime, and reprocessed resins?",
+      answer: "Virgin resins are first-quality materials directly from petrochemical producers with full specifications. Near-prime (off-grade) materials may have minor variations from prime specs but maintain excellent processability at competitive prices. Reprocessed resins are recycled from industrial scrap, offering cost savings and environmental benefits for suitable applications."
     },
     {
-      question: "Will solar work during cloudy days or monsoon?",
-      answer: "Yes, solar panels generate electricity even on cloudy days, though at reduced efficiency (20-40% of peak output). During monsoon, generation drops but doesn't stop completely. Annual generation accounts for seasonal variations, ensuring projected savings are met."
+      question: "Do you ship internationally?",
+      answer: "Yes, we have offices in both Canada and India and ship to customers worldwide. Our logistics network covers North America, Europe, Asia, Middle East, and Africa. We handle all export documentation and can arrange door-to-door delivery or FOB/CIF terms as preferred."
     },
     {
-      question: "What is the difference between on-grid and hybrid systems?",
-      answer: "On-grid systems are connected to the electricity grid without battery backup. They're more economical and use net metering for excess power. Hybrid systems include battery storage, providing backup during power cuts but at a higher initial cost. We help you choose based on your needs and budget."
+      question: "Can you help with material selection for my application?",
+      answer: "Absolutely. Our experienced team has deep knowledge of plastic materials and their applications. We can recommend suitable grades based on your processing method, end-use requirements, and budget. Whether you're injection molding, blow molding, extrusion, or thermoforming, we'll help find the right material."
     },
     {
-      question: "Do I get government subsidy for solar installation?",
-      answer: "Yes, residential solar systems in Rajasthan are eligible for government subsidy: ₹30,000 for 1kW system, ₹60,000 for 2kW system, and ₹78,000 for 3kW system. We assist with the entire subsidy application process and ensure you receive the maximum benefit, handling all documentation and approvals on your behalf."
+      question: "What industries do you serve?",
+      answer: "We serve diverse industries including packaging (flexible and rigid), automotive, consumer goods, construction, electronics, healthcare, agriculture, and textiles. Our product range and technical expertise allow us to support manufacturers across virtually all plastic processing sectors."
     },
     {
-      question: "What happens to my solar system during hailstorms?",
-      answer: "Quality solar panels are tested to withstand hail stones up to 25mm diameter at high velocity. All our Tier-1 panels are certified for extreme weather conditions. Additionally, we recommend solar insurance to cover rare events. Proper installation with secure mounting also prevents storm damage."
-    },
-    {
-      question: "What is the most important component in a solar plant?",
-      answer: "Mounting structure and electrical accessories are the most important components. They ensure the life of plant is longer and safe. A robust mounting structure withstands wind loads, prevents panel damage, and ensures optimal tilt angles. Quality electrical accessories (cables, connectors, earthing, protection devices) prevent failures, reduce losses, and ensure safety for decades."
+      question: "How do I request a quote?",
+      answer: "You can request a quote by emailing us at info@shashvattrading.com with your requirements (material type, grade if known, quantity, delivery location), or call our team directly. We typically respond within 24 hours with competitive pricing and availability information."
     }
   ];
 
@@ -64,7 +60,7 @@ export default function FAQSection() {
             Frequently Asked <span className="font-semibold text-green-600">Questions</span>
           </h2>
           <p className="text-xl text-muted-foreground">
-            Everything you need to know about going solar
+            Everything you need to know about sourcing plastics with us
           </p>
         </div>
 
@@ -94,22 +90,20 @@ export default function FAQSection() {
             Still have questions?
           </h3>
           <p className="text-muted-foreground mb-6">
-            Our solar experts are here to help you make the right decision
+            Our team is here to help you find the right materials
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="https://wa.me/919772533559?text=Hi, I have questions about solar installation"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:info@shashvattrading.com"
               className="inline-flex items-center justify-center px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold shadow-lg"
             >
-              💬 Chat Instantly on WhatsApp
+              ✉️ Email Us
             </a>
             <a 
-              href="tel:+919772533559"
+              href="tel:+919820191117"
               className="inline-flex items-center justify-center px-8 py-3 bg-white border-2 border-green-600 text-green-700 rounded-lg hover:bg-green-50 transition-colors font-semibold"
             >
-              📞 Call: +91 97725 33559
+              📞 Call: +91 98201 91117
             </a>
           </div>
         </div>

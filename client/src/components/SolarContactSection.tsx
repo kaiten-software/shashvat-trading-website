@@ -66,10 +66,10 @@ export default function SolarContactSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-light text-foreground mb-4">
-            Let's Start Your <span className="font-semibold text-green-600">Solar Journey</span>
+            Let's Start Your <span className="font-semibold text-green-600">Sourcing Journey</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Get in touch for a free consultation and site assessment
+            Get in touch for competitive pricing and reliable supply
           </p>
         </div>
 
@@ -154,7 +154,7 @@ export default function SolarContactSection() {
                 </Label>
                 <Textarea
                   id="contact-requirement"
-                  placeholder="Tell us about your solar requirements..."
+                  placeholder="Tell us about your plastic resin requirements (material type, quantity, delivery location)..."
                   value={formData.requirement}
                   onChange={(e) => setFormData({ ...formData, requirement: e.target.value })}
                   className="min-h-[120px]"
@@ -200,13 +200,26 @@ export default function SolarContactSection() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-foreground mb-2">Call Us</h4>
-                    <a 
-                      href="tel:+919772533559" 
-                      className="text-green-600 hover:text-green-700 font-semibold text-lg"
-                    >
-                      +91 97725 33559
-                    </a>
-                    <p className="text-sm text-muted-foreground mt-1">Mon-Sat, 9 AM - 7 PM</p>
+                    <div className="space-y-2">
+                      <div>
+                        <span className="text-sm text-muted-foreground">🇨🇦 Canada: </span>
+                        <a 
+                          href="tel:+19058132169" 
+                          className="text-green-600 hover:text-green-700 font-semibold"
+                        >
+                          +1 905-813-2169
+                        </a>
+                      </div>
+                      <div>
+                        <span className="text-sm text-muted-foreground">🇮🇳 India: </span>
+                        <a 
+                          href="tel:+919820191117" 
+                          className="text-green-600 hover:text-green-700 font-semibold"
+                        >
+                          +91 98201 91117
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -220,10 +233,10 @@ export default function SolarContactSection() {
                   <div>
                     <h4 className="text-lg font-semibold text-foreground mb-2">Email Us</h4>
                     <a 
-                      href="mailto:info@rajasthanenergy.com" 
+                      href="mailto:info@shashvattrading.com" 
                       className="text-green-600 hover:text-green-700 font-semibold"
                     >
-                      info@rajasthanenergy.com
+                      info@shashvattrading.com
                     </a>
                     <p className="text-sm text-muted-foreground mt-1">We reply within 24 hours</p>
                   </div>
@@ -237,37 +250,38 @@ export default function SolarContactSection() {
                     <MapPin className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-foreground mb-2">Visit Us</h4>
-                    <p className="text-muted-foreground leading-relaxed">
-                      <strong className="text-foreground">Rajasthan Green Energy Solar Power Pvt Ltd</strong><br />
-                      2nd Floor, B.L Tower<br />
-                      Arihant Nagar, Kalwar Road<br />
-                      Hatoj, Jaipur (Raj.) 302012<br />
-                      <span className="text-xs mt-2 block">GSTIN: 08AANCR3458B1ZA</span>
-                    </p>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Our Offices</h4>
+                    <div className="space-y-3 text-muted-foreground">
+                      <div>
+                        <strong className="text-foreground">🇨🇦 Shashvat Polymers Ltd</strong><br />
+                        <span className="text-sm">Canada</span>
+                      </div>
+                      <div>
+                        <strong className="text-foreground">🇮🇳 Shashvat Plastics LLP</strong><br />
+                        <span className="text-sm">India</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* WhatsApp CTA */}
+            {/* Email CTA */}
             <div className="bg-gradient-to-br from-green-600 to-green-500 rounded-3xl p-8 text-white shadow-2xl">
-              <div className="text-5xl mb-4">💬</div>
-              <h3 className="text-2xl font-bold mb-3">Chat on WhatsApp</h3>
+              <div className="text-5xl mb-4">✉️</div>
+              <h3 className="text-2xl font-bold mb-3">Email Us Today</h3>
               <p className="text-green-50 mb-6 leading-relaxed">
-                Get instant responses to your queries. Our solar experts are available on WhatsApp.
+                Get instant quotes for your plastic resin requirements. Our team responds within 24 hours.
               </p>
               <a
-                href="https://wa.me/919772533559?text=Hi, I'm interested in solar installation. Please provide more details."
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:info@shashvattrading.com?subject=Quote Request&body=Hi, I'm interested in plastic resins. Please provide more details."
               >
                 <Button 
                   size="lg"
                   className="w-full h-14 bg-white text-green-700 hover:bg-gray-100 font-semibold text-lg shadow-lg"
                 >
-                  <span className="text-2xl mr-2">📱</span>
-                  WhatsApp Now
+                  <span className="text-2xl mr-2">📧</span>
+                  Send Email
                 </Button>
               </a>
             </div>
@@ -275,7 +289,7 @@ export default function SolarContactSection() {
             {/* Trust Indicators */}
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-white rounded-xl p-4 border border-green-100 text-center">
-                <div className="text-2xl font-bold text-green-600 mb-1">800+</div>
+                <div className="text-2xl font-bold text-green-600 mb-1">500+</div>
                 <div className="text-xs text-muted-foreground">Happy Customers</div>
               </div>
               <div className="bg-white rounded-xl p-4 border border-green-100 text-center">

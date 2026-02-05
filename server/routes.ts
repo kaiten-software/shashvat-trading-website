@@ -1,9 +1,19 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import nodemailer from "nodemailer";
+import apiRoutes from "./api/main";
+import productsRoutes from "./api/products";
+import authRoutes from "./api/auth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Contact form endpoint
+  // Register API routes
+  console.log("Registering API routes...");
+  app.use("/api/auth", authRoutes);
+  app.use("/api", apiRoutes);
+  app.use("/api/products", productsRoutes);
+  console.log("API routes registered successfully");
+
+  // Contact form endpoint (keeping legacy endpoint for compatibility)
   app.post("/api/contact", async (req, res) => {
     try {
       const { name, email, phone, message } = req.body;
@@ -47,7 +57,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Email options
       const mailOptions = {
         from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_TO || "info@rajgreenenergy.com",
+        to: process.env.EMAIL_TO || "info@shashvattrading.com",
         subject: `Contact Request from ${name}`,
         html: `
           <h2>New Contact Form Submission</h2>

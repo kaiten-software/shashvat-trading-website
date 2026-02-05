@@ -1,30 +1,72 @@
-import { Switch, Route, useLocation } from "wouter";
+import { Switch, Route, useLocation, Redirect } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { useEffect } from "react";
+import { useEffect, ReactNode } from "react";
+import { AuthProvider, useAuth } from "@/hooks/use-auth";
+
+// Public Pages
 import Home from "@/pages/Home";
 import About from "@/pages/About";
-import Technology from "@/pages/Technology";
-import Products from "@/pages/Products";
-import Projects from "@/pages/Projects";
+import ProductsNew from "@/pages/ProductsNew";
+import ProductDetail from "@/pages/ProductDetail";
+import Partners from "@/pages/Partners";
+import Blog from "@/pages/Blog";
+import BlogPost from "@/pages/BlogPost";
 import Contact from "@/pages/Contact";
-import ResidentialSolar from "@/pages/ResidentialSolar";
-import CommercialSolar from "@/pages/CommercialSolar";
-import IndustrialSolar from "@/pages/IndustrialSolar";
-import OnGridSolar from "@/pages/OnGridSolar";
-import HybridSolar from "@/pages/HybridSolar";
-import SolarAMC from "@/pages/SolarAMC";
-import EPCInstallation from "@/pages/EPCInstallation";
-import SiteSurvey from "@/pages/SiteSurvey";
-import DesignSimulation from "@/pages/DesignSimulation";
-import HowItWorks from "@/pages/HowItWorks";
-import CostsSubsidy from "@/pages/CostsSubsidy";
-import SolarTechnologies from "@/pages/SolarTechnologies";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import NotFound from "@/pages/not-found";
+
+// Admin Pages
+import AdminLogin from "@/pages/admin/Login";
+import AdminDashboard from "@/pages/admin/Dashboard";
+import AdminCompanies from "@/pages/admin/Companies";
+import AdminCategories from "@/pages/admin/Categories";
+import AdminFeatures from "@/pages/admin/Features";
+import AdminApplications from "@/pages/admin/Applications";
+import AdminProducts from "@/pages/admin/Products";
+import AdminBlog from "@/pages/admin/Blog";
+import AdminUsers from "@/pages/admin/Users";
+
+// Protected Route Component
+function ProtectedRoute({ children, allowedRoles }: { children: ReactNode; allowedRoles?: string[] }) {
+  const { isAuthenticated, isLoading, user } = useAuth();
+  const [, navigate] = useLocation();
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      navigate('/admin/login');
+    }
+  }, [isLoading, isAuthenticated, navigate]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin h-8 w-8 border-4 border-emerald-600 border-t-transparent rounded-full" />
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return null;
+  }
+
+  // Check role-based access
+  if (allowedRoles && user && !allowedRoles.includes(user.role)) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Access Denied</h1>
+          <p className="text-gray-600">You don't have permission to access this page.</p>
+        </div>
+      </div>
+    );
+  }
+
+  return <>{children}</>;
+}
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -41,27 +83,77 @@ function Router() {
     <>
       <ScrollToTop />
       <Switch>
+        {/* Public Routes */}
         <Route path="/" component={Home} />
         <Route path="/about" component={About} />
-        <Route path="/technology" component={Technology} />
-        <Route path="/products" component={Products} />
-        <Route path="/solutions" component={Products} />
-        <Route path="/projects" component={Projects} />
+        <Route path="/products" component={ProductsNew} />
+        <Route path="/products/:slug" component={ProductDetail} />
+        <Route path="/partners" component={Partners} />
+        <Route path="/blog" component={Blog} />
+        <Route path="/blog/:slug" component={BlogPost} />
         <Route path="/contact" component={Contact} />
-        <Route path="/residential-solar" component={ResidentialSolar} />
-        <Route path="/commercial-solar" component={CommercialSolar} />
-        <Route path="/industrial-solar" component={IndustrialSolar} />
-        <Route path="/on-grid-solar" component={OnGridSolar} />
-        <Route path="/hybrid-solar" component={HybridSolar} />
-        <Route path="/solar-amc" component={SolarAMC} />
-        <Route path="/epc-installation" component={EPCInstallation} />
-        <Route path="/site-survey" component={SiteSurvey} />
-        <Route path="/design-simulation" component={DesignSimulation} />
-        <Route path="/how-it-works" component={HowItWorks} />
-        <Route path="/costs-subsidy" component={CostsSubsidy} />
-        <Route path="/solar-technologies" component={SolarTechnologies} />
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms-of-service" component={TermsOfService} />
+
+        {/* Admin Routes */}
+        <Route path="/admin/login" component={AdminLogin} />
+        <Route path="/admin">
+          {() => (
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          )}
+        </Route>
+        <Route path="/admin/companies">
+          {() => (
+            <ProtectedRoute>
+              <AdminCompanies />
+            </ProtectedRoute>
+          )}
+        </Route>
+        <Route path="/admin/categories">
+          {() => (
+            <ProtectedRoute>
+              <AdminCategories />
+            </ProtectedRoute>
+          )}
+        </Route>
+        <Route path="/admin/features">
+          {() => (
+            <ProtectedRoute>
+              <AdminFeatures />
+            </ProtectedRoute>
+          )}
+        </Route>
+        <Route path="/admin/applications">
+          {() => (
+            <ProtectedRoute>
+              <AdminApplications />
+            </ProtectedRoute>
+          )}
+        </Route>
+        <Route path="/admin/products">
+          {() => (
+            <ProtectedRoute>
+              <AdminProducts />
+            </ProtectedRoute>
+          )}
+        </Route>
+        <Route path="/admin/blog">
+          {() => (
+            <ProtectedRoute allowedRoles={['admin', 'editor']}>
+              <AdminBlog />
+            </ProtectedRoute>
+          )}
+        </Route>
+        <Route path="/admin/users">
+          {() => (
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminUsers />
+            </ProtectedRoute>
+          )}
+        </Route>
+
         <Route component={NotFound} />
       </Switch>
     </>
@@ -72,8 +164,10 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Router />
+        <AuthProvider>
+          <Toaster />
+          <Router />
+        </AuthProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );

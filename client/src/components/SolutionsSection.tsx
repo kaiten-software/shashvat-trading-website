@@ -1,4 +1,4 @@
-import { Home, Building2, Factory, Zap, Construction, Settings } from "lucide-react";
+import { Hexagon, Layers, CircleDot, Box, Recycle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
@@ -8,52 +8,52 @@ export default function SolutionsSection() {
   const { ref, isInView } = useScrollReveal();
   const solutions = [
     {
-      icon: Home,
-      title: "Residential Rooftop Solar",
-      description: "Custom solar solutions for homes, reducing electricity bills by 80-95%",
-      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=400&fit=crop",
+      icon: Hexagon,
+      title: "Polypropylene (PP)",
+      description: "Versatile thermoplastic for packaging, automotive, textiles, and consumer goods applications",
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
       gradient: "from-blue-500 to-cyan-500",
-      link: "/residential-solar"
+      link: "/products"
     },
     {
-      icon: Building2,
-      title: "Commercial Solar",
-      description: "Cost-effective solar installations for offices and commercial buildings",
-      image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=600&h=400&fit=crop",
+      icon: Layers,
+      title: "Polyethylene (PE)",
+      description: "LDPE, LLDPE, HDPE grades for films, pipes, containers, and industrial applications",
+      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop",
       gradient: "from-green-500 to-emerald-500",
-      link: "/commercial-solar"
+      link: "/products"
     },
     {
-      icon: Factory,
-      title: "Industrial Solar",
-      description: "High-capacity solar systems for manufacturing and industrial facilities",
-      image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&h=400&fit=crop",
-      gradient: "from-purple-500 to-pink-500",
-      link: "/industrial-solar"
-    },
-    {
-      icon: Zap,
-      title: "On-Grid / Hybrid Systems",
-      description: "Flexible grid-tied and battery backup solar solutions",
-      image: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=600&h=400&fit=crop",
-      gradient: "from-amber-500 to-orange-500",
-      link: "/on-grid-solar"
-    },
-    {
-      icon: Construction,
-      title: "Hybrid Solar Systems",
-      description: "Solar with battery backup for 24/7 power supply",
+      icon: CircleDot,
+      title: "Styrenics (GPPS, HIPS, ABS)",
+      description: "High-performance resins for electronics, appliances, and consumer products",
       image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=400&fit=crop",
-      gradient: "from-teal-500 to-cyan-500",
-      link: "/hybrid-solar"
+      gradient: "from-purple-500 to-pink-500",
+      link: "/products"
     },
     {
-      icon: Settings,
-      title: "Annual Maintenance (AMC)",
-      description: "Comprehensive maintenance contracts for optimal system performance",
-      image: "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&h=400&fit=crop",
+      icon: Box,
+      title: "PVC & PET",
+      description: "Construction-grade PVC and packaging-grade PET for diverse industrial needs",
+      image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=600&h=400&fit=crop",
+      gradient: "from-amber-500 to-orange-500",
+      link: "/products"
+    },
+    {
+      icon: Sparkles,
+      title: "Engineering Plastics",
+      description: "Polyamides, polycarbonate, and specialty resins for high-performance applications",
+      image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=400&fit=crop",
+      gradient: "from-teal-500 to-cyan-500",
+      link: "/products"
+    },
+    {
+      icon: Recycle,
+      title: "Recycled & Bio-Polymers",
+      description: "Sustainable alternatives including reprocessed resins and eco-friendly materials",
+      image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=600&h=400&fit=crop",
       gradient: "from-indigo-500 to-purple-500",
-      link: "/solar-amc"
+      link: "/products"
     }
   ];
 
@@ -68,10 +68,10 @@ export default function SolutionsSection() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-5xl font-light text-foreground mb-4">
-            Our <span className="font-semibold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">Solar Solutions</span>
+            Our <span className="font-semibold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">Product Range</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Comprehensive EPC services tailored to your energy needs
+            Comprehensive thermoplastic solutions for every manufacturing need
           </p>
         </motion.div>
 
@@ -116,7 +116,7 @@ export default function SolutionsSection() {
                       variant="ghost" 
                       className="text-green-600 hover:text-green-700 hover:bg-green-50 p-0 h-auto font-semibold"
                     >
-                      Learn More →
+                      View Products →
                     </Button>
                   </Link>
                 </div>
@@ -128,24 +128,24 @@ export default function SolutionsSection() {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <p className="text-lg text-muted-foreground mb-6">
-            Not sure which solution is right for you?
+            Need help finding the right material for your application?
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <a href="https://wa.me/919772533559?text=Hi, I need help choosing the right solar solution" target="_blank" rel="noopener noreferrer">
+            <a href="mailto:info@shashvattrading.com">
               <Button 
                 size="lg"
                 className="px-10 py-6 text-lg bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 shadow-xl"
               >
-                💬 Chat Instantly on WhatsApp
+                ✉️ Request a Quote
               </Button>
             </a>
-            <a href="tel:+919772533559">
+            <a href="tel:+919820191117">
               <Button 
                 size="lg"
                 variant="outline"
                 className="px-10 py-6 text-lg border-green-600 text-green-600 hover:bg-green-50"
               >
-                📞 Call +91 97725 33559
+                📞 Call +91 98201 91117
               </Button>
             </a>
           </div>

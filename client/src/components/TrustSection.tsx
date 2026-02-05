@@ -1,4 +1,4 @@
-import { Shield, Award, FileCheck, IndianRupee, Headphones, CheckCircle } from "lucide-react";
+import { Shield, Award, Globe, Truck, Headphones, CheckCircle } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
@@ -13,33 +13,33 @@ export default function TrustSection() {
   const trustBadges = [
     {
       icon: Award,
-      title: "MNRE-Certified EPC Team",
-      description: "Government-approved solar engineering experts"
+      title: "Tier-1 Partners Only",
+      description: "We work exclusively with world-class petrochemical producers"
     },
     {
       icon: Shield,
-      title: "25-Year Performance Guarantee",
-      description: "Long-term warranty on panel efficiency"
+      title: "Quality Guaranteed",
+      description: "Rigorous quality control ensuring consistent material properties"
     },
     {
-      icon: FileCheck,
-      title: "Net-Metering Assistance",
-      description: "Complete DISCOM documentation support"
+      icon: Globe,
+      title: "Global Sourcing Network",
+      description: "Strategic partnerships across Asia, Middle East & Americas"
     },
     {
-      icon: IndianRupee,
-      title: "100% Transparent Pricing",
-      description: "No hidden costs, clear breakdown"
+      icon: Truck,
+      title: "Reliable Logistics",
+      description: "Efficient supply chain ensuring on-time delivery worldwide"
     },
     {
       icon: CheckCircle,
-      title: "End-to-End Installation",
-      description: "From design to commissioning"
+      title: "Technical Expertise",
+      description: "Experienced team helping you choose the right materials"
     },
     {
       icon: Headphones,
-      title: "After-Sales Support",
-      description: "24/7 customer service and maintenance"
+      title: "Dedicated Support",
+      description: "Responsive customer service across time zones"
     }
   ];
 
@@ -49,10 +49,10 @@ export default function TrustSection() {
         {/* Section Header */}
         <motion.div className="text-center mb-16" style={{ y }}>
           <h2 className="text-4xl md:text-5xl font-light text-foreground mb-4">
-            Why Choose <span className="font-semibold text-green-600">Rajasthan Green Energy Solar</span>
+            Why Choose <span className="font-semibold text-green-600">Shashvat Trading</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Engineering excellence meets customer trust. We deliver solar solutions built to last.
+            Premium quality thermoplastics with unmatched service. Right product. Right price. Right time.
           </p>
         </motion.div>
 
@@ -82,7 +82,7 @@ export default function TrustSection() {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <p className="text-lg text-muted-foreground mb-6">
-            Join 800+ satisfied customers who trust us for their solar needs
+            Trusted by manufacturers and distributors across 25+ countries
           </p>
           <div className="flex items-center justify-center gap-2">
             <div className="flex -space-x-3">

@@ -1,87 +1,77 @@
 export default function BrandsSection() {
-  const panelBrands = [
+  const globalProducers = [
     {
-      name: "Adani Solar",
-      logo: "/images/brands/panel/Adani Solar.png",
-      category: "Solar Panels"
+      name: "LG Chem",
+      logo: "/images/brands/lgchem.png",
+      region: "South Korea"
     },
     {
-      name: "INA",
-      logo: "/images/brands/panel/INA.png",
-      category: "Solar Panels"
+      name: "Formosa Plastics",
+      logo: "/images/brands/formosa.png",
+      region: "Taiwan"
     },
     {
-      name: "Premier Energies",
-      logo: "/images/brands/panel/Premier Energies.png",
-      category: "Solar Panels"
+      name: "IRPC",
+      logo: "/images/brands/irpc.png",
+      region: "Thailand"
     },
     {
-      name: "Rayzon Solar",
-      logo: "/images/brands/panel/Rayzon Solar.jpg",
-      category: "Solar Panels"
+      name: "INEOS Styrolution",
+      logo: "/images/brands/ineos.png",
+      region: "Germany"
     },
     {
-      name: "Renew Power",
-      logo: "/images/brands/panel/Renew Power.jpg",
-      category: "Solar Panels"
+      name: "Trinseo",
+      logo: "/images/brands/trinseo.png",
+      region: "USA"
     },
     {
-      name: "Tata Power Solar",
-      logo: "/images/brands/panel/Tata Power Solar.jpg",
-      category: "Solar Panels"
+      name: "Styrenix",
+      logo: "/images/brands/styrenix.png",
+      region: "India"
     },
     {
-      name: "Usha Shriram",
-      logo: "/images/brands/panel/Usha Shriram.png",
-      category: "Solar Panels"
+      name: "Sasol",
+      logo: "/images/brands/sasol.png",
+      region: "South Africa"
     },
     {
-      name: "WAAREE",
-      logo: "/images/brands/panel/WAAREE.jpg",
-      category: "Solar Panels"
-    },
-    {
-      name: "Luminous",
-      logo: "/images/brands/panel/Luminious.jpg",
-      category: "Solar Panels"
+      name: "SABIC",
+      logo: "/images/brands/sabic.png",
+      region: "Saudi Arabia"
     }
   ];
 
-  const inverterBrands = [
+  const additionalPartners = [
     {
-      name: "Frelit",
-      logo: "/images/brands/Inverter/Frelit.jpg",
-      category: "Inverters"
+      name: "Reliance Industries",
+      logo: "/images/brands/reliance.png",
+      region: "India"
     },
     {
-      name: "K Solare",
-      logo: "/images/brands/Inverter/K Solare.jpg",
-      category: "Inverters"
+      name: "Braskem",
+      logo: "/images/brands/braskem.png",
+      region: "Brazil"
     },
     {
-      name: "Luminous",
-      logo: "/images/brands/Inverter/Luminious.jpg",
-      category: "Inverters"
+      name: "PTT Global Chemical",
+      logo: "/images/brands/pttgc.png",
+      region: "Thailand"
     },
     {
-      name: "PV Blink",
-      logo: "/images/brands/Inverter/PV blink.png",
-      category: "Inverters"
+      name: "Lotte Chemical",
+      logo: "/images/brands/lotte.png",
+      region: "South Korea"
     },
     {
-      name: "Power One",
-      logo: "/images/brands/Inverter/Power One.png",
-      category: "Inverters"
+      name: "Indorama Ventures",
+      logo: "/images/brands/indorama.png",
+      region: "Thailand"
     },
     {
-      name: "VSOLE",
-      logo: "/images/brands/Inverter/VSOLE.jpg",
-      category: "Inverters"
-    },
-    {
-      name: "Waaree",
-      logo: "/images/brands/Inverter/Waaree.jpg",
-      category: "Inverters"
+      name: "Mitsubishi Chemical",
+      logo: "/images/brands/mitsubishi.png",
+      region: "Japan"
     }
   ];
 
@@ -91,40 +81,30 @@ export default function BrandsSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-light text-foreground mb-4">
-            Premium <span className="font-semibold text-green-600">Tier-1 Brands</span>
+            Our <span className="font-semibold text-green-600">Global Partners</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We partner with the world's most trusted solar equipment manufacturers
+            We source from the world's leading petrochemical producers
           </p>
         </div>
 
-        {/* Solar Panels Section */}
+        {/* Primary Producers Section */}
         <div className="mb-16">
           <h3 className="text-2xl font-semibold text-center mb-8 text-foreground">
-            Solar <span className="text-green-600">Panels</span>
+            Premier <span className="text-green-600">Producers</span>
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 items-center">
-            {panelBrands.map((brand, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
+            {globalProducers.map((brand, index) => (
               <div 
                 key={index}
                 className="group"
               >
-                <div className="p-6 bg-white rounded-2xl border border-gray-200 hover:border-green-300 hover:shadow-xl transition-all duration-300 flex items-center justify-center min-h-[140px]">
-                  <div className="flex items-center justify-center w-full h-20">
-                    <img 
-                      src={brand.logo} 
-                      alt={`${brand.name} logo`}
-                      className="max-h-full max-w-full object-contain opacity-80 group-hover:opacity-100 transition-all duration-300"
-                      onError={(e) => {
-                        // Fallback to text if image fails to load
-                        e.currentTarget.style.display = 'none';
-                        const textFallback = e.currentTarget.nextElementSibling as HTMLElement;
-                        if (textFallback) textFallback.style.display = 'block';
-                      }}
-                    />
-                    <div className="text-lg font-bold text-gray-700 group-hover:text-green-600 transition-colors hidden">
-                      {brand.name}
-                    </div>
+                <div className="p-6 bg-white rounded-2xl border border-gray-200 hover:border-green-300 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center min-h-[140px]">
+                  <div className="text-xl font-bold text-gray-700 group-hover:text-green-600 transition-colors text-center mb-2">
+                    {brand.name}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {brand.region}
                   </div>
                 </div>
               </div>
@@ -132,33 +112,23 @@ export default function BrandsSection() {
           </div>
         </div>
 
-        {/* Inverters Section */}
+        {/* Additional Partners Section */}
         <div className="mb-12">
           <h3 className="text-2xl font-semibold text-center mb-8 text-foreground">
-            Solar <span className="text-amber-600">Inverters</span>
+            Strategic <span className="text-amber-600">Partners</span>
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-center">
-            {inverterBrands.map((brand, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
+            {additionalPartners.map((brand, index) => (
               <div 
                 key={index}
                 className="group"
               >
-                <div className="p-6 bg-white rounded-2xl border border-gray-200 hover:border-amber-300 hover:shadow-xl transition-all duration-300 flex items-center justify-center min-h-[140px]">
-                  <div className="flex items-center justify-center w-full h-20">
-                    <img 
-                      src={brand.logo} 
-                      alt={`${brand.name} logo`}
-                      className="max-h-full max-w-full object-contain opacity-80 group-hover:opacity-100 transition-all duration-300"
-                      onError={(e) => {
-                        // Fallback to text if image fails to load
-                        e.currentTarget.style.display = 'none';
-                        const textFallback = e.currentTarget.nextElementSibling as HTMLElement;
-                        if (textFallback) textFallback.style.display = 'block';
-                      }}
-                    />
-                    <div className="text-lg font-bold text-gray-700 group-hover:text-amber-600 transition-colors hidden">
-                      {brand.name}
-                    </div>
+                <div className="p-4 bg-white rounded-2xl border border-gray-200 hover:border-amber-300 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center min-h-[120px]">
+                  <div className="text-lg font-bold text-gray-700 group-hover:text-amber-600 transition-colors text-center mb-1">
+                    {brand.name}
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    {brand.region}
                   </div>
                 </div>
               </div>
@@ -170,25 +140,25 @@ export default function BrandsSection() {
         <div className="mt-16 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           <div className="text-center">
             <div className="text-4xl mb-3">✓</div>
-            <h3 className="font-semibold text-foreground mb-2">Tier-1 Certified</h3>
-            <p className="text-sm text-muted-foreground">Top-rated manufacturers globally</p>
+            <h3 className="font-semibold text-foreground mb-2">Certified Quality</h3>
+            <p className="text-sm text-muted-foreground">All products meet international standards</p>
           </div>
           <div className="text-center">
-            <div className="text-4xl mb-3">⚡</div>
-            <h3 className="font-semibold text-foreground mb-2">25+ Years Warranty</h3>
-            <p className="text-sm text-muted-foreground">Performance guarantees on panels</p>
+            <div className="text-4xl mb-3">🌍</div>
+            <h3 className="font-semibold text-foreground mb-2">Global Network</h3>
+            <p className="text-sm text-muted-foreground">Sourcing from 20+ countries</p>
           </div>
           <div className="text-center">
             <div className="text-4xl mb-3">🏆</div>
-            <h3 className="font-semibold text-foreground mb-2">Proven Track Record</h3>
-            <p className="text-sm text-muted-foreground">Billions of watts installed worldwide</p>
+            <h3 className="font-semibold text-foreground mb-2">Trusted Relationships</h3>
+            <p className="text-sm text-muted-foreground">Long-standing partnerships since 2017</p>
           </div>
         </div>
 
         {/* Bottom Note */}
         <div className="mt-12 text-center">
           <p className="text-muted-foreground text-sm">
-            All equipment comes with manufacturer warranties and our quality guarantee
+            All materials come with quality certificates and technical data sheets
           </p>
         </div>
       </div>

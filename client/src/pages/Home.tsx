@@ -1,39 +1,29 @@
-import SolarNavigation from "@/components/SolarNavigation";
-import SolarHeroSection from "@/components/SolarHeroSection";
-import AboutCompanySection from "@/components/AboutCompanySection";
+import Navigation from "@/components/Navigation";
+import HeroSection from "@/components/HeroSection";
 import TrustSection from "@/components/TrustSection";
-import WarrantySection from "@/components/WarrantySection";
-import IndustrialBanner from "@/components/IndustrialBanner";
-import EPCProcessSection from "@/components/EPCProcessSection";
+import AboutCompanySection from "@/components/AboutCompanySection";
 import SolutionsSection from "@/components/SolutionsSection";
-import PricingEstimatorSection from "@/components/PricingEstimatorSection";
-import BenefitsSection from "@/components/BenefitsSection";
-import CaseStudiesSection from "@/components/CaseStudiesSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
+import HomeProductFilter from "@/components/HomeProductFilter";
 import BrandsSection from "@/components/BrandsSection";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 import FAQSection from "@/components/FAQSection";
 import SolarContactSection from "@/components/SolarContactSection";
-import SolarFooter from "@/components/SolarFooter";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <SolarNavigation />
-      <SolarHeroSection />
-      <IndustrialBanner />
+      <Navigation />
+      <HeroSection />
       <TrustSection />
-      <WarrantySection />
       <AboutCompanySection />
-      <EPCProcessSection />
       <SolutionsSection />
-      <PricingEstimatorSection />
-      <BenefitsSection />
-      <CaseStudiesSection />
-      <TestimonialsSection />
+      <HomeProductFilter />
       <BrandsSection />
+      <RecentBlogPosts />
       <FAQSection />
       <SolarContactSection />
-      <SolarFooter />
+      <Footer />
     </div>
   );
 }
