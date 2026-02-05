@@ -48,5 +48,11 @@ coverage/
 # Build outputs
 *.tsbuildinfo
 
+# Uploads (user-generated content)
+uploads/
+
+# Drizzle migrations (optional - can be version controlled)
+drizzle/
+
 # SSH/SSL Keys
 *.pem
