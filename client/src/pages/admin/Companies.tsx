@@ -220,7 +220,7 @@ export default function AdminCompanies() {
             <CardTitle>All Companies ({companies.length})</CardTitle>
           </CardHeader>
           <CardContent>
-            {isLoading ? (
+            {isLoading && companies.length === 0 ? (
               <div className="text-center py-8 text-gray-500">Loading...</div>
             ) : companies.length === 0 ? (
               <div className="text-center py-8 text-gray-500">

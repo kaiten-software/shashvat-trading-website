@@ -15,7 +15,7 @@ export default function SolarContactSection() {
     requirement: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{type: 'success' | 'error', message: string} | null>(null);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ export default function SolarContactSection() {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch('/.netlify/functions/contact', {
+      const response = await fetch('/api/callbacks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,7 +32,8 @@ export default function SolarContactSection() {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          message: `City: ${formData.city}\n\nRequirement: ${formData.requirement}`
+          city: formData.city,
+          requirement: formData.requirement
         })
       });
 
@@ -77,7 +78,7 @@ export default function SolarContactSection() {
           {/* Contact Form */}
           <div className="bg-white rounded-3xl shadow-2xl border border-green-100 p-8 md:p-10">
             <h3 className="text-2xl font-semibold text-foreground mb-6">Request Callback</h3>
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name */}
               <div>
@@ -164,16 +165,15 @@ export default function SolarContactSection() {
 
               {/* Status Messages */}
               {submitStatus && (
-                <div className={`p-4 rounded-lg ${
-                  submitStatus.type === 'success' 
-                    ? 'bg-green-50 text-green-800 border border-green-200' 
-                    : 'bg-red-50 text-red-800 border border-red-200'
-                }`}>
+                <div className={`p-4 rounded-lg ${submitStatus.type === 'success'
+                  ? 'bg-green-50 text-green-800 border border-green-200'
+                  : 'bg-red-50 text-red-800 border border-red-200'
+                  }`}>
                   {submitStatus.message}
                 </div>
               )}
 
-              <Button 
+              <Button
                 type="submit"
                 className="w-full h-12 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-lg font-semibold disabled:opacity-50"
                 disabled={isSubmitting}
@@ -203,8 +203,8 @@ export default function SolarContactSection() {
                     <div className="space-y-2">
                       <div>
                         <span className="text-sm text-muted-foreground">🇨🇦 Canada: </span>
-                        <a 
-                          href="tel:+19058132169" 
+                        <a
+                          href="tel:+19058132169"
                           className="text-green-600 hover:text-green-700 font-semibold"
                         >
                           +1 905-813-2169
@@ -212,8 +212,8 @@ export default function SolarContactSection() {
                       </div>
                       <div>
                         <span className="text-sm text-muted-foreground">🇮🇳 India: </span>
-                        <a 
-                          href="tel:+919820191117" 
+                        <a
+                          href="tel:+919820191117"
                           className="text-green-600 hover:text-green-700 font-semibold"
                         >
                           +91 98201 91117
@@ -232,8 +232,8 @@ export default function SolarContactSection() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-foreground mb-2">Email Us</h4>
-                    <a 
-                      href="mailto:info@shashvattrading.com" 
+                    <a
+                      href="mailto:info@shashvattrading.com"
                       className="text-green-600 hover:text-green-700 font-semibold"
                     >
                       info@shashvattrading.com
@@ -276,7 +276,7 @@ export default function SolarContactSection() {
               <a
                 href="mailto:info@shashvattrading.com?subject=Quote Request&body=Hi, I'm interested in plastic resins. Please provide more details."
               >
-                <Button 
+                <Button
                   size="lg"
                   className="w-full h-14 bg-white text-green-700 hover:bg-gray-100 font-semibold text-lg shadow-lg"
                 >

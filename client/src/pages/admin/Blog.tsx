@@ -149,11 +149,35 @@ export default function AdminBlog() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="title">Post Title *</Label>
-                    <Input id="title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="e.g., Understanding HIPS Properties" required />
+                    <Input
+                      id="title"
+                      value={formData.title}
+                      onChange={(e) => {
+                        const title = e.target.value;
+                        const slug = title
+                          .toLowerCase()
+                          .replace(/\(.*?\)/g, "") // Remove content inside parentheses
+                          .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+                          .replace(/\s+/g, "-") // Replace spaces with hyphens
+                          .replace(/-+/g, "-") // Prevent duplicate hyphens
+                          .replace(/^-+|-+$/g, ""); // Trim leading and trailing hyphens
+
+                        setFormData({ ...formData, title, slug });
+                      }}
+                      placeholder="e.g., Understanding HIPS Properties"
+                      required
+                    />
                   </div>
                   <div>
                     <Label htmlFor="slug">URL Slug</Label>
-                    <Input id="slug" value={formData.slug} onChange={(e) => setFormData({ ...formData, slug: e.target.value })} placeholder="Auto-generated from title" />
+                    <Input
+                      id="slug"
+                      value={formData.slug}
+                      readOnly
+                      className="bg-gray-100 text-gray-500 cursor-not-allowed"
+                      placeholder="Auto-generated from title"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Auto-generated deterministic slug</p>
                   </div>
                 </div>
                 <div>

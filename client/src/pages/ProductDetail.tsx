@@ -4,18 +4,18 @@ import { useRoute, Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ProductInquiryModal from "@/components/ProductInquiryModal";
 import { motion } from "framer-motion";
-import { 
-  ArrowLeft, 
-  ArrowRight, 
-  Phone, 
-  Mail, 
-  Download, 
-  Package, 
+import {
+  ArrowLeft,
+  ArrowRight,
+  Phone,
+  Mail,
+  Download,
+  Package,
   CheckCircle,
   Building2,
   FileText,
@@ -82,40 +82,40 @@ export default function ProductDetail() {
   // Related products - same company or category
   const relatedProducts = useMemo(() => {
     if (!data || !allProducts.length) return { sameCompany: [], sameCategory: [] };
-    
+
     const sameCompany = allProducts
-      .filter((p: any) => 
-        p.product.slug !== slug && 
+      .filter((p: any) =>
+        p.product.slug !== slug &&
         p.company?.id === data.company?.id
       )
       .slice(0, 4);
-    
+
     const categoryIds = data.categories?.map((c: any) => c.id) || [];
     const sameCategory = allProducts
-      .filter((p: any) => 
-        p.product.slug !== slug && 
+      .filter((p: any) =>
+        p.product.slug !== slug &&
         p.categories?.some((c: any) => categoryIds.includes(c.id))
       )
       .slice(0, 4);
-    
+
     return { sameCompany, sameCategory };
   }, [data, allProducts, slug]);
 
   // Calculate prev/next products based on search context or all products
   const navigation = useMemo(() => {
     if (!data || !allProducts.length) return { prev: null, next: null };
-    
+
     let productList = allProducts;
-    
+
     // If we have a search context, use that order
     if (searchContext && searchContext.productIds.length > 0) {
       productList = searchContext.productIds
         .map(id => allProducts.find((p: any) => p.product.id === id))
         .filter(Boolean);
     }
-    
+
     const currentIndex = productList.findIndex((p: any) => p.product.slug === slug);
-    
+
     return {
       prev: currentIndex > 0 ? productList[currentIndex - 1] : null,
       next: currentIndex < productList.length - 1 ? productList[currentIndex + 1] : null,
@@ -194,9 +194,9 @@ export default function ProductDetail() {
                     New Search
                   </Button>
                 </Link>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   onClick={clearSearchContext}
                   className="text-gray-500"
                 >
@@ -227,15 +227,15 @@ export default function ProductDetail() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Image Gallery */}
             <div>
-              <div className="aspect-square bg-gray-100 rounded-2xl overflow-hidden mb-4">
+              <div className="aspect-square bg-white rounded-2xl overflow-hidden mb-4 border border-gray-100 flex items-center justify-center">
                 {product.heroImage ? (
-                  <img 
-                    src={product.heroImage} 
+                  <img
+                    src={product.heroImage}
                     alt={product.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center">
+                  <div className="w-full h-full flex items-center justify-center bg-gray-50">
                     <Package className="h-24 w-24 text-gray-300" />
                   </div>
                 )}
@@ -243,8 +243,8 @@ export default function ProductDetail() {
               {images && images.length > 0 && (
                 <div className="grid grid-cols-4 gap-2">
                   {images.map((img: any) => (
-                    <div key={img.id} className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
-                      <img src={img.imagePath} alt="" className="w-full h-full object-cover" />
+                    <div key={img.id} className="aspect-square bg-white border border-gray-100 rounded-lg overflow-hidden flex items-center justify-center p-1">
+                      <img src={img.imagePath} alt="" className="w-full h-full object-contain" />
                     </div>
                   ))}
                 </div>
@@ -263,11 +263,11 @@ export default function ProductDetail() {
                   </Badge>
                 </div>
               )}
-              
+
               <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 {product.name}
               </h1>
-              
+
               {product.shortDescription && (
                 <p className="text-xl text-gray-600 mb-6">
                   {product.shortDescription}
@@ -300,24 +300,47 @@ export default function ProductDetail() {
                 </div>
               )}
 
-              {/* Quick Download - if documents exist */}
-              {documents && documents.length > 0 && (
-                <div className="mb-6">
-                  <a 
-                    href={documents[0].filePath} 
-                    download={documents[0].fileName}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 transition-colors"
-                  >
-                    <Download className="h-5 w-5" />
-                    Download Brochure
-                  </a>
-                </div>
-              )}
+              {/* Product Accordions: Additional Details & Documents */}
+
+              <Accordion type="single" collapsible className="w-full mb-8">
+                <AccordionItem value="documents">
+                  <AccordionTrigger>Documents</AccordionTrigger>
+                  <AccordionContent>
+                    {documents && documents.length > 0 ? (
+                      <div className="space-y-3 pt-2">
+                        {documents.map((doc: any) => (
+                          <a
+                            key={doc.id}
+                            href={doc.filePath}
+                            download={doc.fileName}
+                            className="flex items-center justify-between p-3 bg-gray-50 rounded border hover:bg-gray-100 transition-colors group"
+                          >
+                            <div className="flex items-center gap-3 overflow-hidden">
+                              <FileText className="h-5 w-5 text-red-500 shrink-0" />
+                              <div className="min-w-0">
+                                <p className="font-medium text-gray-900 text-sm truncate">{doc.fileName || "Document"}</p>
+                                {doc.fileSize && (
+                                  <p className="text-xs text-gray-500">
+                                    {(doc.fileSize / 1024 / 1024).toFixed(2)} MB
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                            <Download className="h-4 w-4 text-gray-400 group-hover:text-emerald-600" />
+                          </a>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-sm text-gray-500 py-2">No documents available.</p>
+                    )}
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
 
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-4 mb-8">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-emerald-600 hover:bg-emerald-700"
                   onClick={() => setInquiryModalOpen(true)}
                 >
@@ -357,135 +380,26 @@ export default function ProductDetail() {
         </div>
       </section>
 
-      {/* Product Details Tabs */}
-      <section className="py-12 bg-gray-50">
+      {/* Additional Details Banner */}
+      <section className="bg-emerald-50 py-12 border-y border-emerald-100">
         <div className="max-w-7xl mx-auto px-4">
-          <Tabs defaultValue="description" className="w-full">
-            <TabsList className="w-full justify-start bg-white p-1 rounded-lg mb-8">
-              <TabsTrigger value="description">Description</TabsTrigger>
-              <TabsTrigger value="features">Features</TabsTrigger>
-              <TabsTrigger value="applications">Applications</TabsTrigger>
-              {documents && documents.length > 0 && (
-                <TabsTrigger value="documents">Documents ({documents.length})</TabsTrigger>
-              )}
-            </TabsList>
-
-            <TabsContent value="description">
-              <Card>
-                <CardContent className="p-8">
-                  {product.contentHtml ? (
-                    <div 
-                      className="prose max-w-none"
-                      dangerouslySetInnerHTML={{ __html: product.contentHtml }}
-                    />
-                  ) : (
-                    <p className="text-gray-600">
-                      {product.shortDescription || "No description available."}
-                    </p>
-                  )}
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="features">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {features && features.length > 0 ? (
-                  features.map((feat: any) => (
-                    <Card key={feat.id}>
-                      <CardContent className="p-6">
-                        <div className="flex items-start gap-4">
-                          {feat.image ? (
-                            <img src={feat.image} alt="" className="h-12 w-12 object-contain" />
-                          ) : (
-                            <div className="h-12 w-12 bg-emerald-100 rounded-lg flex items-center justify-center">
-                              <CheckCircle className="h-6 w-6 text-emerald-600" />
-                            </div>
-                          )}
-                          <div>
-                            <h4 className="font-semibold text-gray-900">{feat.name}</h4>
-                            {feat.description && (
-                              <p className="text-sm text-gray-600 mt-1">{feat.description}</p>
-                            )}
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))
-                ) : (
-                  <p className="text-gray-500 col-span-full text-center py-12">
-                    No features listed for this product.
-                  </p>
-                )}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="applications">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {applications && applications.length > 0 ? (
-                  applications.map((app: any) => (
-                    <Card key={app.id}>
-                      <CardContent className="p-6">
-                        <div className="flex items-start gap-4">
-                          {app.image ? (
-                            <img src={app.image} alt="" className="h-12 w-12 object-contain" />
-                          ) : (
-                            <div className="h-12 w-12 bg-teal-100 rounded-lg flex items-center justify-center">
-                              <Building2 className="h-6 w-6 text-teal-600" />
-                            </div>
-                          )}
-                          <div>
-                            <h4 className="font-semibold text-gray-900">{app.name}</h4>
-                            {app.description && (
-                              <p className="text-sm text-gray-600 mt-1">{app.description}</p>
-                            )}
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))
-                ) : (
-                  <p className="text-gray-500 col-span-full text-center py-12">
-                    No applications listed for this product.
-                  </p>
-                )}
-              </div>
-            </TabsContent>
-
-            {documents && documents.length > 0 && (
-              <TabsContent value="documents">
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="space-y-4">
-                      {documents.map((doc: any) => (
-                        <a 
-                          key={doc.id}
-                          href={doc.filePath}
-                          download={doc.fileName}
-                          className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                        >
-                          <div className="flex items-center gap-3">
-                            <FileText className="h-8 w-8 text-red-500" />
-                            <div>
-                              <p className="font-medium text-gray-900">{doc.fileName || "Document"}</p>
-                              <p className="text-sm text-gray-500">
-                                PDF Document {doc.fileSize && `• ${(doc.fileSize / 1024 / 1024).toFixed(2)} MB`}
-                              </p>
-                            </div>
-                          </div>
-                          <Button variant="ghost" size="sm">
-                            <Download className="h-4 w-4 mr-2" />
-                            Download
-                          </Button>
-                        </a>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <FileText className="h-8 w-8 text-emerald-600" />
+            <h2 className="text-2xl md:text-3xl font-bold text-emerald-900 uppercase tracking-wide">
+              Additional Details
+            </h2>
+          </div>
+          <div className="prose prose-lg max-w-none text-gray-900 font-medium">
+            {product.contentHtml ? (
+              <div dangerouslySetInnerHTML={{ __html: product.contentHtml }} />
+            ) : (
+              <p>{product.shortDescription || "No additional details available."}</p>
             )}
-          </Tabs>
+          </div>
         </div>
       </section>
+
+
 
       {/* Product Navigation */}
       <section className="py-8 bg-white border-y">
@@ -502,14 +416,14 @@ export default function ProductDetail() {
             ) : (
               <div />
             )}
-            
+
             <Link href="/products">
               <Button variant="ghost" className="gap-2">
                 <Package className="h-4 w-4" />
                 All Products
               </Button>
             </Link>
-            
+
             {navigation.next ? (
               <Link href={`/products/${navigation.next.product.slug}`}>
                 <Button variant="outline" className="gap-2">
@@ -526,94 +440,98 @@ export default function ProductDetail() {
       </section>
 
       {/* Related Products - Same Company */}
-      {relatedProducts.sameCompany.length > 0 && company && (
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-2xl font-bold text-gray-900">
-                More from {company.name}
-              </h2>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {relatedProducts.sameCompany.map((item: any) => (
-                <Link key={item.product.id} href={`/products/${item.product.slug}`}>
-                  <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
-                    <div className="aspect-video bg-gray-100 relative overflow-hidden">
-                      {item.product.heroImage ? (
-                        <img 
-                          src={item.product.heroImage} 
-                          alt={item.product.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <Package className="h-12 w-12 text-gray-300" />
-                        </div>
-                      )}
-                    </div>
-                    <CardContent className="p-4">
-                      <h3 className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-1">
-                        {item.product.name}
-                      </h3>
-                      <div className="flex items-center gap-2 mt-2 text-emerald-600 text-sm">
-                        View Details <ArrowRight className="h-4 w-4" />
+      {
+        relatedProducts.sameCompany.length > 0 && company && (
+          <section className="py-16 bg-gray-50">
+            <div className="max-w-7xl mx-auto px-4">
+              <div className="flex justify-between items-center mb-8">
+                <h2 className="text-2xl font-bold text-gray-900">
+                  More from {company.name}
+                </h2>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {relatedProducts.sameCompany.map((item: any) => (
+                  <Link key={item.product.id} href={`/products/${item.product.slug}`}>
+                    <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
+                      <div className="aspect-video bg-gray-100 relative overflow-hidden">
+                        {item.product.heroImage ? (
+                          <img
+                            src={item.product.heroImage}
+                            alt={item.product.name}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center">
+                            <Package className="h-12 w-12 text-gray-300" />
+                          </div>
+                        )}
                       </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
+                      <CardContent className="p-4">
+                        <h3 className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-1">
+                          {item.product.name}
+                        </h3>
+                        <div className="flex items-center gap-2 mt-2 text-emerald-600 text-sm">
+                          View Details <ArrowRight className="h-4 w-4" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )
+      }
 
       {/* Related Products - Same Category */}
-      {relatedProducts.sameCategory.length > 0 && categories && categories.length > 0 && (
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-2xl font-bold text-gray-900">
-                Similar Products in {categories[0]?.name}
-              </h2>
-              <Link href="/products">
-                <Button variant="outline">View All</Button>
-              </Link>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {relatedProducts.sameCategory.map((item: any) => (
-                <Link key={item.product.id} href={`/products/${item.product.slug}`}>
-                  <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
-                    <div className="aspect-video bg-gray-100 relative overflow-hidden">
-                      {item.product.heroImage ? (
-                        <img 
-                          src={item.product.heroImage} 
-                          alt={item.product.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <Package className="h-12 w-12 text-gray-300" />
-                        </div>
-                      )}
-                    </div>
-                    <CardContent className="p-4">
-                      <h3 className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-1">
-                        {item.product.name}
-                      </h3>
-                      {item.company && (
-                        <p className="text-sm text-gray-500 mt-1">{item.company.name}</p>
-                      )}
-                      <div className="flex items-center gap-2 mt-2 text-emerald-600 text-sm">
-                        View Details <ArrowRight className="h-4 w-4" />
-                      </div>
-                    </CardContent>
-                  </Card>
+      {
+        relatedProducts.sameCategory.length > 0 && categories && categories.length > 0 && (
+          <section className="py-16 bg-white">
+            <div className="max-w-7xl mx-auto px-4">
+              <div className="flex justify-between items-center mb-8">
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Similar Products in {categories[0]?.name}
+                </h2>
+                <Link href="/products">
+                  <Button variant="outline">View All</Button>
                 </Link>
-              ))}
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {relatedProducts.sameCategory.map((item: any) => (
+                  <Link key={item.product.id} href={`/products/${item.product.slug}`}>
+                    <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
+                      <div className="aspect-video bg-gray-100 relative overflow-hidden">
+                        {item.product.heroImage ? (
+                          <img
+                            src={item.product.heroImage}
+                            alt={item.product.name}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center">
+                            <Package className="h-12 w-12 text-gray-300" />
+                          </div>
+                        )}
+                      </div>
+                      <CardContent className="p-4">
+                        <h3 className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-1">
+                          {item.product.name}
+                        </h3>
+                        {item.company && (
+                          <p className="text-sm text-gray-500 mt-1">{item.company.name}</p>
+                        )}
+                        <div className="flex items-center gap-2 mt-2 text-emerald-600 text-sm">
+                          View Details <ArrowRight className="h-4 w-4" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )
+      }
 
       {/* CTA Section */}
       <section className="py-16 bg-emerald-600 text-white">
@@ -623,8 +541,8 @@ export default function ProductDetail() {
             Contact us today for competitive pricing and reliable supply.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-white text-emerald-700 hover:bg-emerald-50"
               onClick={() => setInquiryModalOpen(true)}
             >

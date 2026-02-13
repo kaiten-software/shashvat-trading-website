@@ -21,7 +21,7 @@ router.get('/', async (req: Request, res: Response) => {
 
     // Apply filters
     const conditions = [];
-    
+
     if (companyId) {
       conditions.push(eq(products.companyId, parseInt(companyId as string)));
     }
@@ -80,7 +80,7 @@ router.get('/', async (req: Request, res: Response) => {
         .from(productCategories)
         .leftJoin(categories, eq(productCategories.categoryId, categories.id))
         .where(eq(productCategories.productId, result.product.id));
-      
+
       return {
         ...result,
         categories: productCats.map(pc => pc.category),
@@ -178,7 +178,7 @@ router.post('/', uploadImage.single('heroImage'), async (req: Request, res: Resp
       applicationIds,
     } = req.body;
 
-    const heroImage = req.file ? `/uploads/products/images/${req.file.filename}` : null;
+    const heroImage = req.file ? `/uploads/products/${req.file.filename}` : null;
 
     // Insert product
     const [result] = await db.insert(products).values({
@@ -260,7 +260,7 @@ router.put('/:id', uploadImage.single('heroImage'), async (req: Request, res: Re
     };
 
     if (req.file) {
-      updateData.heroImage = `/uploads/products/images/${req.file.filename}`;
+      updateData.heroImage = `/uploads/products/${req.file.filename}`;
     }
 
     await db.update(products).set(updateData).where(eq(products.id, productId));
@@ -347,7 +347,7 @@ router.post('/:id/images', async (req: Request, res: Response) => {
       for (const file of files) {
         await db.insert(productImages).values({
           productId,
-          imagePath: `/uploads/products/images/${file.filename}`,
+          imagePath: `/uploads/products/${file.filename}`,
           sortOrder: 0,
         });
       }

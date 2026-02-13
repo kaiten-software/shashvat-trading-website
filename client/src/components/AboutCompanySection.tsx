@@ -7,12 +7,12 @@ import { useRef } from "react";
 export default function AboutCompanySection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
   });
-  
+
   const imageY = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
   return (
@@ -25,7 +25,7 @@ export default function AboutCompanySection() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.div 
+            <motion.div
               className="inline-block px-6 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium mb-6"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
@@ -33,8 +33,8 @@ export default function AboutCompanySection() {
             >
               About Us
             </motion.div>
-            
-            <motion.h2 
+
+            <motion.h2
               className="text-4xl md:text-5xl font-light text-foreground mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -42,26 +42,26 @@ export default function AboutCompanySection() {
             >
               Global <span className="font-semibold text-green-600 bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">Excellence</span> in Plastics
             </motion.h2>
-            
-            <motion.p 
+
+            <motion.p
               className="text-lg text-muted-foreground leading-relaxed mb-6"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Established in 2017, Shashvat Trading has grown into a trusted global supplier of commodity 
-              thermoplastics. We specialize in sourcing, trading, and distributing virgin, near-prime, 
+              Established in 2017, Shashvat Trading has grown into a trusted global supplier of commodity
+              thermoplastics. We specialize in sourcing, trading, and distributing virgin, near-prime,
               and reprocessed plastic resins to manufacturers worldwide.
             </motion.p>
 
-            <motion.p 
+            <motion.p
               className="text-lg text-muted-foreground leading-relaxed mb-8"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              With offices in Canada and India, we bridge the gap between world-class petrochemical 
-              producers and processors globally. Our experienced team ensures you get the right product, 
+              With offices in Canada and India, we bridge the gap between world-class petrochemical
+              producers and processors globally. Our experienced team ensures you get the right product,
               at the right price, at the right time—every time.
             </motion.p>
 
@@ -112,10 +112,11 @@ export default function AboutCompanySection() {
           {/* Image */}
           <motion.div className="relative" style={{ y: imageY }}>
             <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=1000&fit=crop" 
-                alt="Plastic Resin Trading"
+              <img
+                src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&q=80&w=1000"
+                alt="Shashvat Trading Logistics"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-green-900/50 via-transparent to-transparent"></div>
             </div>
@@ -142,15 +143,15 @@ export default function AboutCompanySection() {
           </p>
           <div className="flex items-center justify-center gap-4">
             <a href="mailto:info@shashvattrading.com">
-              <Button 
+              <Button
                 className="bg-green-600 hover:bg-green-700 text-white shadow-lg"
               >
                 ✉️ Email Us for a Quote
               </Button>
             </a>
             <a href="tel:+919820191117">
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 className="border-green-600 text-green-600 hover:bg-green-50"
               >
                 📞 Call +91 98201 91117

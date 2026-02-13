@@ -120,11 +120,35 @@ export default function AdminApplications() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <Label htmlFor="name">Application Name *</Label>
-                  <Input id="name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="e.g., Automotive Parts" required />
+                  <Input
+                    id="name"
+                    value={formData.name}
+                    onChange={(e) => {
+                      const name = e.target.value;
+                      const slug = name
+                        .toLowerCase()
+                        .replace(/\(.*?\)/g, "") // Remove content inside parentheses
+                        .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+                        .replace(/\s+/g, "-") // Replace spaces with hyphens
+                        .replace(/-+/g, "-") // Prevent duplicate hyphens
+                        .replace(/^-+|-+$/g, ""); // Trim leading and trailing hyphens
+
+                      setFormData({ ...formData, name, slug });
+                    }}
+                    placeholder="e.g., Automotive Parts"
+                    required
+                  />
                 </div>
                 <div>
                   <Label htmlFor="slug">URL Slug</Label>
-                  <Input id="slug" value={formData.slug} onChange={(e) => setFormData({ ...formData, slug: e.target.value })} placeholder="Auto-generated from name" />
+                  <Input
+                    id="slug"
+                    value={formData.slug}
+                    readOnly
+                    className="bg-gray-100 text-gray-500 cursor-not-allowed"
+                    placeholder="Auto-generated from name"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">Auto-generated deterministic slug</p>
                 </div>
                 <div>
                   <Label htmlFor="description">Description</Label>

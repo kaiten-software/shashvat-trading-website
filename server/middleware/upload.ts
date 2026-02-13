@@ -1,12 +1,44 @@
 import multer from 'multer';
 import path from 'path';
+import fs from 'fs';
 import { Request } from 'express';
+
+// Ensure upload directories exist
+const uploadDirs = [
+  'uploads/companies',
+  'uploads/products',
+  'uploads/products/documents',
+  'uploads/categories',
+  'uploads/features',
+  'uploads/applications',
+  'uploads/blog'
+];
+
+uploadDirs.forEach(dir => {
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+});
 
 // Storage configuration for images (companies, categories, features, applications, products, blog)
 const imageStorage = multer.diskStorage({
   destination: (req: Request, file, cb) => {
-    const type = req.params.type || req.body.type || 'products/images';
-    cb(null, `uploads/${type}`);
+    // Determine upload directory based on request path
+    let uploadPath = 'uploads/products'; // default
+
+    if (req.originalUrl.includes('/companies')) {
+      uploadPath = 'uploads/companies';
+    } else if (req.originalUrl.includes('/categories')) {
+      uploadPath = 'uploads/categories';
+    } else if (req.originalUrl.includes('/features')) {
+      uploadPath = 'uploads/features';
+    } else if (req.originalUrl.includes('/applications')) {
+      uploadPath = 'uploads/applications';
+    } else if (req.originalUrl.includes('/blog')) {
+      uploadPath = 'uploads/blog';
+    }
+
+    cb(null, uploadPath);
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -68,4 +100,4 @@ export const uploadDocument = multer({
 export const uploadProductImages = uploadImage.array('images', 10); // max 10 images
 
 // Middleware for handling multiple product documents
-export const uploadProductDocuments = uploadDocument.array('documents', 5); // max 5 PDFs
+export const uploadProductDocuments = uploadDocument.array('documents', 10); // max 10 PDFs

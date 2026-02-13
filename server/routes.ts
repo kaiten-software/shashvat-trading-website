@@ -4,11 +4,13 @@ import nodemailer from "nodemailer";
 import apiRoutes from "./api/main";
 import productsRoutes from "./api/products";
 import authRoutes from "./api/auth";
+import chatRoutes from "./api/chat";
 
-export async function registerRoutes(app: Express): Promise<Server> {
+export function registerRoutes(app: Express) {
   // Register API routes
   console.log("Registering API routes...");
   app.use("/api/auth", authRoutes);
+  app.use("/api/chat", chatRoutes);
   app.use("/api", apiRoutes);
   app.use("/api/products", productsRoutes);
   console.log("API routes registered successfully");
@@ -24,9 +26,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Validate required fields are here
       if (!name || !trimmedEmail || !message) {
-        return res.status(400).json({ 
-          success: false, 
-          message: "Name, email, and message are required" 
+        return res.status(400).json({
+          success: false,
+          message: "Name, email, and message are required"
         });
       }
 
@@ -39,9 +41,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Check if email is configured via environment variables
       if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-        return res.status(503).json({ 
-          success: false, 
-          message: "Email service not configured. Please contact administrator." 
+        return res.status(503).json({
+          success: false,
+          message: "Email service not configured. Please contact administrator."
         });
       }
 
@@ -75,20 +77,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Send email
       await transporter.sendMail(mailOptions);
 
-      res.json({ 
-        success: true, 
-        message: "Email sent successfully" 
+      res.json({
+        success: true,
+        message: "Email sent successfully"
       });
     } catch (error) {
       console.error('Error sending email:', error);
-      res.status(500).json({ 
-        success: false, 
-        message: "Failed to send email. Please try again later." 
+      res.status(500).json({
+        success: false,
+        message: "Failed to send email. Please try again later."
       });
     }
   });
 
-  const httpServer = createServer(app);
 
-  return httpServer;
 }

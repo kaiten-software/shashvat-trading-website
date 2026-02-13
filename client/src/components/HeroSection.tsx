@@ -17,30 +17,30 @@ export default function HeroSection() {
     { text: "Competitive Prices", gradient: "from-orange-600 via-amber-500 to-yellow-500" },
     { text: "Reliable Supply", gradient: "from-emerald-600 via-green-500 to-lime-500" }
   ];
-  
+
   const [displayText, setDisplayText] = useState("");
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  
+
   useEffect(() => {
     const currentPhrase = phrases[currentPhraseIndex].text;
-    
+
     const typingSpeed = isDeleting ? 50 : 100;
     const pauseDuration = 5000;
-    
+
     if (!isDeleting && displayText === currentPhrase) {
       const pauseTimeout = setTimeout(() => {
         setIsDeleting(true);
       }, pauseDuration);
       return () => clearTimeout(pauseTimeout);
     }
-    
+
     if (isDeleting && displayText === "") {
       setIsDeleting(false);
       setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
       return;
     }
-    
+
     const typingTimeout = setTimeout(() => {
       if (!isDeleting) {
         setDisplayText(currentPhrase.slice(0, displayText.length + 1));
@@ -48,7 +48,7 @@ export default function HeroSection() {
         setDisplayText(currentPhrase.slice(0, displayText.length - 1));
       }
     }, typingSpeed);
-    
+
     return () => clearTimeout(typingTimeout);
   }, [displayText, currentPhraseIndex, isDeleting]);
 
@@ -56,6 +56,12 @@ export default function HeroSection() {
     <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-white via-green-50/30 to-blue-50/20 pt-20 flex flex-col items-center justify-center" style={{ background: 'var(--section-bg-1)' }}>
       {/* Animated Background Elements with Parallax */}
       <motion.div className="absolute inset-0 overflow-hidden" style={{ y: y1 }}>
+        <img
+          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2000"
+          alt="Industrial Production"
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.05] grayscale"
+          loading="lazy"
+        />
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-200/20 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-green-100/10 to-blue-100/10 rounded-full blur-3xl"></div>
@@ -78,9 +84,9 @@ export default function HeroSection() {
             <Package className="w-4 h-4" />
             <span>Global Plastic Resin Trading & Distribution</span>
           </motion.div>
-          
+
           {/* Main Headline with Animations */}
-          <motion.h1 
+          <motion.h1
             className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-foreground mb-6 leading-[1.3] pb-6 overflow-visible"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -103,7 +109,7 @@ export default function HeroSection() {
               />
             </span>
             <br />
-            <motion.span 
+            <motion.span
               className="text-5xl md:text-6xl lg:text-7xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -112,9 +118,9 @@ export default function HeroSection() {
               Right Time.
             </motion.span>
           </motion.h1>
-          
+
           {/* Sub-headline */}
-          <motion.p 
+          <motion.p
             className="text-xl md:text-2xl lg:text-3xl font-light text-muted-foreground mb-10 max-w-4xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -124,15 +130,15 @@ export default function HeroSection() {
           </motion.p>
 
           {/* CTA Buttons */}
-          <motion.div 
+          <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 2.2 }}
           >
             <Link href="/contact">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="px-10 py-7 text-lg bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 shadow-lg hover:shadow-xl transition-all group"
               >
                 Request a Quote
@@ -140,8 +146,8 @@ export default function HeroSection() {
               </Button>
             </Link>
             <Link href="/products">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 variant="outline"
                 className="px-10 py-7 text-lg border-2 border-green-600 text-green-700 hover:bg-green-50 group"
               >
@@ -159,21 +165,21 @@ export default function HeroSection() {
               </div>
               <div className="text-sm text-muted-foreground">Established</div>
             </div>
-            
+
             <div className="text-center">
               <div className="text-4xl md:text-5xl font-bold bg-gradient-to-br from-blue-500 to-blue-600 bg-clip-text text-transparent mb-2">
                 50+
               </div>
               <div className="text-sm text-muted-foreground">Product Grades</div>
             </div>
-            
+
             <div className="text-center">
               <div className="text-4xl md:text-5xl font-bold bg-gradient-to-br from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2">
                 10+
               </div>
               <div className="text-sm text-muted-foreground">Global Partners</div>
             </div>
-            
+
             <div className="text-center">
               <div className="text-4xl md:text-5xl font-bold bg-gradient-to-br from-amber-600 to-orange-600 bg-clip-text text-transparent mb-2">
                 2

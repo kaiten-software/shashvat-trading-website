@@ -1,79 +1,11 @@
-export default function BrandsSection() {
-  const globalProducers = [
-    {
-      name: "LG Chem",
-      logo: "/images/brands/lgchem.png",
-      region: "South Korea"
-    },
-    {
-      name: "Formosa Plastics",
-      logo: "/images/brands/formosa.png",
-      region: "Taiwan"
-    },
-    {
-      name: "IRPC",
-      logo: "/images/brands/irpc.png",
-      region: "Thailand"
-    },
-    {
-      name: "INEOS Styrolution",
-      logo: "/images/brands/ineos.png",
-      region: "Germany"
-    },
-    {
-      name: "Trinseo",
-      logo: "/images/brands/trinseo.png",
-      region: "USA"
-    },
-    {
-      name: "Styrenix",
-      logo: "/images/brands/styrenix.png",
-      region: "India"
-    },
-    {
-      name: "Sasol",
-      logo: "/images/brands/sasol.png",
-      region: "South Africa"
-    },
-    {
-      name: "SABIC",
-      logo: "/images/brands/sabic.png",
-      region: "Saudi Arabia"
-    }
-  ];
+import { useQuery } from "@tanstack/react-query";
+import { Building2 } from "lucide-react";
 
-  const additionalPartners = [
-    {
-      name: "Reliance Industries",
-      logo: "/images/brands/reliance.png",
-      region: "India"
-    },
-    {
-      name: "Braskem",
-      logo: "/images/brands/braskem.png",
-      region: "Brazil"
-    },
-    {
-      name: "PTT Global Chemical",
-      logo: "/images/brands/pttgc.png",
-      region: "Thailand"
-    },
-    {
-      name: "Lotte Chemical",
-      logo: "/images/brands/lotte.png",
-      region: "South Korea"
-    },
-    {
-      name: "Indorama Ventures",
-      logo: "/images/brands/indorama.png",
-      region: "Thailand"
-    },
-    {
-      name: "Mitsubishi Chemical",
-      logo: "/images/brands/mitsubishi.png",
-      region: "Japan"
-    }
-  ];
+export default function BrandsSection() {
+  const { data: companies = [] } = useQuery<any[]>({
+    queryKey: ["companies"],
+    queryFn: async () => (await fetch("/api/companies")).json(),
+  });
 
   return (
     <section className="py-24" style={{ background: 'var(--section-bg-5)' }}>
@@ -88,47 +20,26 @@ export default function BrandsSection() {
           </p>
         </div>
 
-        {/* Primary Producers Section */}
+        {/* Partners Grid */}
         <div className="mb-16">
-          <h3 className="text-2xl font-semibold text-center mb-8 text-foreground">
-            Premier <span className="text-green-600">Producers</span>
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
-            {globalProducers.map((brand, index) => (
-              <div 
-                key={index}
-                className="group"
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-stretch">
+            {companies.map((company, index) => (
+              <div
+                key={company.id || index}
+                className="group h-full"
               >
-                <div className="p-6 bg-white rounded-2xl border border-gray-200 hover:border-green-300 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center min-h-[140px]">
-                  <div className="text-xl font-bold text-gray-700 group-hover:text-green-600 transition-colors text-center mb-2">
-                    {brand.name}
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    {brand.region}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Additional Partners Section */}
-        <div className="mb-12">
-          <h3 className="text-2xl font-semibold text-center mb-8 text-foreground">
-            Strategic <span className="text-amber-600">Partners</span>
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
-            {additionalPartners.map((brand, index) => (
-              <div 
-                key={index}
-                className="group"
-              >
-                <div className="p-4 bg-white rounded-2xl border border-gray-200 hover:border-amber-300 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center min-h-[120px]">
-                  <div className="text-lg font-bold text-gray-700 group-hover:text-amber-600 transition-colors text-center mb-1">
-                    {brand.name}
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    {brand.region}
+                <div className="p-6 h-full bg-white rounded-2xl border border-gray-200 hover:border-green-300 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center min-h-[160px]">
+                  {company.logo ? (
+                    <img
+                      src={company.logo}
+                      alt={company.name}
+                      className="max-h-16 max-w-[80%] object-contain mb-4 grayscale group-hover:grayscale-0 transition-all duration-300"
+                    />
+                  ) : (
+                    <Building2 className="h-12 w-12 text-gray-300 mb-4 group-hover:text-green-500 transition-colors" />
+                  )}
+                  <div className="text-xl font-bold text-gray-700 group-hover:text-green-600 transition-colors text-center">
+                    {company.name}
                   </div>
                 </div>
               </div>

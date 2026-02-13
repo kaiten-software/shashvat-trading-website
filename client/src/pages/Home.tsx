@@ -7,7 +7,7 @@ import HomeProductFilter from "@/components/HomeProductFilter";
 import BrandsSection from "@/components/BrandsSection";
 import RecentBlogPosts from "@/components/RecentBlogPosts";
 import FAQSection from "@/components/FAQSection";
-import SolarContactSection from "@/components/SolarContactSection";
+
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
       <BrandsSection />
       <RecentBlogPosts />
       <FAQSection />
-      <SolarContactSection />
+
       <Footer />
     </div>
   );

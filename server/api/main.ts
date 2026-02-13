@@ -1,9 +1,10 @@
 import { Router, Request, Response } from 'express';
 import { db } from '../db';
-import { companies, categories, features, applications, products, productCategories, productFeatures, productApplications, productImages, productDocuments, blogPosts, inquiries } from '../db/schema';
-import { eq, like, and, or, inArray } from 'drizzle-orm';
+import { companies, categories, features, applications, products, productCategories, productFeatures, productApplications, productImages, productDocuments, blogPosts, inquiries, callbackRequests } from '../db/schema';
+import { eq, like, and, or, inArray, desc } from 'drizzle-orm';
 import { uploadImage, uploadDocument, uploadProductImages, uploadProductDocuments } from '../middleware/upload';
 import nodemailer from 'nodemailer';
+import { authenticateToken } from './auth';
 
 const router = Router();
 
@@ -375,7 +376,7 @@ router.delete('/blog/posts/:id', async (req: Request, res: Response) => {
 // ===== CONTACT/INQUIRY API =====
 router.post('/inquiries', async (req: Request, res: Response) => {
   try {
-    const { name, email, phone, company, productId, message } = req.body;
+    const { name, email, phone, company, city, productId, message } = req.body;
 
     // Save inquiry to database
     const [result] = await db.insert(inquiries).values({
@@ -383,43 +384,110 @@ router.post('/inquiries', async (req: Request, res: Response) => {
       email,
       phone,
       company,
+      city,
       productId: productId ? parseInt(productId) : null,
       message,
     });
 
-    // Send email notification
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
+    // Send email notification (optional - don't fail if SMTP not configured)
+    try {
+      if (process.env.SMTP_HOST && process.env.SMTP_USER) {
+        const transporter = nodemailer.createTransport({
+          host: process.env.SMTP_HOST,
+          port: parseInt(process.env.SMTP_PORT || '587'),
+          secure: false,
+          auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS,
+          },
+        });
 
-    const mailOptions = {
-      from: process.env.SMTP_FROM || 'noreply@shashvattrading.com',
-      to: process.env.CONTACT_EMAIL || 'info@shashvattrading.com',
-      subject: `New Inquiry from ${name}`,
-      html: `
-        <h2>New Contact Inquiry</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
-        <p><strong>Company:</strong> ${company || 'Not provided'}</p>
-        <p><strong>Product ID:</strong> ${productId || 'General inquiry'}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-      `,
-    };
+        const mailOptions = {
+          from: process.env.SMTP_FROM || 'noreply@shashvattrading.com',
+          to: process.env.CONTACT_EMAIL || 'info@shashvattrading.com',
+          subject: `New Inquiry from ${name}`,
+          html: `
+            <h2>New Contact Inquiry</h2>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
+            <p><strong>Company:</strong> ${company || 'Not provided'}</p>
+            <p><strong>City:</strong> ${city || 'Not provided'}</p>
+            <p><strong>Product ID:</strong> ${productId || 'General inquiry'}</p>
+            <p><strong>Message:</strong></p>
+            <p>${message}</p>
+          `,
+        };
 
-    await transporter.sendMail(mailOptions);
+        await transporter.sendMail(mailOptions);
+      }
+    } catch (emailError) {
+      console.error('Email notification failed (non-critical):', emailError);
+      // Continue anyway - email is optional
+    }
 
-    res.status(201).json({ id: result.insertId, message: 'Inquiry submitted successfully' });
+    res.status(201).json({ success: true, id: result.insertId, message: 'Inquiry submitted successfully' });
   } catch (error) {
     console.error('Error submitting inquiry:', error);
     res.status(500).json({ error: 'Failed to submit inquiry' });
+  }
+});
+
+// Get all inquiries (for admin)
+router.get('/inquiries', async (req: Request, res: Response) => {
+  try {
+    const allInquiries = await db.select().from(inquiries).orderBy(desc(inquiries.createdAt));
+    res.json(allInquiries);
+  } catch (error) {
+
+
+    res.status(500).json({ error: 'Failed to fetch inquiries' });
+  }
+});
+
+// ===== CALLBACKS API =====
+router.post('/callbacks', async (req: Request, res: Response) => {
+  try {
+    const { name, email, phone, city, requirement } = req.body;
+
+    if (!name || !email || !phone || !city) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    const [result] = await db.insert(callbackRequests).values({
+      name,
+      email,
+      phone,
+      city,
+      requirement,
+    });
+
+    res.status(201).json({ success: true, id: result.insertId, message: 'Callback request submitted' });
+  } catch (error) {
+    console.error('Error submitting callback:', error);
+    res.status(500).json({ error: 'Failed to submit callback request' });
+  }
+});
+
+// Get all callback requests (for admin)
+router.get('/callbacks', authenticateToken, async (req: Request, res: Response) => {
+  try {
+    const allCallbacks = await db.select().from(callbackRequests).orderBy(desc(callbackRequests.createdAt));
+    res.json(allCallbacks);
+  } catch (error) {
+    console.error('Error fetching callbacks:', error);
+    res.status(500).json({ error: 'Failed to fetch callbacks' });
+  }
+});
+
+// Delete callback request
+router.delete('/callbacks/:id', authenticateToken, async (req: Request, res: Response) => {
+  try {
+    await db.delete(callbackRequests).where(eq(callbackRequests.id, parseInt(req.params.id)));
+    res.json({ message: 'Callback request deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting callback:', error);
+    res.status(500).json({ error: 'Failed to delete callback request' });
   }
 });
 

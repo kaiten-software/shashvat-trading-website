@@ -6,9 +6,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  ArrowRight, 
-  Package, 
+import {
+  ArrowRight,
+  Package,
   Search,
   Filter,
   Loader2,
@@ -64,15 +64,16 @@ export default function HomeProductFilter() {
 
   // Filtered products with instant refresh
   const filteredProducts = useMemo(() => {
+    if (!Array.isArray(products)) return [];
     return products.filter((item) => {
-      const matchesSearch = !searchQuery || 
+      const matchesSearch = !searchQuery ||
         item.product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.product.shortDescription?.toLowerCase().includes(searchQuery.toLowerCase());
-      
-      const matchesCategory = !selectedCategory || 
+
+      const matchesCategory = !selectedCategory ||
         item.categories?.some((cat) => cat.id.toString() === selectedCategory);
-      
-      const matchesCompany = !selectedCompany || 
+
+      const matchesCompany = !selectedCompany ||
         item.company?.id.toString() === selectedCompany;
 
       const matchesApplication = !selectedApplication ||
@@ -92,7 +93,7 @@ export default function HomeProductFilter() {
   }, [selectedCategory, selectedCompany, selectedApplication, searchQuery]);
 
   const hasActiveFilters = selectedCategory || selectedCompany || selectedApplication || searchQuery;
-  
+
   const clearFilters = () => {
     setSelectedCategory("");
     setSelectedCompany("");
@@ -146,7 +147,7 @@ export default function HomeProductFilter() {
               className="h-12 px-4 border rounded-lg bg-white text-gray-700 min-w-[180px]"
             >
               <option value="">All Categories</option>
-              {categories.map((cat: any) => (
+              {Array.isArray(categories) && categories.map((cat: any) => (
                 <option key={cat.id} value={cat.id}>{cat.name}</option>
               ))}
             </select>
@@ -158,7 +159,7 @@ export default function HomeProductFilter() {
               className="h-12 px-4 border rounded-lg bg-white text-gray-700 min-w-[180px]"
             >
               <option value="">All Manufacturers</option>
-              {companies.map((company: any) => (
+              {Array.isArray(companies) && companies.map((company: any) => (
                 <option key={company.id} value={company.id}>{company.name}</option>
               ))}
             </select>
@@ -170,7 +171,7 @@ export default function HomeProductFilter() {
               className="h-12 px-4 border rounded-lg bg-white text-gray-700 min-w-[180px]"
             >
               <option value="">All Applications</option>
-              {applications.map((app: any) => (
+              {Array.isArray(applications) && applications.map((app: any) => (
                 <option key={app.id} value={app.id}>{app.name}</option>
               ))}
             </select>
@@ -201,7 +202,7 @@ export default function HomeProductFilter() {
               )}
             </AnimatePresence>
             {!isRefreshing && (
-              <motion.p 
+              <motion.p
                 key={filteredProducts.length}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -211,7 +212,7 @@ export default function HomeProductFilter() {
               </motion.p>
             )}
           </div>
-          
+
           <Link href="/products">
             <Button variant="outline" className="border-emerald-600 text-emerald-700 hover:bg-emerald-50">
               <SlidersHorizontal className="h-4 w-4 mr-2" />
@@ -235,7 +236,7 @@ export default function HomeProductFilter() {
             ))}
           </div>
         ) : displayProducts.length > 0 ? (
-          <motion.div 
+          <motion.div
             key={`${selectedCategory}-${selectedCompany}-${selectedApplication}-${searchQuery}`}
             initial={{ opacity: 0.8 }}
             animate={{ opacity: 1 }}
@@ -250,26 +251,26 @@ export default function HomeProductFilter() {
                 transition={{ delay: index * 0.05 }}
               >
                 <Link href={`/products/${item.product.slug}`}>
-                  <Card className="h-full hover:shadow-lg transition-all cursor-pointer group overflow-hidden">
-                    <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
+                  <Card className="h-full hover:shadow-lg transition-all cursor-pointer group overflow-hidden flex flex-col">
+                    <div className="aspect-[4/3] bg-white border-b border-gray-100 relative overflow-hidden flex items-center justify-center p-2">
                       {item.product.heroImage ? (
                         <img
                           src={item.product.heroImage}
                           alt={item.product.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50">
-                          <Package className="h-12 w-12 text-emerald-300" />
+                        <div className="w-full h-full flex items-center justify-center bg-gray-50">
+                          <Package className="h-12 w-12 text-gray-300" />
                         </div>
                       )}
                       {item.company && (
-                        <Badge className="absolute top-2 left-2 bg-white/90 text-gray-700 text-xs">
+                        <Badge className="absolute top-2 left-2 bg-white/90 text-gray-700 text-xs shadow-sm border border-gray-100">
                           {item.company.name}
                         </Badge>
                       )}
                     </div>
-                    <CardContent className="p-4">
+                    <CardContent className="p-4 flex-1 flex flex-col">
                       {item.categories && item.categories.length > 0 && (
                         <div className="flex flex-wrap gap-1 mb-2">
                           {item.categories.slice(0, 1).map((cat) => (
@@ -279,13 +280,13 @@ export default function HomeProductFilter() {
                           ))}
                         </div>
                       )}
-                      <h3 className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-1">
+                      <h3 className="font-semibold text-lg text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-1 mb-2">
                         {item.product.name}
                       </h3>
-                      <p className="text-sm text-gray-500 mt-1 line-clamp-2">
+                      <p className="text-sm text-gray-600 line-clamp-2">
                         {item.product.shortDescription || "Premium quality resin"}
                       </p>
-                      <div className="flex items-center text-emerald-600 text-sm font-medium mt-3 group-hover:translate-x-1 transition-transform">
+                      <div className="flex items-center text-emerald-600 text-sm font-medium mt-3 group-hover:translate-x-1 transition-transform pt-2 border-t border-gray-50 mt-auto">
                         View Details <ArrowRight className="ml-1 h-4 w-4" />
                       </div>
                     </CardContent>

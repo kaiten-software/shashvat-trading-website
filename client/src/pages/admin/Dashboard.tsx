@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Building2, FolderTree, Sparkles, Factory, Package, FileText, Settings, ArrowRight, LayoutDashboard } from "lucide-react";
+import { Building2, FolderTree, Sparkles, Factory, Package, FileText, Settings, ArrowRight, LayoutDashboard, MessageSquare } from "lucide-react";
 
 export default function AdminDashboard() {
   const { data: stats } = useQuery({
@@ -78,6 +78,26 @@ export default function AdminDashboard() {
             </Card>
           ))}
         </div>
+
+        {/* Callback Requests - Minimal Navigation */}
+        <Link href="/admin/callbacks">
+          <Card className="mb-8 cursor-pointer hover:shadow-lg transition-shadow group border-emerald-100">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="h-12 w-12 bg-emerald-100 rounded-xl flex items-center justify-center group-hover:bg-emerald-600 transition-colors">
+                    <MessageSquare className="h-6 w-6 text-emerald-600 group-hover:text-white transition-colors" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">View Callback Requests</h3>
+                    <p className="text-sm text-gray-600">Manage customer callback submissions</p>
+                  </div>
+                </div>
+                <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-emerald-600 transition-colors" />
+              </div>
+            </CardContent>
+          </Card>
+        </Link>
 
         {/* Management Sections */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

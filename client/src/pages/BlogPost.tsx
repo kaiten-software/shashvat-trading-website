@@ -6,9 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import { 
-  ArrowLeft, 
-  ArrowRight, 
+import {
+  ArrowLeft,
+  ArrowRight,
   Calendar,
   Share2,
   Linkedin,
@@ -119,6 +119,16 @@ export default function BlogPost() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
+            {/* Back Button */}
+            <div className="mb-8">
+              <Link href="/blog">
+                <Button variant="ghost" className="text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 -ml-4 group">
+                  <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                  Back to Blog
+                </Button>
+              </Link>
+            </div>
+
             {/* Header */}
             <header className="mb-8">
               <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
@@ -140,8 +150,8 @@ export default function BlogPost() {
             {/* Featured Image */}
             {post.featuredImage && (
               <div className="aspect-video bg-gray-100 rounded-xl overflow-hidden mb-8">
-                <img 
-                  src={post.featuredImage} 
+                <img
+                  src={post.featuredImage}
                   alt={post.title}
                   className="w-full h-full object-cover"
                 />
@@ -149,7 +159,7 @@ export default function BlogPost() {
             )}
 
             {/* Content */}
-            <div 
+            <div
               className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-600 prose-a:text-emerald-600 prose-strong:text-gray-900"
               dangerouslySetInnerHTML={{ __html: post.contentHtml }}
             />
@@ -159,7 +169,7 @@ export default function BlogPost() {
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center gap-2">
                   <span className="text-gray-600 font-medium">Share:</span>
-                  <a 
+                  <a
                     href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(post.title)}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -167,7 +177,7 @@ export default function BlogPost() {
                   >
                     <Twitter className="h-5 w-5" />
                   </a>
-                  <a 
+                  <a
                     href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(post.title)}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -175,7 +185,7 @@ export default function BlogPost() {
                   >
                     <Linkedin className="h-5 w-5" />
                   </a>
-                  <a 
+                  <a
                     href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -207,8 +217,8 @@ export default function BlogPost() {
                   <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
                     {relPost.featuredImage && (
                       <div className="aspect-video overflow-hidden">
-                        <img 
-                          src={relPost.featuredImage} 
+                        <img
+                          src={relPost.featuredImage}
                           alt={relPost.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                         />

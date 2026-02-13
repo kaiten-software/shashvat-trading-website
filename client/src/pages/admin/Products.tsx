@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Pencil, Trash2, Package, ArrowLeft, Upload, FileText, Image as ImageIcon } from "lucide-react";
+import { Plus, Pencil, Trash2, Package, ArrowLeft, Upload, FileText, Image as ImageIcon, ExternalLink } from "lucide-react";
 import { Link } from "wouter";
 
 interface Company { id: number; name: string; logo: string | null; }
@@ -51,6 +51,7 @@ export default function AdminProducts() {
   const [uploadTab, setUploadTab] = useState<"images" | "documents">("images");
   const [additionalImages, setAdditionalImages] = useState<FileList | null>(null);
   const [documents, setDocuments] = useState<FileList | null>(null);
+  const [currentTab, setCurrentTab] = useState("basic");
 
   const { data: products = [], isLoading } = useQuery<any[]>({
     queryKey: ["products"],
@@ -130,18 +131,19 @@ export default function AdminProducts() {
     setAdditionalImages(null);
     setDocuments(null);
     setEditingProduct(null);
+    setCurrentTab("basic");
     setIsOpen(false);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Generate descriptive slug from company name and product name
     const selectedCompany = companies.find(c => c.id.toString() === formData.companyId);
-    const generatedSlug = selectedCompany && formData.name 
-      ? `${selectedCompany.name.toLowerCase().replace(/\s+/g, '-')}-${formData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}-resin`
+    const generatedSlug = selectedCompany && formData.name
+      ? `${selectedCompany.name.toLowerCase().replace(/\s+/g, '-')}-${formData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}`
       : formData.name.toLowerCase().replace(/\s+/g, "-");
-    
+
     const data = new FormData();
     data.append("companyId", formData.companyId);
     data.append("name", formData.name);
@@ -180,6 +182,7 @@ export default function AdminProducts() {
     setSelectedCategories(product.categories?.map((c: any) => c.id) || []);
     setSelectedFeatures(product.features?.map((f: any) => f.id) || []);
     setSelectedApplications(product.applications?.map((a: any) => a.id) || []);
+    setCurrentTab("basic");
     setIsOpen(true);
   };
 
@@ -188,6 +191,16 @@ export default function AdminProducts() {
       setSelected(selected.filter(i => i !== id));
     } else {
       setSelected([...selected, id]);
+    }
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const tabs = ["basic", "relations", "content", "media"];
+    const currentIndex = tabs.indexOf(currentTab);
+    if (currentIndex < tabs.length - 1) {
+      setCurrentTab(tabs[currentIndex + 1]);
     }
   };
 
@@ -218,7 +231,7 @@ export default function AdminProducts() {
                 <DialogTitle>{editingProduct ? "Edit Product" : "Add New Product"}</DialogTitle>
               </DialogHeader>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <Tabs defaultValue="basic" className="w-full">
+                <Tabs value={currentTab} onValueChange={setCurrentTab} className="w-full">
                   <TabsList className="grid w-full grid-cols-4">
                     <TabsTrigger value="basic">Basic Info</TabsTrigger>
                     <TabsTrigger value="relations">Categories & More</TabsTrigger>
@@ -244,15 +257,15 @@ export default function AdminProducts() {
                     </div>
                     <div>
                       <Label htmlFor="slug">URL Slug (Auto-generated)</Label>
-                      <Input 
-                        id="slug" 
-                        value={formData.companyId && formData.name ? 
-                          `${companies.find(c => c.id.toString() === formData.companyId)?.name?.toLowerCase().replace(/\s+/g, '-') || 'company'}-${formData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}-resin` : 
+                      <Input
+                        id="slug"
+                        value={formData.companyId && formData.name ?
+                          `${companies.find(c => c.id.toString() === formData.companyId)?.name?.toLowerCase().replace(/\s+/g, '-') || 'company'}-${formData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}` :
                           formData.slug
-                        } 
-                        disabled 
-                        className="bg-gray-100 text-gray-600 cursor-not-allowed" 
-                        placeholder="Select company and enter product name" 
+                        }
+                        disabled
+                        className="bg-gray-100 text-gray-600 cursor-not-allowed"
+                        placeholder="Select company and enter product name"
                       />
                       <p className="text-xs text-gray-500 mt-1">Auto-generated from company name and product name</p>
                     </div>
@@ -314,6 +327,18 @@ export default function AdminProducts() {
                       <Label htmlFor="contentHtml">Product Content (HTML)</Label>
                       <p className="text-sm text-gray-500 mb-2">Paste HTML content generated from AI for detailed product description</p>
                       <Textarea id="contentHtml" value={formData.contentHtml} onChange={(e) => setFormData({ ...formData, contentHtml: e.target.value })} placeholder="<h2>Product Overview</h2><p>...</p>" rows={10} className="font-mono text-sm" />
+                      <div className="mt-2 flex justify-end">
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          onClick={() => window.open(`/products/${formData.slug}`, '_blank')}
+                          disabled={!formData.slug}
+                        >
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Preview Product Page
+                        </Button>
+                      </div>
                     </div>
                   </TabsContent>
 
@@ -340,9 +365,16 @@ export default function AdminProducts() {
 
                 <div className="flex gap-3 pt-4 border-t">
                   <Button type="button" variant="outline" onClick={resetForm} className="flex-1">Cancel</Button>
-                  <Button type="submit" className="flex-1 bg-emerald-600 hover:bg-emerald-700" disabled={createMutation.isPending || updateMutation.isPending}>
-                    {editingProduct ? "Update Product" : "Create Product"}
-                  </Button>
+
+                  {currentTab !== "media" ? (
+                    <Button type="button" onClick={handleNext} className="flex-1 bg-emerald-600 hover:bg-emerald-700">
+                      Next
+                    </Button>
+                  ) : (
+                    <Button type="submit" className="flex-1 bg-emerald-600 hover:bg-emerald-700" disabled={createMutation.isPending || updateMutation.isPending}>
+                      {editingProduct ? "Update Product" : "Create Product"}
+                    </Button>
+                  )}
                 </div>
               </form>
             </DialogContent>
@@ -352,7 +384,7 @@ export default function AdminProducts() {
         <Card>
           <CardHeader><CardTitle>All Products ({products.length})</CardTitle></CardHeader>
           <CardContent>
-            {isLoading ? (
+            {isLoading && products.length === 0 ? (
               <div className="text-center py-8 text-gray-500">Loading...</div>
             ) : products.length === 0 ? (
               <div className="text-center py-8 text-gray-500">No products yet. Add your first product!</div>
