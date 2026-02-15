@@ -10,10 +10,10 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useMemo, useCallback, useEffect } from "react";
-import {
-  ArrowRight,
-  Search,
-  Package,
+import { 
+  ArrowRight, 
+  Search, 
+  Package, 
   X,
   Phone,
   MessageCircle,
@@ -54,7 +54,7 @@ export default function Products() {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
-
+  
   // Expandable filter sections
   const [expandedSections, setExpandedSections] = useState({
     categories: true,
@@ -91,14 +91,14 @@ export default function Products() {
   // Filter products
   const filteredProducts = useMemo(() => {
     return products.filter((item: Product) => {
-      const matchesSearch = !searchQuery ||
+      const matchesSearch = !searchQuery || 
         item.product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.product.shortDescription?.toLowerCase().includes(searchQuery.toLowerCase());
-
-      const matchesCategories = selectedCategories.length === 0 ||
+      
+      const matchesCategories = selectedCategories.length === 0 || 
         item.categories?.some((cat) => selectedCategories.includes(cat.id.toString()));
-
-      const matchesCompanies = selectedCompanies.length === 0 ||
+      
+      const matchesCompanies = selectedCompanies.length === 0 || 
         (item.company && selectedCompanies.includes(item.company.id.toString()));
 
       const matchesFeatures = selectedFeatures.length === 0 ||
@@ -113,7 +113,7 @@ export default function Products() {
 
   // Show refresh indicator on filter change
   useEffect(() => {
-    const hasFilters = selectedCategories.length > 0 || selectedCompanies.length > 0 ||
+    const hasFilters = selectedCategories.length > 0 || selectedCompanies.length > 0 || 
       selectedFeatures.length > 0 || selectedApplications.length > 0 || searchQuery;
     if (hasFilters) {
       setIsRefreshing(true);
@@ -146,8 +146,8 @@ export default function Products() {
   };
 
   const toggleSelection = (
-    value: string,
-    selected: string[],
+    value: string, 
+    selected: string[], 
     setSelected: (val: string[]) => void
   ) => {
     if (selected.includes(value)) {
@@ -161,10 +161,10 @@ export default function Products() {
     setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
   };
 
-  const hasActiveFilters = searchQuery || selectedCategories.length > 0 ||
+  const hasActiveFilters = searchQuery || selectedCategories.length > 0 || 
     selectedCompanies.length > 0 || selectedFeatures.length > 0 || selectedApplications.length > 0;
-
-  const activeFilterCount = selectedCategories.length + selectedCompanies.length +
+  
+  const activeFilterCount = selectedCategories.length + selectedCompanies.length + 
     selectedFeatures.length + selectedApplications.length + (searchQuery ? 1 : 0);
 
   const fadeIn = {
@@ -173,13 +173,13 @@ export default function Products() {
     transition: { duration: 0.6 }
   };
 
-  // Filter Section Render Function
-  const renderFilterSection = ({
-    title,
-    items,
-    selected,
-    setSelected,
-    sectionKey
+  // Filter Section Component
+  const FilterSection = ({ 
+    title, 
+    items, 
+    selected, 
+    setSelected, 
+    sectionKey 
   }: {
     title: string;
     items: any[];
@@ -223,7 +223,7 @@ export default function Products() {
                 >
                   <Checkbox
                     checked={selected.includes(item.id.toString())}
-                    onCheckedChange={() =>
+                    onCheckedChange={() => 
                       toggleSelection(item.id.toString(), selected, setSelected)
                     }
                   />
@@ -237,8 +237,8 @@ export default function Products() {
     </div>
   );
 
-  // Sidebar Filters Render Function
-  const renderFilters = () => (
+  // Sidebar Filters
+  const Filters = () => (
     <div className="space-y-4">
       {/* Search in Sidebar */}
       <div className="relative">
@@ -253,9 +253,9 @@ export default function Products() {
       </div>
 
       {hasActiveFilters && (
-        <Button
-          variant="outline"
-          size="sm"
+        <Button 
+          variant="outline" 
+          size="sm" 
           onClick={clearFilters}
           className="w-full"
         >
@@ -264,37 +264,37 @@ export default function Products() {
         </Button>
       )}
 
-      {renderFilterSection({
-        title: "Categories",
-        items: categories,
-        selected: selectedCategories,
-        setSelected: setSelectedCategories,
-        sectionKey: "categories"
-      })}
+      <FilterSection
+        title="Categories"
+        items={categories}
+        selected={selectedCategories}
+        setSelected={setSelectedCategories}
+        sectionKey="categories"
+      />
 
-      {renderFilterSection({
-        title: "Manufacturers",
-        items: companies,
-        selected: selectedCompanies,
-        setSelected: setSelectedCompanies,
-        sectionKey: "companies"
-      })}
+      <FilterSection
+        title="Manufacturers"
+        items={companies}
+        selected={selectedCompanies}
+        setSelected={setSelectedCompanies}
+        sectionKey="companies"
+      />
 
-      {renderFilterSection({
-        title: "Features",
-        items: features,
-        selected: selectedFeatures,
-        setSelected: setSelectedFeatures,
-        sectionKey: "features"
-      })}
+      <FilterSection
+        title="Features"
+        items={features}
+        selected={selectedFeatures}
+        setSelected={setSelectedFeatures}
+        sectionKey="features"
+      />
 
-      {renderFilterSection({
-        title: "Applications",
-        items: applications,
-        selected: selectedApplications,
-        setSelected: setSelectedApplications,
-        sectionKey: "applications"
-      })}
+      <FilterSection
+        title="Applications"
+        items={applications}
+        selected={selectedApplications}
+        setSelected={setSelectedApplications}
+        sectionKey="applications"
+      />
     </div>
   );
 
@@ -303,7 +303,7 @@ export default function Products() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white py-16">
+      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white pt-28 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeIn} className="text-center max-w-3xl mx-auto">
             <Badge className="bg-emerald-500/20 text-emerald-200 border-emerald-400/30 mb-4">
@@ -313,7 +313,7 @@ export default function Products() {
               Premium <span className="text-emerald-400">Plastic Resins</span>
             </h1>
             <p className="text-lg text-emerald-100">
-              Explore our comprehensive catalog of virgin, near-prime, and reprocessed
+              Explore our comprehensive catalog of virgin, near-prime, and reprocessed 
               commodity plastics from leading global manufacturers.
             </p>
           </motion.div>
@@ -333,7 +333,7 @@ export default function Products() {
                     Filters
                   </h2>
                 </div>
-                {renderFilters()}
+                <Filters />
               </div>
             </aside>
 
@@ -371,7 +371,7 @@ export default function Products() {
                         <X className="h-6 w-6" />
                       </button>
                     </div>
-                    {renderFilters()}
+                    <Filters />
                     <Button
                       className="w-full mt-6 bg-emerald-600 hover:bg-emerald-700"
                       onClick={() => setShowMobileFilters(false)}
@@ -443,14 +443,14 @@ export default function Products() {
 
               {/* Active Filters Tags */}
               {hasActiveFilters && (
-                <motion.div
+                <motion.div 
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   className="flex flex-wrap gap-2 mb-6"
                 >
                   {searchQuery && (
-                    <Badge
-                      variant="secondary"
+                    <Badge 
+                      variant="secondary" 
                       className="cursor-pointer hover:bg-gray-200"
                       onClick={() => setSearchQuery('')}
                     >
@@ -460,9 +460,9 @@ export default function Products() {
                   {selectedCategories.map(id => {
                     const cat = categories.find(c => c.id.toString() === id);
                     return cat ? (
-                      <Badge
+                      <Badge 
                         key={id}
-                        variant="secondary"
+                        variant="secondary" 
                         className="cursor-pointer hover:bg-gray-200"
                         onClick={() => toggleSelection(id, selectedCategories, setSelectedCategories)}
                       >
@@ -473,9 +473,9 @@ export default function Products() {
                   {selectedCompanies.map(id => {
                     const company = companies.find(c => c.id.toString() === id);
                     return company ? (
-                      <Badge
+                      <Badge 
                         key={id}
-                        variant="secondary"
+                        variant="secondary" 
                         className="cursor-pointer hover:bg-gray-200"
                         onClick={() => toggleSelection(id, selectedCompanies, setSelectedCompanies)}
                       >
@@ -486,9 +486,9 @@ export default function Products() {
                   {selectedFeatures.map(id => {
                     const feat = features.find(f => f.id.toString() === id);
                     return feat ? (
-                      <Badge
+                      <Badge 
                         key={id}
-                        variant="secondary"
+                        variant="secondary" 
                         className="cursor-pointer hover:bg-gray-200"
                         onClick={() => toggleSelection(id, selectedFeatures, setSelectedFeatures)}
                       >
@@ -499,9 +499,9 @@ export default function Products() {
                   {selectedApplications.map(id => {
                     const app = applications.find(a => a.id.toString() === id);
                     return app ? (
-                      <Badge
+                      <Badge 
                         key={id}
-                        variant="secondary"
+                        variant="secondary" 
                         className="cursor-pointer hover:bg-gray-200"
                         onClick={() => toggleSelection(id, selectedApplications, setSelectedApplications)}
                       >
@@ -526,11 +526,11 @@ export default function Products() {
                   ))}
                 </div>
               ) : filteredProducts.length > 0 ? (
-                <motion.div
+                <motion.div 
                   key={`${selectedCategories.join()}-${selectedCompanies.join()}`}
                   initial={{ opacity: 0.8 }}
                   animate={{ opacity: 1 }}
-                  className={viewMode === 'grid'
+                  className={viewMode === 'grid' 
                     ? 'grid md:grid-cols-2 xl:grid-cols-3 gap-6'
                     : 'space-y-4'
                   }
@@ -542,31 +542,31 @@ export default function Products() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: Math.min(index * 0.03, 0.5) }}
                     >
-                      <div
+                      <div 
                         onClick={() => handleProductClick(item.product.slug)}
                         className="cursor-pointer"
                       >
                         {viewMode === 'grid' ? (
-                          <Card className="h-full hover:shadow-lg transition-all cursor-pointer group flex flex-col">
-                            <div className="aspect-[4/3] bg-white border-b border-gray-100 relative overflow-hidden flex items-center justify-center p-2">
+                          <Card className="h-full hover:shadow-lg transition-all cursor-pointer group">
+                            <div className="aspect-video bg-gray-100 relative overflow-hidden">
                               {item.product.heroImage ? (
-                                <img
-                                  src={item.product.heroImage}
+                                <img 
+                                  src={item.product.heroImage} 
                                   alt={item.product.name}
-                                  className="w-full h-full object-contain group-hover:scale-105 transition-transform"
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                                 />
                               ) : (
-                                <div className="w-full h-full flex items-center justify-center bg-gray-50">
-                                  <Package className="h-12 w-12 text-gray-300" />
+                                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50">
+                                  <Package className="h-12 w-12 text-emerald-300" />
                                 </div>
                               )}
                               {item.company && (
-                                <Badge className="absolute top-3 left-3 bg-white/90 text-gray-700 shadow-sm border border-gray-100">
+                                <Badge className="absolute top-3 left-3 bg-white/90 text-gray-700">
                                   {item.company.name}
                                 </Badge>
                               )}
                             </div>
-                            <CardContent className="p-4 flex-1 flex flex-col">
+                            <CardContent className="p-4">
                               {item.categories && item.categories.length > 0 && (
                                 <div className="flex flex-wrap gap-1 mb-2">
                                   {item.categories.slice(0, 2).map((cat) => (
@@ -576,13 +576,13 @@ export default function Products() {
                                   ))}
                                 </div>
                               )}
-                              <h3 className="font-semibold text-lg text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-2 mb-2">
+                              <h3 className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors">
                                 {item.product.name}
                               </h3>
-                              <p className="text-sm text-gray-600 line-clamp-2">
+                              <p className="text-sm text-gray-500 mt-1 line-clamp-2">
                                 {item.product.shortDescription || "High-quality thermoplastic resin"}
                               </p>
-                              <div className="flex items-center gap-2 mt-auto text-emerald-600 text-sm font-medium pt-2 border-t border-gray-50">
+                              <div className="flex items-center gap-2 mt-4 text-emerald-600 text-sm font-medium">
                                 View Details <ArrowRight className="h-4 w-4" />
                               </div>
                             </CardContent>
@@ -591,16 +591,16 @@ export default function Products() {
                           <Card className="hover:shadow-lg transition-all cursor-pointer group">
                             <CardContent className="p-4">
                               <div className="flex gap-4">
-                                <div className="w-32 h-24 flex-shrink-0 bg-white border border-gray-100 rounded-lg overflow-hidden flex items-center justify-center p-1">
+                                <div className="w-32 h-24 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden">
                                   {item.product.heroImage ? (
-                                    <img
-                                      src={item.product.heroImage}
+                                    <img 
+                                      src={item.product.heroImage} 
                                       alt={item.product.name}
-                                      className="w-full h-full object-contain"
+                                      className="w-full h-full object-cover"
                                     />
                                   ) : (
-                                    <div className="w-full h-full flex items-center justify-center bg-gray-50">
-                                      <Package className="h-8 w-8 text-gray-300" />
+                                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50">
+                                      <Package className="h-8 w-8 text-emerald-300" />
                                     </div>
                                   )}
                                 </div>

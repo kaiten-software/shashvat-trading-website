@@ -11,10 +11,10 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
-import {
-  Phone,
-  Mail,
-  MapPin,
+import { 
+  Phone, 
+  Mail, 
+  MapPin, 
   Clock,
   Send,
   Building2,
@@ -31,8 +31,10 @@ export default function Contact() {
     name: "",
     email: "",
     phone: "",
-    city: "",
-    requirement: ""
+    company: "",
+    subject: "",
+    message: "",
+    productInterest: ""
   });
 
   // Load saved email from localStorage on mount
@@ -53,7 +55,7 @@ export default function Contact() {
 
   const mutation = useMutation({
     mutationFn: async (data: typeof formData) => {
-      const res = await fetch("/api/callbacks", {
+      const res = await fetch("/api/inquiries", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -63,16 +65,18 @@ export default function Contact() {
     },
     onSuccess: () => {
       toast({
-        title: "Request Submitted!",
-        description: "Thank you for your interest. We'll call you back shortly.",
+        title: "Inquiry Submitted!",
+        description: "Thank you for contacting us. We'll get back to you shortly.",
       });
       // Keep the email for future inquiries
       setFormData({
         name: "",
         email: formData.email,
         phone: "",
-        city: "",
-        requirement: ""
+        company: "",
+        subject: "",
+        message: "",
+        productInterest: ""
       });
     },
     onError: () => {
@@ -110,7 +114,7 @@ export default function Contact() {
               Get in <span className="text-emerald-400">Touch</span>
             </h1>
             <p className="text-xl text-emerald-100">
-              Have questions about our products or need a quote?
+              Have questions about our products or need a quote? 
               We're here to help you find the right solution.
             </p>
           </motion.div>
@@ -125,7 +129,7 @@ export default function Contact() {
             <div className="lg:col-span-1 space-y-6">
               <motion.div {...fadeIn}>
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
-
+                
                 {/* Canada Office */}
                 <Card className="mb-6">
                   <CardContent className="p-6">
@@ -134,8 +138,8 @@ export default function Contact() {
                       <div>
                         <h3 className="font-semibold text-gray-900">Canada Office</h3>
                         <p className="text-emerald-600 text-sm mb-2">Shashvat Polymers Ltd</p>
-                        <a
-                          href="tel:+19058132169"
+                        <a 
+                          href="tel:+19058132169" 
                           className="flex items-center gap-2 text-gray-600 hover:text-emerald-600 mb-1"
                         >
                           <Phone className="h-4 w-4" />
@@ -154,8 +158,8 @@ export default function Contact() {
                       <div>
                         <h3 className="font-semibold text-gray-900">India Office</h3>
                         <p className="text-emerald-600 text-sm mb-2">Shashvat Plastics LLP</p>
-                        <a
-                          href="tel:+919820191117"
+                        <a 
+                          href="tel:+919820191117" 
                           className="flex items-center gap-2 text-gray-600 hover:text-emerald-600 mb-1"
                         >
                           <Phone className="h-4 w-4" />
@@ -175,8 +179,8 @@ export default function Contact() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">Email Us</h3>
-                        <a
-                          href="mailto:info@shashvattrading.com"
+                        <a 
+                          href="mailto:info@shashvattrading.com" 
                           className="text-emerald-600 hover:underline"
                         >
                           info@shashvattrading.com
@@ -208,9 +212,9 @@ export default function Contact() {
             <motion.div {...fadeIn} className="lg:col-span-2">
               <Card>
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Request a Callback</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Send Us a Message</h2>
                   <p className="text-gray-600 mb-8">
-                    Fill out the form below and we'll call you back within 24 hours.
+                    Fill out the form below and we'll get back to you within 24 hours.
                   </p>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -240,43 +244,72 @@ export default function Contact() {
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <Label htmlFor="phone">Phone Number *</Label>
+                        <Label htmlFor="phone">Phone Number</Label>
                         <Input
                           id="phone"
                           type="tel"
-                          required
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           placeholder="+1 234 567 8900"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="city">City *</Label>
+                        <Label htmlFor="company">Company Name</Label>
                         <Input
-                          id="city"
-                          required
-                          value={formData.city}
-                          onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                          placeholder="Your City"
+                          id="company"
+                          value={formData.company}
+                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                          placeholder="Your Company"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <Label htmlFor="requirement">Your Requirement *</Label>
-                      <Textarea
-                        id="requirement"
+                      <Label htmlFor="productInterest">Product of Interest</Label>
+                      <select
+                        id="productInterest"
+                        value={formData.productInterest}
+                        onChange={(e) => setFormData({ ...formData, productInterest: e.target.value })}
+                        className="w-full h-10 px-3 border rounded-md bg-white"
+                      >
+                        <option value="">Select a product category</option>
+                        <option value="PP - Polypropylene">PP - Polypropylene</option>
+                        <option value="PE - Polyethylene">PE - Polyethylene</option>
+                        <option value="PVC">PVC</option>
+                        <option value="ABS">ABS Resins</option>
+                        <option value="GPPS/HIPS">Polystyrene (GPPS/HIPS)</option>
+                        <option value="Engineering Plastics">Engineering Plastics</option>
+                        <option value="Recycled Plastics">Recycled Plastics</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="subject">Subject *</Label>
+                      <Input
+                        id="subject"
                         required
-                        rows={5}
-                        value={formData.requirement}
-                        onChange={(e) => setFormData({ ...formData, requirement: e.target.value })}
-                        placeholder="Tell us about your plastic resin requirements..."
+                        value={formData.subject}
+                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                        placeholder="How can we help you?"
                       />
                     </div>
 
-                    <Button
-                      type="submit"
-                      size="lg"
+                    <div>
+                      <Label htmlFor="message">Message *</Label>
+                      <Textarea
+                        id="message"
+                        required
+                        rows={5}
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        placeholder="Please describe your requirements, including quantities, specifications, and delivery location..."
+                      />
+                    </div>
+
+                    <Button 
+                      type="submit" 
+                      size="lg" 
                       className="w-full bg-emerald-600 hover:bg-emerald-700"
                       disabled={mutation.isPending}
                     >
@@ -285,7 +318,7 @@ export default function Contact() {
                       ) : (
                         <>
                           <Send className="mr-2 h-5 w-5" />
-                          Request Callback
+                          Send Message
                         </>
                       )}
                     </Button>

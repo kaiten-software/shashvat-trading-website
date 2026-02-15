@@ -29,8 +29,6 @@ import AdminApplications from "@/pages/admin/Applications";
 import AdminProducts from "@/pages/admin/Products";
 import AdminBlog from "@/pages/admin/Blog";
 import AdminUsers from "@/pages/admin/Users";
-import AdminCallbacks from "@/pages/admin/Callbacks";
-import ChatBot from "@/components/ChatBot";
 
 // Protected Route Component
 function ProtectedRoute({ children, allowedRoles }: { children: ReactNode; allowedRoles?: string[] }) {
@@ -74,15 +72,7 @@ function ScrollToTop() {
   const [location] = useLocation();
 
   useEffect(() => {
-    // Immediate scroll to top
     window.scrollTo(0, 0);
-
-    // Safety check: ensure it stays at top after render
-    const timer = setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 10);
-
-    return () => clearTimeout(timer);
   }, [location]);
 
   return null;
@@ -156,13 +146,6 @@ function Router() {
             </ProtectedRoute>
           )}
         </Route>
-        <Route path="/admin/callbacks">
-          {() => (
-            <ProtectedRoute>
-              <AdminCallbacks />
-            </ProtectedRoute>
-          )}
-        </Route>
         <Route path="/admin/users">
           {() => (
             <ProtectedRoute allowedRoles={['admin']}>
@@ -184,7 +167,6 @@ function App() {
         <AuthProvider>
           <Toaster />
           <Router />
-          <ChatBot />
         </AuthProvider>
       </TooltipProvider>
     </QueryClientProvider>

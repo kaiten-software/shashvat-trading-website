@@ -1,7 +1,8 @@
-
 # Dependencies
 node_modules/
-
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
 # Production
 dist/
@@ -55,6 +56,3 @@ drizzle/
 
 # SSH/SSL Keys
 *.pem
-
-# Database Backup
-db_backup.json
