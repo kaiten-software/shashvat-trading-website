@@ -547,86 +547,87 @@ export default function Products() {
                         className="cursor-pointer"
                       >
                         {viewMode === 'grid' ? (
-                          <Card className="h-full hover:shadow-lg transition-all cursor-pointer group">
-                            <div className="aspect-video bg-gray-100 relative overflow-hidden">
+                          <Card className="h-full hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 shadow-md rounded-xl overflow-hidden">
+                            <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
                               {item.product.heroImage ? (
                                 <img 
                                   src={item.product.heroImage} 
                                   alt={item.product.name}
-                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                 />
                               ) : (
                                 <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50">
-                                  <Package className="h-12 w-12 text-emerald-300" />
+                                  <Package className="h-16 w-16 text-emerald-200" />
                                 </div>
                               )}
-                              {item.company && (
-                                <Badge className="absolute top-3 left-3 bg-white/90 text-gray-700">
-                                  {item.company.name}
-                                </Badge>
-                              )}
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </div>
-                            <CardContent className="p-4">
+                            <CardContent className="p-5">
+                              {item.company && (
+                                <p className="text-xs font-semibold text-emerald-600 uppercase tracking-wider mb-1.5">
+                                  {item.company.name}
+                                </p>
+                              )}
+                              <h3 className="font-bold text-gray-900 group-hover:text-emerald-600 transition-colors text-lg leading-tight">
+                                {item.product.name}
+                              </h3>
                               {item.categories && item.categories.length > 0 && (
-                                <div className="flex flex-wrap gap-1 mb-2">
+                                <div className="flex flex-wrap gap-1.5 mt-2.5">
                                   {item.categories.slice(0, 2).map((cat) => (
-                                    <Badge key={cat.id} variant="outline" className="text-xs">
+                                    <span key={cat.id} className="text-xs bg-gray-100 text-gray-600 px-2.5 py-0.5 rounded-full">
                                       {cat.name}
-                                    </Badge>
+                                    </span>
                                   ))}
                                 </div>
                               )}
-                              <h3 className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors">
-                                {item.product.name}
-                              </h3>
-                              <p className="text-sm text-gray-500 mt-1 line-clamp-2">
+                              <p className="text-sm text-gray-500 mt-2.5 line-clamp-2 leading-relaxed">
                                 {item.product.shortDescription || "High-quality thermoplastic resin"}
                               </p>
-                              <div className="flex items-center gap-2 mt-4 text-emerald-600 text-sm font-medium">
-                                View Details <ArrowRight className="h-4 w-4" />
+                              <div className="flex items-center gap-2 mt-4 text-emerald-600 text-sm font-semibold group-hover:gap-3 transition-all">
+                                View Details <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                               </div>
                             </CardContent>
                           </Card>
                         ) : (
-                          <Card className="hover:shadow-lg transition-all cursor-pointer group">
-                            <CardContent className="p-4">
-                              <div className="flex gap-4">
-                                <div className="w-32 h-24 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden">
+                          <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 shadow-md rounded-xl overflow-hidden">
+                            <CardContent className="p-0">
+                              <div className="flex gap-0">
+                                <div className="w-40 h-32 flex-shrink-0 bg-gray-100 overflow-hidden">
                                   {item.product.heroImage ? (
                                     <img 
                                       src={item.product.heroImage} 
                                       alt={item.product.name}
-                                      className="w-full h-full object-cover"
+                                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                     />
                                   ) : (
                                     <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50">
-                                      <Package className="h-8 w-8 text-emerald-300" />
+                                      <Package className="h-10 w-10 text-emerald-200" />
                                     </div>
                                   )}
                                 </div>
-                                <div className="flex-1">
+                                <div className="flex-1 p-4">
                                   <div className="flex items-start justify-between">
                                     <div>
                                       {item.company && (
-                                        <Badge className="mb-1 bg-emerald-100 text-emerald-700 text-xs">
+                                        <p className="text-xs font-semibold text-emerald-600 uppercase tracking-wider mb-1">
                                           {item.company.name}
-                                        </Badge>
+                                        </p>
                                       )}
-                                      <h3 className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors">
+                                      <h3 className="font-bold text-gray-900 group-hover:text-emerald-600 transition-colors">
                                         {item.product.name}
                                       </h3>
                                       <p className="text-sm text-gray-500 mt-1 line-clamp-1">
                                         {item.product.shortDescription || "High-quality thermoplastic resin"}
                                       </p>
                                     </div>
-                                    <ArrowRight className="h-5 w-5 text-emerald-600 group-hover:translate-x-1 transition-transform" />
+                                    <ArrowRight className="h-5 w-5 text-emerald-600 group-hover:translate-x-1 transition-transform flex-shrink-0 mt-1" />
                                   </div>
                                   {item.categories && item.categories.length > 0 && (
-                                    <div className="flex flex-wrap gap-1 mt-2">
+                                    <div className="flex flex-wrap gap-1.5 mt-2">
                                       {item.categories.slice(0, 3).map((cat) => (
-                                        <Badge key={cat.id} variant="outline" className="text-xs">
+                                        <span key={cat.id} className="text-xs bg-gray-100 text-gray-600 px-2.5 py-0.5 rounded-full">
                                           {cat.name}
-                                        </Badge>
+                                        </span>
                                       ))}
                                     </div>
                                   )}

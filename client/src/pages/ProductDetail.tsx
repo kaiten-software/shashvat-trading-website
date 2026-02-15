@@ -452,26 +452,27 @@ export default function ProductDetail() {
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {relatedProducts.sameCompany.map((item: any) => (
                   <Link key={item.product.id} href={`/products/${item.product.slug}`}>
-                    <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
-                      <div className="aspect-video bg-gray-100 relative overflow-hidden">
+                    <Card className="h-full hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 shadow-md rounded-xl overflow-hidden">
+                      <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
                         {item.product.heroImage ? (
                           <img
                             src={item.product.heroImage}
                             alt={item.product.name}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center">
-                            <Package className="h-12 w-12 text-gray-300" />
+                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50">
+                            <Package className="h-16 w-16 text-emerald-200" />
                           </div>
                         )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
                       <CardContent className="p-4">
-                        <h3 className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-1">
+                        <h3 className="font-bold text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-1">
                           {item.product.name}
                         </h3>
-                        <div className="flex items-center gap-2 mt-2 text-emerald-600 text-sm">
-                          View Details <ArrowRight className="h-4 w-4" />
+                        <div className="flex items-center gap-2 mt-2 text-emerald-600 text-sm font-semibold group-hover:gap-3 transition-all">
+                          View Details <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </div>
                       </CardContent>
                     </Card>
@@ -499,29 +500,32 @@ export default function ProductDetail() {
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {relatedProducts.sameCategory.map((item: any) => (
                   <Link key={item.product.id} href={`/products/${item.product.slug}`}>
-                    <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
-                      <div className="aspect-video bg-gray-100 relative overflow-hidden">
+                    <Card className="h-full hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 shadow-md rounded-xl overflow-hidden">
+                      <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
                         {item.product.heroImage ? (
                           <img
                             src={item.product.heroImage}
                             alt={item.product.name}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center">
-                            <Package className="h-12 w-12 text-gray-300" />
+                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50">
+                            <Package className="h-16 w-16 text-emerald-200" />
                           </div>
                         )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
                       <CardContent className="p-4">
-                        <h3 className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-1">
+                        {item.company && (
+                          <p className="text-xs font-semibold text-emerald-600 uppercase tracking-wider mb-1">
+                            {item.company.name}
+                          </p>
+                        )}
+                        <h3 className="font-bold text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-1">
                           {item.product.name}
                         </h3>
-                        {item.company && (
-                          <p className="text-sm text-gray-500 mt-1">{item.company.name}</p>
-                        )}
-                        <div className="flex items-center gap-2 mt-2 text-emerald-600 text-sm">
-                          View Details <ArrowRight className="h-4 w-4" />
+                        <div className="flex items-center gap-2 mt-2 text-emerald-600 text-sm font-semibold group-hover:gap-3 transition-all">
+                          View Details <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </div>
                       </CardContent>
                     </Card>
