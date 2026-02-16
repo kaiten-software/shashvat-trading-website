@@ -173,6 +173,7 @@ export default function ProductDetail() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
+      <div className="pt-20" />
 
       {/* Search Context Banner */}
       {searchContext && (

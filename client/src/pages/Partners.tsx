@@ -78,7 +78,7 @@ export default function Partners() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white py-20">
+      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeIn} className="text-center max-w-3xl mx-auto">
             <Badge className="bg-emerald-500/20 text-emerald-200 border-emerald-400/30 mb-6">

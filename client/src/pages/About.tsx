@@ -58,7 +58,7 @@ export default function About() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white py-24">
+      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeIn} className="max-w-3xl">
             <Badge className="bg-emerald-500/20 text-emerald-200 border-emerald-400/30 mb-6">

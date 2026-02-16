@@ -106,35 +106,35 @@ function Router() {
         </Route>
         <Route path="/admin/companies">
           {() => (
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={['admin']}>
               <AdminCompanies />
             </ProtectedRoute>
           )}
         </Route>
         <Route path="/admin/categories">
           {() => (
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={['admin']}>
               <AdminCategories />
             </ProtectedRoute>
           )}
         </Route>
         <Route path="/admin/features">
           {() => (
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={['admin']}>
               <AdminFeatures />
             </ProtectedRoute>
           )}
         </Route>
         <Route path="/admin/applications">
           {() => (
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={['admin']}>
               <AdminApplications />
             </ProtectedRoute>
           )}
         </Route>
         <Route path="/admin/products">
           {() => (
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={['admin']}>
               <AdminProducts />
             </ProtectedRoute>
           )}

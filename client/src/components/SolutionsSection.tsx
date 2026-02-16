@@ -88,7 +88,7 @@ export default function SolutionsSection() {
         </motion.div>
 
         {/* Solutions Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 pt-4 pb-4">
           {displayCategories.map((category, index) => {
             const Icon = getIconForCategory(category.name);
             const gradient = getGradientForCategory(index);

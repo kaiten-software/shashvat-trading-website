@@ -126,7 +126,7 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.8 }}
           >
-            Your trusted partner for premium plastic resins — PP, PE, PVC, PET, ABS, PS & Engineering Plastics from world-leading manufacturers
+            Your trusted partner for premium plastic resins and other products — PP, PE, PVC, PET, ABS, PS & Engineering Plastics from world-leading manufacturers
           </motion.p>
 
           {/* CTA Buttons */}
