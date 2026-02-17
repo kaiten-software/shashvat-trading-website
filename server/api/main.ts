@@ -320,8 +320,21 @@ router.get('/blog/posts/:slug', async (req: Request, res: Response) => {
 
 router.post('/blog/posts', uploadImage.single('featuredImage'), async (req: Request, res: Response) => {
   try {
+    console.log('📝 Blog POST request received');
+    console.log('📎 File uploaded:', req.file ? 'YES' : 'NO');
+    if (req.file) {
+      console.log('📂 File details:', {
+        filename: req.file.filename,
+        path: req.file.path,
+        destination: req.file.destination,
+        originalname: req.file.originalname
+      });
+    }
+
     const { title, slug, excerpt, contentHtml, seoTitle, seoDescription, isPublished } = req.body;
     const featuredImage = req.file ? `/uploads/blog/${req.file.filename}` : null;
+
+    console.log('🖼️ Featured image path to save:', featuredImage);
 
     const [result] = await db.insert(blogPosts).values({
       title,
@@ -337,6 +350,7 @@ router.post('/blog/posts', uploadImage.single('featuredImage'), async (req: Requ
 
     res.status(201).json({ id: result.insertId, message: 'Blog post created successfully' });
   } catch (error) {
+    console.error('❌ Blog post creation error:', error);
     res.status(500).json({ error: 'Failed to create blog post' });
   }
 });
@@ -477,17 +491,6 @@ router.get('/callbacks', authenticateToken, async (req: Request, res: Response) 
   } catch (error) {
     console.error('Error fetching callbacks:', error);
     res.status(500).json({ error: 'Failed to fetch callbacks' });
-  }
-});
-
-// Delete callback request
-router.delete('/callbacks/:id', authenticateToken, async (req: Request, res: Response) => {
-  try {
-    await db.delete(callbackRequests).where(eq(callbackRequests.id, parseInt(req.params.id)));
-    res.json({ message: 'Callback request deleted successfully' });
-  } catch (error) {
-    console.error('Error deleting callback:', error);
-    res.status(500).json({ error: 'Failed to delete callback request' });
   }
 });
 

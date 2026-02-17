@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -106,12 +106,33 @@ export default function AdminProducts() {
   const updateMutation = useMutation({
     mutationFn: async ({ id, data }: { id: number; data: FormData }) => {
       const res = await fetch(`/api/products/${id}`, { method: "PUT", body: data });
-      return res.json();
+      const responseData = await res.json();
+
+      if (!res.ok) {
+        throw new Error(responseData.error || responseData.message || 'Failed to update product');
+      }
+      return responseData;
     },
-    onSuccess: async () => {
+    onSuccess: async (data, variables) => {
+      // Upload additional images and documents (same as create)
+      if (additionalImages && additionalImages.length > 0) {
+        const imagesFormData = new FormData();
+        Array.from(additionalImages).forEach(file => imagesFormData.append("images", file));
+        await fetch(`/api/products/${variables.id}/images`, { method: "POST", body: imagesFormData });
+      }
+      if (documents && documents.length > 0) {
+        const docsFormData = new FormData();
+        Array.from(documents).forEach(file => docsFormData.append("documents", file));
+        await fetch(`/api/products/${variables.id}/documents`, { method: "POST", body: docsFormData });
+      }
+
       queryClient.invalidateQueries({ queryKey: ["products"] });
       resetForm();
     },
+    onError: (error) => {
+      console.error("Update failed:", error);
+      alert(`Update failed: ${error.message}`);
+    }
   });
 
   const deleteMutation = useMutation({
@@ -141,7 +162,7 @@ export default function AdminProducts() {
     // Generate descriptive slug from company name and product name
     const selectedCompany = companies.find(c => c.id.toString() === formData.companyId);
     const generatedSlug = selectedCompany && formData.name
-      ? `${selectedCompany.name.toLowerCase().replace(/\s+/g, '-')}-${formData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}`
+      ? `${selectedCompany.name.toLowerCase().replace(/\s+/g, '-')}-${formData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}-resin`
       : formData.name.toLowerCase().replace(/\s+/g, "-");
 
     const data = new FormData();
@@ -229,6 +250,9 @@ export default function AdminProducts() {
             <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>{editingProduct ? "Edit Product" : "Add New Product"}</DialogTitle>
+                <DialogDescription>
+                  {editingProduct ? "Update product details, images, and documents." : "Add a new product with images and documents."}
+                </DialogDescription>
               </DialogHeader>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <Tabs value={currentTab} onValueChange={setCurrentTab} className="w-full">
@@ -260,7 +284,7 @@ export default function AdminProducts() {
                       <Input
                         id="slug"
                         value={formData.companyId && formData.name ?
-                          `${companies.find(c => c.id.toString() === formData.companyId)?.name?.toLowerCase().replace(/\s+/g, '-') || 'company'}-${formData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}` :
+                          `${companies.find(c => c.id.toString() === formData.companyId)?.name?.toLowerCase().replace(/\s+/g, '-') || 'company'}-${formData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}-resin` :
                           formData.slug
                         }
                         disabled
@@ -384,7 +408,7 @@ export default function AdminProducts() {
         <Card>
           <CardHeader><CardTitle>All Products ({products.length})</CardTitle></CardHeader>
           <CardContent>
-            {isLoading && products.length === 0 ? (
+            {isLoading ? (
               <div className="text-center py-8 text-gray-500">Loading...</div>
             ) : products.length === 0 ? (
               <div className="text-center py-8 text-gray-500">No products yet. Add your first product!</div>

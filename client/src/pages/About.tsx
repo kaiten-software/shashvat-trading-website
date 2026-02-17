@@ -5,12 +5,12 @@ import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import { 
-  ArrowRight, 
-  Award, 
-  Users, 
-  Shield, 
-  Globe, 
+import {
+  ArrowRight,
+  Award,
+  Users,
+  Shield,
+  Globe,
   Target,
   Heart,
   Lightbulb,
@@ -58,21 +58,21 @@ export default function About() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white pt-32 pb-16">
+      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white pb-24 pt-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div {...fadeIn} className="max-w-3xl">
+          <motion.div {...fadeIn} className="text-center max-w-3xl mx-auto">
             <Badge className="bg-emerald-500/20 text-emerald-200 border-emerald-400/30 mb-6">
               About Us
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Your Trusted Partner in 
+              Your Trusted Partner in
               <span className="text-emerald-400"> Global Plastics Trading</span>
             </h1>
             <p className="text-xl text-emerald-100 mb-8">
-              Since 2017, Shashvat Trading has been delivering premium thermoplastics 
+              Since 2017, Shashvat Trading has been delivering premium thermoplastics
               to customers worldwide, bridging the gap between manufacturers and end-users.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap justify-center gap-4">
               <Link href="/products">
                 <Button size="lg" className="bg-white text-emerald-900 hover:bg-emerald-50">
                   Explore Products
@@ -124,19 +124,19 @@ export default function About() {
               </h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  Shashvat Trading was founded with a simple yet powerful vision: to become 
-                  the most reliable partner for businesses seeking quality plastic resins at 
+                  Shashvat Trading was founded with a simple yet powerful vision: to become
+                  the most reliable partner for businesses seeking quality plastic resins at
                   competitive prices.
                 </p>
                 <p>
-                  We leverage our global network, experienced staff, and deep market knowledge 
-                  to deliver the right product, at the right price, at the right time. Our 
+                  We leverage our global network, experienced staff, and deep market knowledge
+                  to deliver the right product, at the right price, at the right time. Our
                   team brings decades of combined experience in the petrochemical industry.
                 </p>
                 <p>
-                  With offices in Canada and India, we serve customers across North America, 
-                  Asia, and beyond. Our partnerships with leading manufacturers like LG Chem, 
-                  Formosa, IRPC, and INEOS Styrolution ensure access to the best products 
+                  With offices in Canada and India, we serve customers across North America,
+                  Asia, and beyond. Our partnerships with leading manufacturers like LG Chem,
+                  Formosa, IRPC, and INEOS Styrolution ensure access to the best products
                   available globally.
                 </p>
               </div>
@@ -173,9 +173,9 @@ export default function About() {
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
                   <p className="text-gray-600">
-                    To be the preferred trading partner for plastic resins by delivering 
-                    exceptional value through quality products, competitive pricing, and 
-                    reliable service. We strive to build lasting relationships based on 
+                    To be the preferred trading partner for plastic resins by delivering
+                    exceptional value through quality products, competitive pricing, and
+                    reliable service. We strive to build lasting relationships based on
                     trust and mutual success.
                   </p>
                 </CardContent>
@@ -189,9 +189,9 @@ export default function About() {
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
                   <p className="text-gray-600">
-                    To become a leading global distributor of thermoplastics, known for 
-                    our extensive product range, market expertise, and commitment to 
-                    customer satisfaction. We aim to grow sustainably while contributing 
+                    To become a leading global distributor of thermoplastics, known for
+                    our extensive product range, market expertise, and commitment to
+                    customer satisfaction. We aim to grow sustainably while contributing
                     to the success of our partners.
                   </p>
                 </CardContent>
@@ -259,11 +259,11 @@ export default function About() {
                     </div>
                   </div>
                   <p className="text-gray-600 mb-4">
-                    Serving the North American market with a focus on quality service 
+                    Serving the North American market with a focus on quality service
                     and reliable supply of polymer resins.
                   </p>
-                  <a 
-                    href="tel:+19058132169" 
+                  <a
+                    href="tel:+19058132169"
                     className="flex items-center gap-2 text-emerald-600 hover:text-emerald-700"
                   >
                     <Phone className="h-4 w-4" />
@@ -283,11 +283,11 @@ export default function About() {
                     </div>
                   </div>
                   <p className="text-gray-600 mb-4">
-                    Headquartered in Mumbai, serving the Asian market with extensive 
+                    Headquartered in Mumbai, serving the Asian market with extensive
                     product range and industry expertise.
                   </p>
-                  <a 
-                    href="tel:+919820191117" 
+                  <a
+                    href="tel:+919820191117"
                     className="flex items-center gap-2 text-emerald-600 hover:text-emerald-700"
                   >
                     <Phone className="h-4 w-4" />
@@ -345,7 +345,7 @@ export default function About() {
             Ready to Partner with Us?
           </h2>
           <p className="text-xl text-emerald-100 mb-8">
-            Let's discuss how we can meet your plastic resin requirements with 
+            Let's discuss how we can meet your plastic resin requirements with
             competitive pricing and reliable supply.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

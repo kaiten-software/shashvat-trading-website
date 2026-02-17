@@ -3,8 +3,18 @@ import { db } from '../db';
 import { products, productCategories, productFeatures, productApplications, productImages, productDocuments, companies, categories, features, applications } from '../db/schema';
 import { eq, like, and, or, inArray, sql } from 'drizzle-orm';
 import { uploadImage, uploadDocument } from '../middleware/upload';
+import fs from 'fs';
+import path from 'path';
 
 const router = Router();
+
+// Helper to log errors to file
+const logError = (context: string, error: any) => {
+  const logPath = path.join(process.cwd(), 'server_error.log');
+  const timestamp = new Date().toISOString();
+  const errorMessage = error instanceof Error ? error.stack : String(error);
+  fs.appendFileSync(logPath, `[${timestamp}] ${context}: ${errorMessage}\n`);
+};
 
 // Get all products with filters
 router.get('/', async (req: Request, res: Response) => {
@@ -178,7 +188,7 @@ router.post('/', uploadImage.single('heroImage'), async (req: Request, res: Resp
       applicationIds,
     } = req.body;
 
-    const heroImage = req.file ? `/uploads/products/${req.file.filename}` : null;
+    const heroImage = req.file ? `/uploads/products/images/${req.file.filename}` : null;
 
     // Insert product
     const [result] = await db.insert(products).values({
@@ -249,8 +259,13 @@ router.put('/:id', uploadImage.single('heroImage'), async (req: Request, res: Re
       applicationIds,
     } = req.body;
 
+    const parsedCompanyId = parseInt(companyId);
+    if (isNaN(parsedCompanyId)) {
+      return res.status(400).json({ error: 'Invalid company ID' });
+    }
+
     const updateData: any = {
-      companyId: parseInt(companyId),
+      companyId: parsedCompanyId,
       name,
       slug,
       shortDescription,
@@ -260,7 +275,7 @@ router.put('/:id', uploadImage.single('heroImage'), async (req: Request, res: Re
     };
 
     if (req.file) {
-      updateData.heroImage = `/uploads/products/${req.file.filename}`;
+      updateData.heroImage = `/uploads/products/images/${req.file.filename}`;
     }
 
     await db.update(products).set(updateData).where(eq(products.id, productId));
@@ -271,39 +286,57 @@ router.put('/:id', uploadImage.single('heroImage'), async (req: Request, res: Re
     await db.delete(productApplications).where(eq(productApplications.productId, productId));
 
     if (categoryIds) {
-      const catIds = JSON.parse(categoryIds);
-      for (const catId of catIds) {
-        await db.insert(productCategories).values({
-          productId,
-          categoryId: parseInt(catId),
-        });
+      let catIds = [];
+      try {
+        catIds = JSON.parse(categoryIds);
+      } catch (e) {
+        console.error("Error parsing categoryIds", e);
+      }
+      if (Array.isArray(catIds)) {
+        for (const catId of catIds) {
+          await db.insert(productCategories).values({
+            productId,
+            categoryId: parseInt(catId),
+          });
+        }
       }
     }
 
     if (featureIds) {
-      const featIds = JSON.parse(featureIds);
-      for (const featId of featIds) {
-        await db.insert(productFeatures).values({
-          productId,
-          featureId: parseInt(featId),
-        });
+      let featIds = [];
+      try {
+        featIds = JSON.parse(featureIds);
+      } catch (e) { console.error("Error parsing featureIds", e); }
+      if (Array.isArray(featIds)) {
+        for (const featId of featIds) {
+          await db.insert(productFeatures).values({
+            productId,
+            featureId: parseInt(featId),
+          });
+        }
       }
     }
 
     if (applicationIds) {
-      const appIds = JSON.parse(applicationIds);
-      for (const appId of appIds) {
-        await db.insert(productApplications).values({
-          productId,
-          applicationId: parseInt(appId),
-        });
+      let appIds = [];
+      try {
+        appIds = JSON.parse(applicationIds);
+      } catch (e) { console.error("Error parsing applicationIds", e); }
+      if (Array.isArray(appIds)) {
+        for (const appId of appIds) {
+          await db.insert(productApplications).values({
+            productId,
+            applicationId: parseInt(appId),
+          });
+        }
       }
     }
 
     res.json({ message: 'Product updated successfully' });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error updating product:', error);
-    res.status(500).json({ error: 'Failed to update product' });
+    logError('Error updating product', error);
+    res.status(500).json({ error: error.message || 'Failed to update product' });
   }
 });
 
@@ -347,7 +380,7 @@ router.post('/:id/images', async (req: Request, res: Response) => {
       for (const file of files) {
         await db.insert(productImages).values({
           productId,
-          imagePath: `/uploads/products/${file.filename}`,
+          imagePath: `/uploads/products/images/${file.filename}`,
           sortOrder: 0,
         });
       }

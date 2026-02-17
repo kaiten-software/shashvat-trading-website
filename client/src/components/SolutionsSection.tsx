@@ -1,73 +1,61 @@
-import { useState, useEffect } from "react";
-import { Hexagon, Layers, CircleDot, Box, Recycle, Sparkles, Package } from "lucide-react";
+import { Hexagon, Layers, CircleDot, Box, Recycle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import { useQuery } from "@tanstack/react-query";
 
 export default function SolutionsSection() {
   const { ref, isInView } = useScrollReveal();
-
-  const { data: categories = [] } = useQuery<any[]>({
-    queryKey: ["categories"],
-    queryFn: async () => (await fetch("/api/categories")).json(),
-  });
-
-  const [displayCategories, setDisplayCategories] = useState<any[]>([]);
-
-  useEffect(() => {
-    if (categories.length > 0) {
-      // Shuffle array securely
-      const shuffled = [...categories].sort(() => 0.5 - Math.random());
-
-      // Ensure specific "Poly" duplicates don't appear if their parent is there? 
-      // User asked for "1 product one time only". 
-      // We will rely on random selection and limit to 6 to reduce perceived duplication.
-      // Also ensuring unique IDs just in case.
-      const unique = shuffled.filter((v, i, a) => a.findIndex(t => t.name === v.name) === i);
-
-      setDisplayCategories(unique.slice(0, 6));
+  const solutions = [
+    {
+      icon: Hexagon,
+      title: "Polypropylene (PP)",
+      description: "Versatile thermoplastic for packaging, automotive, textiles, and consumer goods applications",
+      image: "https://images.unsplash.com/photo-1562240020-ce31ccb0fa7d?auto=format&fit=crop&q=80&w=600&h=400",
+      gradient: "from-blue-500 to-cyan-500",
+      link: "/products"
+    },
+    {
+      icon: Layers,
+      title: "Polyethylene (PE)",
+      description: "LDPE, LLDPE, HDPE grades for films, pipes, containers, and industrial applications",
+      image: "https://images.unsplash.com/photo-1581242163695-19d0acfd486f?auto=format&fit=crop&q=80&w=600&h=400",
+      gradient: "from-green-500 to-emerald-500",
+      link: "/products"
+    },
+    {
+      icon: CircleDot,
+      title: "Styrenics (GPPS, HIPS, ABS)",
+      description: "High-performance resins for electronics, appliances, and consumer products",
+      image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=600&h=400",
+      gradient: "from-purple-500 to-pink-500",
+      link: "/products"
+    },
+    {
+      icon: Box,
+      title: "PVC & PET",
+      description: "Construction-grade PVC and packaging-grade PET for diverse industrial needs",
+      image: "https://images.unsplash.com/photo-1505751171710-1f6d0ace5a85?auto=format&fit=crop&q=80&w=600&h=400",
+      gradient: "from-amber-500 to-orange-500",
+      link: "/products"
+    },
+    {
+      icon: Sparkles,
+      title: "Engineering Plastics",
+      description: "Polyamides, polycarbonate, and specialty resins for high-performance applications",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600&h=400",
+      gradient: "from-teal-500 to-cyan-500",
+      link: "/products"
+    },
+    {
+      icon: Recycle,
+      title: "Recycled & Bio-Polymers",
+      description: "Sustainable alternatives including reprocessed resins and eco-friendly materials",
+      image: "https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?auto=format&fit=crop&q=80&w=600&h=400",
+      gradient: "from-indigo-500 to-purple-500",
+      link: "/products"
     }
-  }, [categories]);
-
-  // Icon mapping based on category slug or name
-  const getIconForCategory = (name: string) => {
-    const lowerName = name.toLowerCase();
-    if (lowerName.includes("polypropylene") || lowerName.includes("pp")) return Hexagon;
-    if (lowerName.includes("polyethylene") || lowerName.includes("pe")) return Layers;
-    if (lowerName.includes("styrenics") || lowerName.includes("abs") || lowerName.includes("ps")) return CircleDot;
-    if (lowerName.includes("pvc") || lowerName.includes("pet")) return Box;
-    if (lowerName.includes("engineering")) return Sparkles;
-    if (lowerName.includes("recycled") || lowerName.includes("bio")) return Recycle;
-    return Package; // Default icon
-  };
-
-  // Gradient mapping - cycle through these or map to specific types
-  const getGradientForCategory = (index: number) => {
-    const gradients = [
-      "from-blue-500 to-cyan-500",
-      "from-green-500 to-emerald-500",
-      "from-purple-500 to-pink-500",
-      "from-amber-500 to-orange-500",
-      "from-teal-500 to-cyan-500",
-      "from-indigo-500 to-purple-500",
-    ];
-    return gradients[index % gradients.length];
-  };
-
-  // Fallback images if not provided in DB
-  const getDefaultImage = (index: number) => {
-    const images = [
-      "https://images.unsplash.com/photo-1562240020-ce31ccb0fa7d?auto=format&fit=crop&q=80&w=600&h=400",
-      "https://images.unsplash.com/photo-1581242163695-19d0acfd486f?auto=format&fit=crop&q=80&w=600&h=400",
-      "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=600&h=400",
-      "https://images.unsplash.com/photo-1505751171710-1f6d0ace5a85?auto=format&fit=crop&q=80&w=600&h=400",
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600&h=400",
-      "https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?auto=format&fit=crop&q=80&w=600&h=400"
-    ];
-    return images[index % images.length];
-  };
+  ];
 
   return (
     <section className="py-24" style={{ background: 'var(--section-bg-5)' }} ref={ref}>
@@ -88,15 +76,12 @@ export default function SolutionsSection() {
         </motion.div>
 
         {/* Solutions Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 pt-4 pb-4">
-          {displayCategories.map((category, index) => {
-            const Icon = getIconForCategory(category.name);
-            const gradient = getGradientForCategory(index);
-            const image = category.image || getDefaultImage(index);
-
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {solutions.map((solution, index) => {
+            const Icon = solution.icon;
             return (
               <motion.div
-                key={category.id}
+                key={index}
                 className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-green-300 hover:shadow-2xl transition-all duration-300"
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -106,15 +91,15 @@ export default function SolutionsSection() {
                 {/* Image */}
                 <div className="relative h-56 overflow-hidden bg-gray-100">
                   <img
-                    src={image}
-                    alt={category.name}
+                    src={solution.image}
+                    alt={solution.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     loading="lazy"
                   />
-                  <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-20 group-hover:opacity-30 transition-opacity`}></div>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${solution.gradient} opacity-20 group-hover:opacity-30 transition-opacity`}></div>
 
                   {/* Icon Badge */}
-                  <div className={`absolute top-4 left-4 w-14 h-14 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center shadow-lg`}>
+                  <div className={`absolute top-4 left-4 w-14 h-14 rounded-xl bg-gradient-to-br ${solution.gradient} flex items-center justify-center shadow-lg`}>
                     <Icon className="w-7 h-7 text-white" />
                   </div>
                 </div>
@@ -122,12 +107,12 @@ export default function SolutionsSection() {
                 {/* Content */}
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-green-600 transition-colors">
-                    {category.name}
+                    {solution.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4 line-clamp-3">
-                    {category.description}
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    {solution.description}
                   </p>
-                  <Link href={`/products`}>
+                  <Link href={solution.link}>
                     <Button
                       variant="ghost"
                       className="text-green-600 hover:text-green-700 hover:bg-green-50 p-0 h-auto font-semibold"

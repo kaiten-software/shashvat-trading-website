@@ -150,29 +150,6 @@ export default function Login() {
           </CardContent>
         </Card>
 
-        {/* Quick-fill credentials */}
-        <div className="mt-4 space-y-2">
-          <p className="text-center text-emerald-200 text-xs uppercase tracking-wider font-medium">Quick Login</p>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={() => { setEmail('admin@shashvattrading.com'); setPassword('admin123'); }}
-              className="flex-1 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-lg px-3 py-2.5 text-sm transition-colors border border-white/20"
-            >
-              <span className="font-semibold">Admin</span>
-              <span className="block text-emerald-200 text-xs mt-0.5">admin@shashvattrading.com</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => { setEmail('editor@shashvattrading.com'); setPassword('editor123'); }}
-              className="flex-1 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-lg px-3 py-2.5 text-sm transition-colors border border-white/20"
-            >
-              <span className="font-semibold">Editor</span>
-              <span className="block text-emerald-200 text-xs mt-0.5">editor@shashvattrading.com</span>
-            </button>
-          </div>
-        </div>
-
         <p className="text-center text-emerald-200 text-sm mt-6">
           © 2025 Shashvat Trading. All rights reserved.
         </p>

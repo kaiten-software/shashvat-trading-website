@@ -2,13 +2,13 @@ import SolarNavigation from "@/components/SolarNavigation";
 import SolarFooter from "@/components/SolarFooter";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-
+import SolarContactSection from "@/components/SolarContactSection";
 
 export default function Projects() {
   return (
     <div className="min-h-screen">
       <SolarNavigation />
-
+      
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-br from-white via-green-50/30 to-amber-50/20">
         <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8 text-center">
@@ -24,7 +24,7 @@ export default function Projects() {
 
       <CaseStudiesSection />
       <TestimonialsSection />
-
+      <SolarContactSection />
       <SolarFooter />
     </div>
   );

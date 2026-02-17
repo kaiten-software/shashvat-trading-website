@@ -8,9 +8,9 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { 
-  ArrowRight, 
-  Search, 
+import {
+  ArrowRight,
+  Search,
   Calendar,
   Clock,
   BookOpen,
@@ -25,10 +25,10 @@ export default function Blog() {
     queryFn: async () => (await fetch("/api/blog/posts")).json(),
   });
 
-  const filteredPosts = posts.filter((post: any) => 
-    post.isPublished && 
+  const filteredPosts = posts.filter((post: any) =>
+    post.isPublished &&
     (post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-     post.excerpt?.toLowerCase().includes(searchQuery.toLowerCase()))
+      post.excerpt?.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   const fadeIn = {
@@ -50,7 +50,7 @@ export default function Blog() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white pt-32 pb-16">
+      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white pb-20 pt-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeIn} className="text-center max-w-3xl mx-auto">
             <Badge className="bg-emerald-500/20 text-emerald-200 border-emerald-400/30 mb-6">
@@ -60,7 +60,7 @@ export default function Blog() {
               Industry <span className="text-emerald-400">Insights</span>
             </h1>
             <p className="text-xl text-emerald-100">
-              Stay updated with the latest news, trends, and insights from the 
+              Stay updated with the latest news, trends, and insights from the
               plastics and polymer industry.
             </p>
           </motion.div>
@@ -109,8 +109,8 @@ export default function Blog() {
                       <div className="grid md:grid-cols-2">
                         <div className="aspect-video md:aspect-auto bg-gray-100">
                           {filteredPosts[0].featuredImage ? (
-                            <img 
-                              src={filteredPosts[0].featuredImage} 
+                            <img
+                              src={filteredPosts[0].featuredImage}
                               alt={filteredPosts[0].title}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                             />
@@ -157,8 +157,8 @@ export default function Blog() {
                       <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
                         <div className="aspect-video bg-gray-100 overflow-hidden">
                           {post.featuredImage ? (
-                            <img 
-                              src={post.featuredImage} 
+                            <img
+                              src={post.featuredImage}
                               alt={post.title}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                             />

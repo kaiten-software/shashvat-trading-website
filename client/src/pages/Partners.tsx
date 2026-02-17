@@ -6,10 +6,10 @@ import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import { 
-  ArrowRight, 
-  Building2, 
-  Globe, 
+import {
+  ArrowRight,
+  Building2,
+  Globe,
   ExternalLink,
   Phone,
   MessageCircle
@@ -78,7 +78,7 @@ export default function Partners() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white pt-32 pb-16">
+      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white pb-20 pt-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeIn} className="text-center max-w-3xl mx-auto">
             <Badge className="bg-emerald-500/20 text-emerald-200 border-emerald-400/30 mb-6">
@@ -88,7 +88,7 @@ export default function Partners() {
               Global <span className="text-emerald-400">Partner Network</span>
             </h1>
             <p className="text-xl text-emerald-100">
-              We work with the world's leading petrochemical companies to bring you 
+              We work with the world's leading petrochemical companies to bring you
               premium quality thermoplastics and engineering resins.
             </p>
           </motion.div>
@@ -120,7 +120,7 @@ export default function Partners() {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Trusted Partners</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              We've established strong relationships with industry-leading manufacturers 
+              We've established strong relationships with industry-leading manufacturers
               to ensure reliable supply and competitive pricing.
             </p>
           </div>
@@ -159,9 +159,9 @@ export default function Partners() {
                         <p className="text-gray-600 text-sm mb-4">{company.description}</p>
                       )}
                       {company.website && (
-                        <a 
-                          href={company.website} 
-                          target="_blank" 
+                        <a
+                          href={company.website}
+                          target="_blank"
                           rel="noopener noreferrer"
                           className="text-emerald-600 text-sm flex items-center gap-1 hover:underline"
                         >
@@ -269,7 +269,7 @@ export default function Partners() {
             Become a Partner
           </h2>
           <p className="text-xl text-emerald-100 mb-8">
-            Whether you're a manufacturer looking to expand your reach or a business 
+            Whether you're a manufacturer looking to expand your reach or a business
             seeking reliable supply, we'd love to work with you.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

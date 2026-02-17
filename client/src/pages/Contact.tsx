@@ -11,10 +11,10 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
+import {
+  Phone,
+  Mail,
+  MapPin,
   Clock,
   Send,
   Building2,
@@ -104,7 +104,7 @@ export default function Contact() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white pt-32 pb-16">
+      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white pb-20 pt-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeIn} className="text-center max-w-3xl mx-auto">
             <Badge className="bg-emerald-500/20 text-emerald-200 border-emerald-400/30 mb-6">
@@ -114,7 +114,7 @@ export default function Contact() {
               Get in <span className="text-emerald-400">Touch</span>
             </h1>
             <p className="text-xl text-emerald-100">
-              Have questions about our products or need a quote? 
+              Have questions about our products or need a quote?
               We're here to help you find the right solution.
             </p>
           </motion.div>
@@ -129,7 +129,7 @@ export default function Contact() {
             <div className="lg:col-span-1 space-y-6">
               <motion.div {...fadeIn}>
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
-                
+
                 {/* Canada Office */}
                 <Card className="mb-6">
                   <CardContent className="p-6">
@@ -138,8 +138,8 @@ export default function Contact() {
                       <div>
                         <h3 className="font-semibold text-gray-900">Canada Office</h3>
                         <p className="text-emerald-600 text-sm mb-2">Shashvat Polymers Ltd</p>
-                        <a 
-                          href="tel:+19058132169" 
+                        <a
+                          href="tel:+19058132169"
                           className="flex items-center gap-2 text-gray-600 hover:text-emerald-600 mb-1"
                         >
                           <Phone className="h-4 w-4" />
@@ -158,8 +158,8 @@ export default function Contact() {
                       <div>
                         <h3 className="font-semibold text-gray-900">India Office</h3>
                         <p className="text-emerald-600 text-sm mb-2">Shashvat Plastics LLP</p>
-                        <a 
-                          href="tel:+919820191117" 
+                        <a
+                          href="tel:+919820191117"
                           className="flex items-center gap-2 text-gray-600 hover:text-emerald-600 mb-1"
                         >
                           <Phone className="h-4 w-4" />
@@ -179,8 +179,8 @@ export default function Contact() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">Email Us</h3>
-                        <a 
-                          href="mailto:info@shashvattrading.com" 
+                        <a
+                          href="mailto:info@shashvattrading.com"
                           className="text-emerald-600 hover:underline"
                         >
                           info@shashvattrading.com
@@ -307,9 +307,9 @@ export default function Contact() {
                       />
                     </div>
 
-                    <Button 
-                      type="submit" 
-                      size="lg" 
+                    <Button
+                      type="submit"
+                      size="lg"
                       className="w-full bg-emerald-600 hover:bg-emerald-700"
                       disabled={mutation.isPending}
                     >

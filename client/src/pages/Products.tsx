@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,10 +8,10 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { useState, useMemo, useCallback } from "react";
-import { 
-  ArrowRight, 
-  Search, 
-  Package, 
+import {
+  ArrowRight,
+  Search,
+  Package,
   X,
   Phone,
   MessageCircle
@@ -42,14 +42,14 @@ export default function Products() {
 
   const filteredProducts = useMemo(() => {
     return products.filter((item: any) => {
-      const matchesSearch = 
+      const matchesSearch =
         item.product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.product.shortDescription?.toLowerCase().includes(searchQuery.toLowerCase());
-      
-      const matchesCategory = !selectedCategory || 
+
+      const matchesCategory = !selectedCategory ||
         item.categories?.some((cat: any) => cat.id.toString() === selectedCategory);
-      
-      const matchesCompany = !selectedCompany || 
+
+      const matchesCompany = !selectedCompany ||
         item.company?.id.toString() === selectedCompany;
 
       return matchesSearch && matchesCategory && matchesCompany;
@@ -103,7 +103,7 @@ export default function Products() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white py-20">
+      <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white pb-20 pt-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeIn} className="text-center max-w-3xl mx-auto">
             <Badge className="bg-emerald-500/20 text-emerald-200 border-emerald-400/30 mb-6">
@@ -113,7 +113,7 @@ export default function Products() {
               Premium <span className="text-emerald-400">Plastic Resins</span>
             </h1>
             <p className="text-xl text-emerald-100">
-              Explore our comprehensive range of virgin, near-prime, and reprocessed 
+              Explore our comprehensive range of virgin, near-prime, and reprocessed
               commodity plastics from leading global manufacturers.
             </p>
           </motion.div>
@@ -199,18 +199,19 @@ export default function Products() {
                 <motion.div
                   key={item.product.id}
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
+                  viewport={{ once: true }}
                 >
-                  <div 
+                  <div
                     onClick={() => handleProductClick(item.product.slug)}
                     className="cursor-pointer"
                   >
                     <Card className="h-full hover:shadow-lg transition-all cursor-pointer group">
                       <div className="aspect-video bg-gray-100 relative overflow-hidden">
                         {item.product.heroImage ? (
-                          <img 
-                            src={item.product.heroImage} 
+                          <img
+                            src={item.product.heroImage}
                             alt={item.product.name}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                           />

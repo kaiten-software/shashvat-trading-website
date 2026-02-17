@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Plus, Pencil, Trash2, FolderTree, ArrowLeft } from "lucide-react";
@@ -116,6 +116,9 @@ export default function AdminCategories() {
             <DialogContent className="max-w-md">
               <DialogHeader>
                 <DialogTitle>{editingItem ? "Edit Category" : "Add New Category"}</DialogTitle>
+                <DialogDescription>
+                  {editingItem ? "Update category details and image." : "Add a new product category with an image."}
+                </DialogDescription>
               </DialogHeader>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>

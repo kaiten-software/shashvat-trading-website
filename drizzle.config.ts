@@ -1,4 +1,3 @@
-
 import { defineConfig } from 'drizzle-kit';
 import * as dotenv from 'dotenv';
 
@@ -13,6 +12,6 @@ export default defineConfig({
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
     database: process.env.DB_NAME || 'shashvat_trading',
-    port: Number(process.env.DB_PORT) || 3306,
+    port: parseInt(process.env.DB_PORT || '3306'),
   },
 });

@@ -74,28 +74,36 @@ export default function FeaturedProducts() {
               viewport={{ once: true }}
             >
               <Link href={`/products/${item.product.slug}`}>
-                <Card className="h-full hover:shadow-lg transition-all cursor-pointer group overflow-hidden flex flex-col">
-                  <div className="aspect-[4/3] bg-white border-b border-gray-100 relative overflow-hidden flex items-center justify-center p-2">
+                <Card className="h-full hover:shadow-lg transition-all cursor-pointer group overflow-hidden">
+                  <div className="aspect-video bg-gray-100 relative overflow-hidden">
                     {item.product.heroImage ? (
                       <img
                         src={item.product.heroImage}
                         alt={item.product.name}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gray-50">
-                        <Package className="h-12 w-12 text-gray-300" />
+                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50">
+                        <Package className="h-12 w-12 text-emerald-300" />
                       </div>
                     )}
                     {item.company && (
-                      <Badge className="absolute top-3 left-3 bg-white/90 text-gray-700 shadow-sm border border-gray-100">
+                      <Badge className="absolute top-3 left-3 bg-white/90 text-gray-700">
                         {item.company.name}
                       </Badge>
                     )}
                   </div>
-                  <CardContent className="p-4 flex-1 flex flex-col">
+                  <CardContent className="p-5">
+                    <h3 className="font-semibold text-lg text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
+                      {item.product.name}
+                    </h3>
+                    {item.product.shortDescription && (
+                      <p className="text-gray-600 text-sm line-clamp-2 mb-3">
+                        {item.product.shortDescription}
+                      </p>
+                    )}
                     {item.categories && item.categories.length > 0 && (
-                      <div className="flex flex-wrap gap-1 mb-2">
+                      <div className="flex flex-wrap gap-1 mb-3">
                         {item.categories.slice(0, 2).map((cat: any) => (
                           <Badge key={cat.id} variant="outline" className="text-xs">
                             {cat.name}
@@ -103,15 +111,7 @@ export default function FeaturedProducts() {
                         ))}
                       </div>
                     )}
-                    <h3 className="font-semibold text-lg text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors line-clamp-2">
-                      {item.product.name}
-                    </h3>
-                    {item.product.shortDescription && (
-                      <p className="text-gray-600 text-sm line-clamp-2">
-                        {item.product.shortDescription}
-                      </p>
-                    )}
-                    <div className="flex items-center text-emerald-600 text-sm font-medium group-hover:translate-x-1 transition-transform pt-2 border-t border-gray-50 mt-auto">
+                    <div className="flex items-center text-emerald-600 text-sm font-medium group-hover:translate-x-1 transition-transform">
                       View Details <ArrowRight className="ml-1 h-4 w-4" />
                     </div>
                   </CardContent>

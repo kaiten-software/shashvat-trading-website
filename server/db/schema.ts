@@ -137,6 +137,7 @@ export const inquiries = mysqlTable("inquiries", {
   email: varchar("email", { length: 255 }).notNull(),
   phone: varchar("phone", { length: 50 }),
   company: varchar("company", { length: 255 }),
+  city: varchar("city", { length: 255 }),
   productId: int("product_id"),
   message: text("message").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
@@ -150,6 +151,7 @@ export const callbackRequests = mysqlTable("callback_requests", {
   phone: varchar("phone", { length: 50 }).notNull(),
   city: varchar("city", { length: 255 }).notNull(),
   requirement: text("requirement"),
+  status: varchar("status", { length: 50 }).default("new"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 

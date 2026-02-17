@@ -7,7 +7,6 @@ import { useAuth } from "@/hooks/use-auth";
 export default function Navigation() {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [resourcesOpen, setResourcesOpen] = useState(false);
   const { isAuthenticated, user, logout } = useAuth();
 
   const navLinks = [
@@ -19,12 +18,7 @@ export default function Navigation() {
     { name: "Contact", path: "/contact" }
   ];
 
-  const resourceLinks = [
-    { name: "Product Catalog", path: "/products" },
-    { name: "Technical Data Sheets", path: "/contact" },
-    { name: "Industry Applications", path: "/about" },
-    { name: "Request Sample", path: "/contact" }
-  ];
+
 
   const isActive = (path: string) => location === path;
 
@@ -48,20 +42,19 @@ export default function Navigation() {
               </div>
             </div>
           </Link>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link 
+              <Link
                 key={link.path}
                 href={link.path}
               >
-                <span 
-                  className={`text-sm font-medium transition-colors relative cursor-pointer ${
-                    isActive(link.path) 
-                      ? 'text-green-600' 
+                <span
+                  className={`text-sm font-medium transition-colors relative cursor-pointer ${isActive(link.path)
+                      ? 'text-green-600'
                       : 'text-muted-foreground hover:text-foreground'
-                  }`}
+                    }`}
                 >
                   {link.name}
                   {isActive(link.path) && (
@@ -71,34 +64,7 @@ export default function Navigation() {
               </Link>
             ))}
 
-            {/* Resources Dropdown */}
-            <div className="relative group">
-              <button 
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
-                onMouseEnter={() => setResourcesOpen(true)}
-                onMouseLeave={() => setResourcesOpen(false)}
-              >
-                Resources
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              {resourcesOpen && (
-                <div 
-                  className="absolute top-full left-0 pt-2 w-56 z-50"
-                  onMouseEnter={() => setResourcesOpen(true)}
-                  onMouseLeave={() => setResourcesOpen(false)}
-                >
-                  <div className="bg-white rounded-lg shadow-xl border border-green-100 py-2">
-                    {resourceLinks.map((link) => (
-                      <Link key={link.name} href={link.path}>
-                        <span className="block px-4 py-2 text-sm text-muted-foreground hover:text-green-600 hover:bg-green-50 transition-colors cursor-pointer">
-                          {link.name}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+
           </div>
 
           {/* CTA Buttons */}
@@ -127,7 +93,7 @@ export default function Navigation() {
                         Admin Dashboard
                       </span>
                     </Link>
-                    <button 
+                    <button
                       onClick={logout}
                       className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
                     >
@@ -161,16 +127,15 @@ export default function Navigation() {
           <div className="lg:hidden py-4 border-t border-green-100">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
-                <Link 
+                <Link
                   key={link.path}
                   href={link.path}
                 >
-                  <span 
-                    className={`text-base transition-colors block cursor-pointer ${
-                      isActive(link.path) 
-                        ? 'text-green-600 font-semibold' 
+                  <span
+                    className={`text-base transition-colors block cursor-pointer ${isActive(link.path)
+                        ? 'text-green-600 font-semibold'
                         : 'text-muted-foreground hover:text-foreground'
-                    }`}
+                      }`}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.name}
@@ -182,14 +147,14 @@ export default function Navigation() {
               {isAuthenticated ? (
                 <div className="pt-2 border-t border-gray-100">
                   <Link href="/admin">
-                    <span 
+                    <span
                       className="text-base text-green-600 font-medium block cursor-pointer"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       Admin Dashboard
                     </span>
                   </Link>
-                  <button 
+                  <button
                     onClick={() => {
                       logout();
                       setMobileMenuOpen(false);
@@ -202,7 +167,7 @@ export default function Navigation() {
               ) : (
                 <div className="pt-2 border-t border-gray-100">
                   <Link href="/admin/login">
-                    <span 
+                    <span
                       className="text-base text-muted-foreground hover:text-green-600 block cursor-pointer"
                       onClick={() => setMobileMenuOpen(false)}
                     >

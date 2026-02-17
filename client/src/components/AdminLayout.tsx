@@ -30,20 +30,16 @@ export default function AdminLayout({ children, title, description }: AdminLayou
   const { user, logout, isAdmin } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const allMenuItems = [
-    { href: '/admin', icon: LayoutDashboard, label: 'Dashboard', roles: ['admin', 'editor', 'viewer'] },
-    { href: '/admin/companies', icon: Building2, label: 'Companies', roles: ['admin'] },
-    { href: '/admin/categories', icon: FolderTree, label: 'Categories', roles: ['admin'] },
-    { href: '/admin/features', icon: Sparkles, label: 'Features', roles: ['admin'] },
-    { href: '/admin/applications', icon: Factory, label: 'Applications', roles: ['admin'] },
-    { href: '/admin/products', icon: Package, label: 'Products', roles: ['admin'] },
-    { href: '/admin/blog', icon: FileText, label: 'Blog', roles: ['admin', 'editor'] },
-    { href: '/admin/users', icon: Users, label: 'Users', roles: ['admin'] },
+  const menuItems = [
+    { href: '/admin', icon: LayoutDashboard, label: 'Dashboard' },
+    { href: '/admin/companies', icon: Building2, label: 'Companies' },
+    { href: '/admin/categories', icon: FolderTree, label: 'Categories' },
+    { href: '/admin/features', icon: Sparkles, label: 'Features' },
+    { href: '/admin/applications', icon: Factory, label: 'Applications' },
+    { href: '/admin/products', icon: Package, label: 'Products' },
+    { href: '/admin/blog', icon: FileText, label: 'Blog' },
+    ...(isAdmin ? [{ href: '/admin/users', icon: Users, label: 'Users' }] : []),
   ];
-
-  const menuItems = allMenuItems.filter(item => 
-    user?.role ? item.roles.includes(user.role) : false
-  );
 
   const handleLogout = () => {
     logout();

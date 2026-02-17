@@ -1,15 +1,13 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Phone, Mail, MapPin, Calendar, MessageSquare, User, ArrowLeft, Building2, Trash2 } from "lucide-react";
+import { Phone, Mail, MapPin, Calendar, MessageSquare, User, ArrowLeft, Building2 } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
-import { useToast } from "@/hooks/use-toast";
 
 export default function AdminCallbacks() {
     const { token } = useAuth();
-    const { toast } = useToast();
 
     const { data: submissions, isLoading } = useQuery<any[]>({
         queryKey: ["callbackSubmissions"],
@@ -23,36 +21,6 @@ export default function AdminCallbacks() {
             return res.json();
         },
         enabled: !!token,
-    });
-
-    const queryClient = useQueryClient();
-
-    const deleteMutation = useMutation({
-        mutationFn: async (id: number) => {
-            const res = await fetch(`/api/callbacks/${id}`, {
-                method: "DELETE",
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            });
-            if (!res.ok) throw new Error("Failed to delete");
-            return res.json();
-        },
-        onSuccess: (_, id) => {
-            queryClient.setQueryData(["callbackSubmissions"], (old: any[]) => old?.filter(item => item.id !== id));
-            queryClient.invalidateQueries({ queryKey: ["callbackSubmissions"] });
-            toast({
-                title: "Deleted",
-                description: "Callback request has been deleted.",
-            });
-        },
-        onError: () => {
-            toast({
-                title: "Error",
-                description: "Failed to delete request.",
-                variant: "destructive",
-            });
-        }
     });
 
     return (
@@ -112,18 +80,6 @@ export default function AdminCallbacks() {
                                                     Call Now
                                                 </Button>
                                             </a>
-                                            <Button
-                                                size="sm"
-                                                variant="destructive"
-                                                onClick={() => {
-                                                    if (confirm('Are you sure you want to delete this callback request?')) {
-                                                        deleteMutation.mutate(sub.id);
-                                                    }
-                                                }}
-                                                disabled={deleteMutation.isPending}
-                                            >
-                                                <Trash2 className="h-4 w-4" />
-                                            </Button>
                                         </div>
                                     </div>
                                 </CardHeader>

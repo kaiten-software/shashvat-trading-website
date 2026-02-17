@@ -3,20 +3,11 @@ import { Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Building2, FolderTree, Sparkles, Factory, Package, FileText, Settings, ArrowRight, LayoutDashboard, MessageSquare } from "lucide-react";
-import { useAuth } from "@/hooks/use-auth";
 
 export default function AdminDashboard() {
-  const { user } = useAuth();
-  const isEditor = user?.role === 'editor';
-
   const { data: stats } = useQuery({
     queryKey: ["adminStats"],
     queryFn: async () => {
-      if (isEditor) {
-        // Editor only needs blog stats
-        const posts = await fetch("/api/blog/posts").then(r => r.json());
-        return { posts: posts.length || 0 };
-      }
       const [companies, categories, features, applications, products, posts] = await Promise.all([
         fetch("/api/companies").then(r => r.json()),
         fetch("/api/categories").then(r => r.json()),
@@ -36,18 +27,14 @@ export default function AdminDashboard() {
     },
   });
 
-  const allMenuItems = [
-    { href: "/admin/companies", icon: Building2, label: "Companies", desc: "Manage manufacturers", count: stats?.companies, roles: ['admin'] },
-    { href: "/admin/categories", icon: FolderTree, label: "Categories", desc: "Product categories", count: stats?.categories, roles: ['admin'] },
-    { href: "/admin/features", icon: Sparkles, label: "Features", desc: "Product features", count: stats?.features, roles: ['admin'] },
-    { href: "/admin/applications", icon: Factory, label: "Applications", desc: "Industry applications", count: stats?.applications, roles: ['admin'] },
-    { href: "/admin/products", icon: Package, label: "Products", desc: "Manage products", count: stats?.products, roles: ['admin'] },
-    { href: "/admin/blog", icon: FileText, label: "Blog", desc: "Manage posts", count: stats?.posts, roles: ['admin', 'editor'] },
+  const menuItems = [
+    { href: "/admin/companies", icon: Building2, label: "Companies", desc: "Manage manufacturers", count: stats?.companies },
+    { href: "/admin/categories", icon: FolderTree, label: "Categories", desc: "Product categories", count: stats?.categories },
+    { href: "/admin/features", icon: Sparkles, label: "Features", desc: "Product features", count: stats?.features },
+    { href: "/admin/applications", icon: Factory, label: "Applications", desc: "Industry applications", count: stats?.applications },
+    { href: "/admin/products", icon: Package, label: "Products", desc: "Manage products", count: stats?.products },
+    { href: "/admin/blog", icon: FileText, label: "Blog", desc: "Manage posts", count: stats?.posts },
   ];
-
-  const menuItems = allMenuItems.filter(item => 
-    user?.role ? item.roles.includes(user.role) : false
-  );
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -92,8 +79,7 @@ export default function AdminDashboard() {
           ))}
         </div>
 
-        {/* Callback Requests - Minimal Navigation (Admin only) */}
-        {!isEditor && (
+        {/* Callback Requests - Minimal Navigation */}
         <Link href="/admin/callbacks">
           <Card className="mb-8 cursor-pointer hover:shadow-lg transition-shadow group border-emerald-100">
             <CardContent className="p-6">
@@ -112,7 +98,6 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
         </Link>
-        )}
 
         {/* Management Sections */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -141,23 +126,14 @@ export default function AdminDashboard() {
         <Card className="mt-8 bg-gradient-to-r from-emerald-50 to-teal-50 border-emerald-200">
           <CardContent className="py-6">
             <h3 className="font-semibold text-emerald-900 mb-3">Quick Tips</h3>
-            {isEditor ? (
-              <ul className="grid md:grid-cols-2 gap-2 text-sm text-emerald-800">
-                <li className="flex items-center gap-2">✓ Write blog posts for SEO</li>
-                <li className="flex items-center gap-2">✓ Add featured images for better engagement</li>
-                <li className="flex items-center gap-2">✓ Use SEO titles and descriptions</li>
-                <li className="flex items-center gap-2">✓ Publish when ready or save as draft</li>
-              </ul>
-            ) : (
-              <ul className="grid md:grid-cols-2 gap-2 text-sm text-emerald-800">
-                <li className="flex items-center gap-2">✓ Add companies first (manufacturers like LG, Formosa)</li>
-                <li className="flex items-center gap-2">✓ Create categories (PP, PE, PVC, etc.)</li>
-                <li className="flex items-center gap-2">✓ Add features and applications</li>
-                <li className="flex items-center gap-2">✓ Then create products linking them together</li>
-                <li className="flex items-center gap-2">✓ Write blog posts for SEO</li>
-                <li className="flex items-center gap-2">✓ Upload PDFs for product datasheets</li>
-              </ul>
-            )}
+            <ul className="grid md:grid-cols-2 gap-2 text-sm text-emerald-800">
+              <li className="flex items-center gap-2">✓ Add companies first (manufacturers like LG, Formosa)</li>
+              <li className="flex items-center gap-2">✓ Create categories (PP, PE, PVC, etc.)</li>
+              <li className="flex items-center gap-2">✓ Add features and applications</li>
+              <li className="flex items-center gap-2">✓ Then create products linking them together</li>
+              <li className="flex items-center gap-2">✓ Write blog posts for SEO</li>
+              <li className="flex items-center gap-2">✓ Upload PDFs for product datasheets</li>
+            </ul>
           </CardContent>
         </Card>
       </div>

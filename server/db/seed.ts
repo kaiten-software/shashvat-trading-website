@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { db, poolConnection } from './index';
-import { users, companies, categories, features, applications, products, productCategories, productFeatures, productApplications, blogPosts, productDocuments, productImages, inquiries, callbackRequests } from './schema';
+import { users, companies, categories, features, applications, products, productCategories, productFeatures, productApplications, blogPosts } from './schema';
 import bcrypt from 'bcryptjs';
 
 async function seed() {
@@ -9,7 +9,6 @@ async function seed() {
   try {
     // Clear existing data in reverse order of dependencies
     console.log('Clearing existing data...');
-    await db.delete(productDocuments);
     await db.delete(productApplications);
     await db.delete(productFeatures);
     await db.delete(productCategories);
@@ -68,10 +67,10 @@ async function seed() {
       { name: 'Polypropylene (PP)', slug: 'polypropylene-pp', description: 'Versatile thermoplastic polymer used in packaging, automotive, and consumer goods.' },
       { name: 'Polyethylene (PE)', slug: 'polyethylene-pe', description: 'Most common plastic, includes LDPE, LLDPE, HDPE variants.' },
       { name: 'PVC', slug: 'pvc', description: 'Polyvinyl chloride for construction, pipes, and flexible applications.' },
-      { name: 'ABS Resins', slug: 'abs-products', description: 'Acrylonitrile butadiene styrene for electronics and automotive.' },
+      { name: 'ABS Resins', slug: 'abs-resins', description: 'Acrylonitrile butadiene styrene for electronics and automotive.' },
       { name: 'Polystyrene (PS)', slug: 'polystyrene-ps', description: 'Includes GPPS and HIPS for packaging and disposables.' },
       { name: 'Engineering Plastics', slug: 'engineering-plastics', description: 'High-performance plastics including PC, PA, POM, PBT.' },
-      { name: 'PET Resins', slug: 'pet-products', description: 'Polyethylene terephthalate for bottles and packaging.' },
+      { name: 'PET Resins', slug: 'pet-resins', description: 'Polyethylene terephthalate for bottles and packaging.' },
       { name: 'Masterbatch', slug: 'masterbatch', description: 'Concentrated color and additive compounds.' },
       { name: 'LDPE', slug: 'ldpe', description: 'Low-density polyethylene for films and flexible packaging.' },
       { name: 'HDPE', slug: 'hdpe', description: 'High-density polyethylene for rigid containers and pipes.' },
@@ -209,142 +208,7 @@ async function seed() {
                 <li style="padding: 10px 0; border-left: 3px solid #e5e7eb; padding-left: 16px; margin-bottom: 8px;">
                   <strong style="color: #1e40af;">Superior Surface Quality</strong><br>
                   <span style="color: #374151;">High gloss and smooth finish</span>
-                </li>on } from './index';
-import { users, companies, categories, features, applications, products, productCategories, productFeatures, productApplications, blogPosts, productDocuments } from './schema';
-import bcrypt from 'bcryptjs';
-
-async function seed() {
-  console.log('🌱 Starting database seed...');
-
-  try {
-    // Clear existing data in reverse order of dependencies
-    console.log('Clearing existing data...');
-    await db.delete(productDocuments);
-    await db.delete(productApplications);
-    await db.delete(productFeatures);
-    await db.delete(productCategories);
-    await db.delete(products);
-    await db.delete(blogPosts);
-    await db.delete(applications);
-    await db.delete(features);
-    await db.delete(categories);
-    await db.delete(companies);
-    await db.delete(users);
-
-    // Seed Admin User
-    console.log('Seeding admin user...');
-    const hashedPassword = await bcrypt.hash('admin123', 10);
-    await db.insert(users).values({
-      email: 'admin@shashvattrading.com',
-      password: hashedPassword,
-      name: 'Admin User',
-      role: 'admin',
-      isActive: true,
-    });
-
-    // Seed Editor User
-    await db.insert(users).values({
-      email: 'editor@shashvattrading.com',
-      password: await bcrypt.hash('editor123', 10),
-      name: 'Content Editor',
-      role: 'editor',
-      isActive: true,
-    });
-
-    // Seed Companies (Manufacturers)
-    console.log('Seeding companies...');
-    const companyData = [
-      { name: 'LG Chem', description: 'Global chemical company producing a wide range of polymers and plastics.', website: 'https://www.lgchem.com' },
-      { name: 'Formosa Plastics', description: 'One of the world\'s largest producers of PVC and polyethylene.', website: 'https://www.fpcusa.com' },
-      { name: 'SABIC', description: 'Saudi Basic Industries Corporation - global leader in diversified chemicals.', website: 'https://www.sabic.com' },
-      { name: 'Reliance Industries', description: 'India\'s largest producer of polypropylene and polyethylene.', website: 'https://www.ril.com' },
-      { name: 'Dow Chemical', description: 'American multinational chemical corporation.', website: 'https://www.dow.com' },
-      { name: 'ExxonMobil', description: 'One of the world\'s largest producers of polyethylene and polypropylene.', website: 'https://www.exxonmobil.com' },
-      { name: 'BASF', description: 'German multinational chemical company and the largest chemical producer in the world.', website: 'https://www.basf.com' },
-      { name: 'Braskem', description: 'Brazilian petrochemical company and the largest producer of thermoplastic resins in the Americas.', website: 'https://www.braskem.com' },
-      { name: 'IRPC', description: 'Thailand\'s leading integrated petrochemical company producing POLIMAXX ABS and other polymers.', website: 'https://www.irpc.co.th' },
-      { name: 'Trinseo', description: 'Global materials solutions provider specializing in plastics, latex binders, and synthetic rubber.', website: 'https://www.trinseo.com' },
-      { name: 'INEOS Styrolution', description: 'The world\'s leading styrenics supplier with a focus on customer-centric innovation.', website: 'https://www.ineos-styrolution.com' },
-      { name: 'Chi Mei', description: 'Leading Taiwanese manufacturer of ABS and engineering plastics.', website: 'https://www.chimeicorp.com' },
-    ];
-
-    for (const company of companyData) {
-      await db.insert(companies).values(company);
-    }
-
-    // Seed Categories
-    console.log('Seeding categories...');
-    const categoryData = [
-      { name: 'Polypropylene (PP)', slug: 'polypropylene-pp', description: 'Versatile thermoplastic polymer used in packaging, automotive, and consumer goods.' },
-      { name: 'Polyethylene (PE)', slug: 'polyethylene-pe', description: 'Most common plastic, includes LDPE, LLDPE, HDPE variants.' },
-      { name: 'PVC', slug: 'pvc', description: 'Polyvinyl chloride for construction, pipes, and flexible applications.' },
-      { name: 'ABS Resins', slug: 'abs-products', description: 'Acrylonitrile butadiene styrene for electronics and automotive.' },
-      { name: 'Polystyrene (PS)', slug: 'polystyrene-ps', description: 'Includes GPPS and HIPS for packaging and disposables.' },
-      { name: 'Engineering Plastics', slug: 'engineering-plastics', description: 'High-performance plastics including PC, PA, POM, PBT.' },
-      { name: 'PET Resins', slug: 'pet-products', description: 'Polyethylene terephthalate for bottles and packaging.' },
-      { name: 'Masterbatch', slug: 'masterbatch', description: 'Concentrated color and additive compounds.' },
-      { name: 'LDPE', slug: 'ldpe', description: 'Low-density polyethylene for films and flexible packaging.' },
-      { name: 'HDPE', slug: 'hdpe', description: 'High-density polyethylene for rigid containers and pipes.' },
-      { name: 'LLDPE', slug: 'lldpe', description: 'Linear low-density polyethylene for stretch films.' },
-      { name: 'PC (Polycarbonate)', slug: 'polycarbonate', description: 'High-impact transparent engineering plastic.' },
-    ];
-
-    for (const category of categoryData) {
-      await db.insert(categories).values(category);
-    }
-
-    // Seed Features
-    console.log('Seeding features...');
-    const featureData = [
-      { name: 'High Impact Resistance', slug: 'high-impact-resistance', description: 'Excellent resistance to physical impact and stress.' },
-      { name: 'UV Stabilized', slug: 'uv-stabilized', description: 'Protected against ultraviolet radiation damage.' },
-      { name: 'Food Grade', slug: 'food-grade', description: 'Safe for food contact applications.' },
-      { name: 'Flame Retardant', slug: 'flame-retardant', description: 'Meets fire safety standards and regulations.' },
-      { name: 'Chemical Resistant', slug: 'chemical-resistant', description: 'Resistant to various chemicals and solvents.' },
-      { name: 'High Clarity', slug: 'high-clarity', description: 'Excellent optical transparency.' },
-      { name: 'High Flow', slug: 'high-flow', description: 'Easy processing with high melt flow index.' },
-      { name: 'Recyclable', slug: 'recyclable', description: 'Can be recycled after use.' },
-      { name: 'Anti-Static', slug: 'anti-static', description: 'Prevents static charge buildup.' },
-      { name: 'Weather Resistant', slug: 'weather-resistant', description: 'Suitable for outdoor applications.' },
-      { name: 'Heat Resistant', slug: 'heat-resistant', description: 'Maintains properties at elevated temperatures.' },
-      { name: 'Low Odor', slug: 'low-odor', description: 'Minimal odor for sensitive applications.' },
-    ];
-
-    for (const feature of featureData) {
-      await db.insert(features).values(feature);
-    }
-
-    // Seed Applications
-    console.log('Seeding applications...');
-    const applicationData = [
-      { name: 'Automotive', slug: 'automotive', description: 'Interior and exterior automotive components.' },
-      { name: 'Packaging', slug: 'packaging', description: 'Flexible and rigid packaging solutions.' },
-      { name: 'Construction', slug: 'construction', description: 'Building materials and infrastructure.' },
-      { name: 'Electronics', slug: 'electronics', description: 'Electronic housings and components.' },
-      { name: 'Consumer Goods', slug: 'consumer-goods', description: 'Household items and appliances.' },
-      { name: 'Medical', slug: 'medical', description: 'Medical devices and healthcare products.' },
-      { name: 'Agriculture', slug: 'agriculture', description: 'Agricultural films and irrigation systems.' },
-      { name: 'Textiles', slug: 'textiles', description: 'Fibers and textile applications.' },
-      { name: 'Pipes & Fittings', slug: 'pipes-fittings', description: 'Plumbing and industrial piping.' },
-      { name: 'Film & Sheet', slug: 'film-sheet', description: 'Films and sheet extrusion applications.' },
-      { name: 'Injection Molding', slug: 'injection-molding', description: 'Parts made via injection molding process.' },
-      { name: 'Blow Molding', slug: 'blow-molding', description: 'Bottles and hollow containers.' },
-    ];
-
-    for (const app of applicationData) {
-      await db.insert(applications).values(app);
-    }
-
-    // Get inserted IDs
-    const insertedCompanies = await db.select().from(companies);
-    const insertedCategories = await db.select().from(categories);
-    const insertedFeatures = await db.select().from(features);
-    const insertedApplications = await db.select().from(applications);
-
-    const getCompanyId = (name: string) => insertedCompanies.find(c => c.name === name)!.id;
-    const getCategoryId = (name: string) => insertedCategories.find(c => c.name === name)?.id;
-    const getFeatureId = (name: string) => insertedFeatures.find(f => f.name === name)?.id;
-    const getApplicationId = (name: string) => inserte
+                </li>
                 <li style="padding: 10px 0; border-left: 3px solid #e5e7eb; padding-left: 16px; margin-bottom: 8px;">
                   <strong style="color: #1e40af;">Good Stiffness</strong><br>
                   <span style="color: #374151;">Ensures dimensional stability</span>
@@ -389,7 +253,7 @@ async function seed() {
       {
         companyId: getCompanyId('Reliance Industries'),
         name: 'Repol PP H030SG',
-        slug: 'reliance-repol-pp-h030sg',
+        slug: 'reliance-repol-pp-h030sg-polypropylene-resin',
         shortDescription: 'General purpose polypropylene homopolymer offering versatility for injection molding, extrusion, and fiber applications.',
         seoTitle: 'Repol PP H030SG – Polypropylene Homopolymer | Shashvat Trading',
         seoDescription: 'Versatile polypropylene homopolymer for raffia, injection molding, and textile applications. Offers consistent processing, good stiffness, and broad application suitability.',
@@ -482,7 +346,7 @@ async function seed() {
       {
         companyId: getCompanyId('SABIC'),
         name: 'SABIC PP 500P',
-        slug: 'sabic-pp-500p',
+        slug: 'sabic-pp-500p-polypropylene-resin',
         shortDescription: 'High-stiffness polypropylene homopolymer designed for rigid packaging and demanding automotive applications.',
         seoTitle: 'SABIC PP 500P – Polypropylene Homopolymer | Shashvat Trading',
         seoDescription: 'High-stiffness polypropylene homopolymer designed for rigid packaging and furniture. Features excellent heat resistance, dimensional stability, and toughness.',
@@ -574,7 +438,7 @@ async function seed() {
       {
         companyId: getCompanyId('ExxonMobil'),
         name: 'Achieve PP 3854',
-        slug: 'exxonmobil-achieve-pp-3854',
+        slug: 'exxonmobil-achieve-pp-3854-polypropylene-resin',
         shortDescription: 'Impact copolymer PP with exceptional low-temperature impact properties for automotive and appliance applications.',
         seoTitle: 'Achieve PP 3854 – Impact Copolymer Resin | Shashvat Trading',
         seoDescription: 'Advanced impact copolymer polypropylene offering exceptional low-temperature toughness and impact balance. Ideal for automotive, appliances, and durable goods.',
@@ -666,7 +530,7 @@ async function seed() {
       {
         companyId: getCompanyId('Braskem'),
         name: 'Braskem PP CP442XP',
-        slug: 'braskem-pp-cp442xp',
+        slug: 'braskem-pp-cp442xp-polypropylene-resin',
         shortDescription: 'Random copolymer PP offering exceptional optical clarity for transparent food packaging applications.',
         seoTitle: 'Braskem PP CP442XP – Random Copolymer PP | Shashvat Trading',
         seoDescription: 'High-clarity random copolymer polypropylene for transparent food containers. Features crystal clear optics, high flow, and excellent organoleptic properties.',
@@ -755,7 +619,7 @@ async function seed() {
       {
         companyId: getCompanyId('Formosa Plastics'),
         name: 'Formolene HDPE 5502',
-        slug: 'formosa-formolene-hdpe-5502',
+        slug: 'formosa-formolene-hdpe-5502-polyethylene-resin',
         heroImage: 'https://images.unsplash.com/photo-1591123720164-de1348b2c4da?auto=format&fit=crop&q=80&w=600',
         shortDescription: 'High-density polyethylene designed for blow molding of containers, bottles, and drums with excellent ESCR.',
         seoTitle: 'Formolene HDPE 5502 – HDPE Copolymer Resin | Shashvat Trading',
@@ -849,7 +713,7 @@ async function seed() {
       {
         companyId: getCompanyId('SABIC'),
         name: 'SABIC LLDPE 118W',
-        slug: 'sabic-lldpe-118w',
+        slug: 'sabic-lldpe-118w-polyethylene-resin',
         shortDescription: 'Linear low-density polyethylene for high-performance films.',
         seoTitle: 'SABIC LLDPE 118W – Linear Low Density PE | Shashvat Trading',
         seoDescription: 'Butene-grade linear low density polyethylene for general film applications. Offers excellent heat seal, puncture resistance, and balanced mechanical properties.',
@@ -942,7 +806,7 @@ async function seed() {
       {
         companyId: getCompanyId('Dow Chemical'),
         name: 'DOWLEX 2045G',
-        slug: 'dow-dowlex-2045g',
+        slug: 'dow-dowlex-2045g-polyethylene-resin',
         shortDescription: 'Premium octene-based LLDPE resin for heavy-duty bags and industrial packaging requiring superior toughness.',
         seoTitle: 'DOWLEX 2045G – Octene LLDPE Resin | Shashvat Trading',
         seoDescription: 'High-performance octene-based LLDPE for industrial packaging. Offers superior toughness, tear resistance, and sealability for heavy-duty applications.',
@@ -1035,7 +899,7 @@ async function seed() {
       {
         companyId: getCompanyId('ExxonMobil'),
         name: 'Exceed XP 8656',
-        slug: 'exxonmobil-exceed-xp-8656',
+        slug: 'exxonmobil-exceed-xp-8656-polyethylene-resin',
         shortDescription: 'Metallocene-catalyzed PE delivering exceptional clarity, toughness, and sealability for demanding film applications.',
         seoTitle: 'Exceed XP 8656 – Metallocene LLDPE | Shashvat Trading',
         seoDescription: 'Extreme performance metallocene polyethylene designed for film applications requiring superior toughness, flex-crack resistance, and sealability.',
@@ -1128,7 +992,7 @@ async function seed() {
       {
         companyId: getCompanyId('Reliance Industries'),
         name: 'Relene HDPE M60075',
-        slug: 'reliance-relene-hdpe-m60075',
+        slug: 'reliance-relene-hdpe-m60075-polyethylene-resin',
         shortDescription: 'HDPE designed for pressure pipe applications with excellent long-term hydrostatic strength and crack resistance.',
         seoTitle: 'Relene HDPE M60075 – PE100 Pipe Grade | Shashvat Trading',
         seoDescription: 'PE100 certified HDPE resin for pressure pipes. Features exceptional long-term hydrostatic strength (MRS 10.0) and resistance to slow crack growth.',
@@ -1221,7 +1085,7 @@ async function seed() {
       {
         companyId: getCompanyId('Braskem'),
         name: 'Braskem LDPE PB608',
-        slug: 'braskem-ldpe-pb608',
+        slug: 'braskem-ldpe-pb608-polyethylene-resin',
         shortDescription: 'LDPE resin offering excellent processability and optical properties for general purpose film applications.',
         seoTitle: 'Braskem LDPE PB608 – Low Density Polyethylene | Shashvat Trading',
         seoDescription: 'Versatile LDPE resin for general purpose films. Features excellent optical properties, processability, and balanced mechanical strength.',
@@ -1314,7 +1178,7 @@ async function seed() {
       {
         companyId: getCompanyId('Dow Chemical'),
         name: 'DOW LDPE 722',
-        slug: 'dow-ldpe-722',
+        slug: 'dow-ldpe-722-polyethylene-resin',
         shortDescription: 'Versatile LDPE for packaging film and extrusion coating applications with excellent clarity and seal strength.',
         seoTitle: 'DOW LDPE 722 – Extrusion Coating Resin | Shashvat Trading',
         seoDescription: 'Low density polyethylene designed for extrusion coating and lamination. Offers low neck-in, excellent adhesion, and good heat sealability.',
@@ -1408,7 +1272,7 @@ async function seed() {
       {
         companyId: getCompanyId('LG Chem'),
         name: 'LUPOY ABS GP-2200',
-        slug: 'lg-chem-lupoy-abs-gp-2200',
+        slug: 'lg-chem-lupoy-abs-gp-2200-resin',
         heroImage: 'https://images.unsplash.com/photo-1581093450021-4a717001fe81?auto=format&fit=crop&q=80&w=600',
         shortDescription: 'General purpose ABS resin with excellent surface quality and impact resistance for electronics and automotive.',
         seoTitle: 'LG Chem LUPOY ABS GP-2200 – General Purpose ABS | Shashvat Trading',
@@ -1502,7 +1366,7 @@ async function seed() {
       {
         companyId: getCompanyId('Chi Mei'),
         name: 'Chi Mei Polylac PA-757',
-        slug: 'chi-mei-polylac-pa-757',
+        slug: 'chi-mei-polylac-pa-757-abs-resin',
         heroImage: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600',
         shortDescription: 'High-gloss ABS for consumer electronics and appliances with superior surface finish and gloss retention.',
         seoTitle: 'Chi Mei Polylac PA-757 – High Gloss ABS Resin | Shashvat Trading',
@@ -1596,7 +1460,7 @@ async function seed() {
       {
         companyId: getCompanyId('INEOS Styrolution'),
         name: 'Terluran GP-22',
-        slug: 'ineos-terluran-gp-22',
+        slug: 'ineos-terluran-gp-22-abs-resin',
         shortDescription: 'Multi-purpose ABS with excellent balance of mechanical properties and processability for injection molding.',
         seoTitle: 'INEOS Terluran GP-22 – Standard ABS Resin | Shashvat Trading',
         seoDescription: 'Easy-flow ABS resin with high impact resistance and heat stability. The universal grade for cost-effective injection molding of housings and components.',
@@ -1689,7 +1553,7 @@ async function seed() {
       {
         companyId: getCompanyId('IRPC'),
         name: 'POLIMAXX ABS 320',
-        slug: 'irpc-polimaxx-abs-320',
+        slug: 'irpc-polimaxx-abs-320-resin',
         shortDescription: 'High-impact ABS designed for demanding automotive interior components with heat and UV resistance.',
         seoTitle: 'POLIMAXX ABS 320 – High Impact ABS | Shashvat Trading',
         seoDescription: 'High-impact ABS resin designed for injection molding. Features superior toughness and dimensional stability for automotive and industrial parts.',
@@ -1783,7 +1647,7 @@ async function seed() {
       {
         companyId: getCompanyId('Braskem'),
         name: 'Braskem PVC S67',
-        slug: 'braskem-pvc-s67',
+        slug: 'braskem-pvc-s67-resin',
         shortDescription: 'Suspension PVC resin designed for rigid pipe and profile extrusion with excellent weathering performance.',
         seoTitle: 'Braskem PVC S67 – Suspension PVC Resin | Shashvat Trading',
         seoDescription: 'Suspension PVC resin designed for rigid extrusion. Features excellent thermal stability, fast fusion, and good initial color. Ideal for pipes and profiles.',
@@ -1872,7 +1736,7 @@ async function seed() {
       {
         companyId: getCompanyId('Formosa Plastics'),
         name: 'Formosa PVC 6650',
-        slug: 'formosa-pvc-6650',
+        slug: 'formosa-pvc-6650-resin',
         shortDescription: 'General purpose PVC for flexible applications offering excellent processability and compound compatibility.',
         seoTitle: 'Formosa PVC 6650 – General Purpose PVC | Shashvat Trading',
         seoDescription: 'General purpose suspension PVC resin. Versatile grade suitable for both flexible and rigid applications, offering good plasticizer absorption and clarity.',
@@ -1958,7 +1822,7 @@ async function seed() {
       {
         companyId: getCompanyId('Formosa Plastics'),
         name: 'Formosa GPPS 535N',
-        slug: 'formosa-gpps-535n-polystyrene',
+        slug: 'formosa-gpps-535n-polystyrene-resin',
         shortDescription: 'Crystal-clear general purpose polystyrene for transparent packaging and disposables with FDA approval.',
         seoTitle: 'Formosa GPPS 535N – Crystal Polystyrene | Shashvat Trading',
         seoDescription: 'Crystal clear general purpose polystyrene (GPPS). Offers superior optical properties and flow for injection molding of transparent containers and medical ware.',
@@ -2051,7 +1915,7 @@ async function seed() {
       {
         companyId: getCompanyId('INEOS Styrolution'),
         name: 'Styrolution HIPS 486N',
-        slug: 'ineos-styrolution-hips-486n-polystyrene',
+        slug: 'ineos-styrolution-hips-486n-polystyrene-resin',
         shortDescription: 'High-impact polystyrene for refrigerator linings and packaging requiring excellent impact strength.',
         seoTitle: 'Styrolution HIPS 486N – High Impact Polystyrene | Shashvat Trading',
         seoDescription: 'High impact polystyrene (HIPS) designed for demanding extrusion and molding. Features superior toughness, stress crack resistance, and matt finish.',
@@ -2144,7 +2008,7 @@ async function seed() {
       {
         companyId: getCompanyId('Trinseo'),
         name: 'Styron 678E',
-        slug: 'trinseo-styron-678e-polystyrene',
+        slug: 'trinseo-styron-678e-polystyrene-resin',
         shortDescription: 'Crystal polystyrene with exceptional optical clarity for demanding applications.',
         seoTitle: 'Styron 678E – General Purpose Polystyrene | Shashvat Trading',
         seoDescription: 'General purpose polystyrene resin characterized by excellent flow and clarity. Ideal for thin-wall injection molding and complex transparent parts.',
@@ -2238,7 +2102,7 @@ async function seed() {
       {
         companyId: getCompanyId('BASF'),
         name: 'Ultramid B3WG6',
-        slug: 'basf-ultramid-b3wg6-polyamide',
+        slug: 'basf-ultramid-b3wg6-polyamide-resin',
         shortDescription: '30% glass fiber reinforced polyamide 6 for high-strength structural automotive and industrial parts.',
         seoTitle: 'BASF Ultramid B3WG6 – Glass Filled Nylon 6 | Shashvat Trading',
         seoDescription: '30% glass fiber reinforced Polyamide 6 (PA6). Delivers exceptional stiffness, strength, and heat resistance for structural automotive and industrial parts.',
@@ -2331,7 +2195,7 @@ async function seed() {
       {
         companyId: getCompanyId('SABIC'),
         name: 'LEXAN 141R',
-        slug: 'sabic-lexan-141r-polycarbonate',
+        slug: 'sabic-lexan-141r-polycarbonate-resin',
         shortDescription: 'General purpose polycarbonate offering exceptional impact strength and optical clarity for transparent applications.',
         seoTitle: 'SABIC LEXAN 141R – Polycarbonate Resin | Shashvat Trading',
         seoDescription: 'General purpose Polycarbonate (PC) resin offering excellent clarity, high impact strength, and heat resistance. Ideal for molding glazing and intricate parts.',
@@ -2424,7 +2288,7 @@ async function seed() {
       {
         companyId: getCompanyId('BASF'),
         name: 'Ultradur B4520',
-        slug: 'basf-ultradur-b4520-pbt',
+        slug: 'basf-ultradur-b4520-pbt-resin',
         shortDescription: 'PBT polyester for electrical connectors and automotive parts requiring excellent dimensional stability.',
         seoTitle: 'BASF Ultradur B4520 – PBT Polyester Resin | Shashvat Trading',
         seoDescription: 'Unreinforced PBT injection molding grade offering excellent flow, fast crystallization, and dimensional stability. Ideal for electrical connectors and precision parts.',
@@ -2517,7 +2381,7 @@ async function seed() {
       {
         companyId: getCompanyId('LG Chem'),
         name: 'LUPOX GP-1100',
-        slug: 'lg-chem-lupox-gp-1100-pbt',
+        slug: 'lg-chem-lupox-gp-1100-pbt-resin',
         shortDescription: 'General purpose PBT for injection molding with excellent mechanical properties and fast molding cycles.',
         seoTitle: 'LG Chem LUPOX GP-1100 – General Purpose PBT | Shashvat Trading',
         seoDescription: 'General purpose PBT resin designed for injection molding. features excellent mechanical properties, electrical insulation, and chemical resistance.',
@@ -2611,7 +2475,7 @@ async function seed() {
       {
         companyId: getCompanyId('Reliance Industries'),
         name: 'Relpet G5801',
-        slug: 'reliance-relpet-g5801',
+        slug: 'reliance-relpet-g5801-pet-resin',
         shortDescription: 'Bottle-grade PET specifically designed for carbonated soft drink containers with excellent clarity and gas barrier.',
         seoTitle: 'Relpet G5801 – Bottle Grade PET | Shashvat Trading',
         seoDescription: 'Filament and bottle grade PET resin. Designed for CSD bottles with excellent gas barrier, clarity, and stress crack resistance.',
@@ -2700,7 +2564,7 @@ async function seed() {
       {
         companyId: getCompanyId('Formosa Plastics'),
         name: 'Formosa PET CR-8863',
-        slug: 'formosa-pet-cr-8863',
+        slug: 'formosa-pet-cr-8863-resin',
         shortDescription: 'High-IV PET resin for large container and industrial applications requiring superior mechanical properties.',
         seoTitle: 'Formosa PET CR-8863 – High IV PET Resin | Shashvat Trading',
         seoDescription: 'High intrinsic viscosity PET resin for large containers and hot-fill applications. Features superior mechanical strength and thermal stability.',
@@ -3194,30 +3058,6 @@ Summary:
 - ${blogData.length} blog posts created
     `);
 
-    // Seed Product Documents
-    console.log('Seeding product documents...');
-    const productsForDocs = await db.select().from(products).limit(5);
-
-    for (const product of productsForDocs) {
-      // Add a Technical Data Sheet
-      await db.insert(productDocuments).values({
-        productId: product.id,
-        filePath: '/uploads/products/documents/sample-datasheet.pdf',
-        fileName: `${product.name} - Technical Data Sheet.pdf`,
-        fileSize: 1024 * 1024, // 1MB dummy size
-      });
-
-      // Add a Safety Data Sheet (duplicate to show list)
-      await db.insert(productDocuments).values({
-        productId: product.id,
-        filePath: '/uploads/products/documents/sample-datasheet.pdf',
-        fileName: `${product.name} - Safety Data Sheet.pdf`,
-        fileSize: 512 * 1024, // 512KB dummy size
-      });
-    }
-
-    console.log('✅ Product documents seeded successfully!');
-
   } catch (error) {
     console.error('❌ Error seeding database:', error);
     throw error;
@@ -3227,6 +3067,3 @@ Summary:
 }
 
 seed();
-
-
-

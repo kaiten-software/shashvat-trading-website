@@ -33,11 +33,8 @@ import {
   Eye,
   Loader2,
   UserPlus,
-  MoreVertical,
-  ToggleLeft,
-  ToggleRight
+  MoreVertical
 } from 'lucide-react';
-import { Switch } from '@/components/ui/switch';
 
 interface UserData {
   id: number;
@@ -63,7 +60,6 @@ export default function AdminUsers() {
     password: '',
     name: '',
     role: 'viewer' as 'admin' | 'editor' | 'viewer',
-    isActive: true,
   });
 
   // Fetch users
@@ -142,7 +138,7 @@ export default function AdminUsers() {
   });
 
   const resetForm = () => {
-    setFormData({ email: '', password: '', name: '', role: 'viewer', isActive: true });
+    setFormData({ email: '', password: '', name: '', role: 'viewer' });
     setSelectedUser(null);
     setDialogOpen(false);
   };
@@ -154,7 +150,6 @@ export default function AdminUsers() {
       password: '',
       name: user.name,
       role: user.role,
-      isActive: user.isActive,
     });
     setDialogOpen(true);
   };
@@ -164,7 +159,7 @@ export default function AdminUsers() {
     if (selectedUser) {
       updateMutation.mutate({ 
         id: selectedUser.id, 
-        data: { name: formData.name, role: formData.role, isActive: formData.isActive } 
+        data: { name: formData.name, role: formData.role } 
       });
     } else {
       createMutation.mutate(formData);
@@ -219,7 +214,7 @@ export default function AdminUsers() {
               </div>
               <div className="flex items-center gap-2">
                 <Shield className="h-4 w-4 text-blue-600" />
-                <span><strong>Editor:</strong> Blog management only</span>
+                <span><strong>Editor:</strong> Can edit products and blog posts</span>
               </div>
               <div className="flex items-center gap-2">
                 <Eye className="h-4 w-4 text-gray-600" />
@@ -373,7 +368,7 @@ export default function AdminUsers() {
                     <SelectItem value="editor">
                       <div className="flex items-center gap-2">
                         <Shield className="h-4 w-4 text-blue-600" />
-                        Editor - Blog management only
+                        Editor - Can edit content
                       </div>
                     </SelectItem>
                     <SelectItem value="viewer">
@@ -385,22 +380,6 @@ export default function AdminUsers() {
                   </SelectContent>
                 </Select>
               </div>
-
-              {selectedUser && (
-                <div className="flex items-center justify-between rounded-lg border p-3">
-                  <div className="space-y-0.5">
-                    <Label htmlFor="isActive">Account Active</Label>
-                    <p className="text-xs text-gray-500">
-                      Deactivated users cannot log in
-                    </p>
-                  </div>
-                  <Switch
-                    id="isActive"
-                    checked={formData.isActive}
-                    onCheckedChange={(checked) => setFormData({ ...formData, isActive: checked })}
-                  />
-                </div>
-              )}
 
               <DialogFooter>
                 <Button type="button" variant="outline" onClick={resetForm}>

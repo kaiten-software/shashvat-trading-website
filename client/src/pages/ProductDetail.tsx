@@ -4,7 +4,7 @@ import { useRoute, Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ProductInquiryModal from "@/components/ProductInquiryModal";
@@ -173,7 +173,8 @@ export default function ProductDetail() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      <div className="pt-20" />
+      <div className="h-24 hidden lg:block" />
+      <div className="h-20 lg:hidden" />
 
       {/* Search Context Banner */}
       {searchContext && (
@@ -228,15 +229,15 @@ export default function ProductDetail() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Image Gallery */}
             <div>
-              <div className="aspect-square bg-white rounded-2xl overflow-hidden mb-4 border border-gray-100 flex items-center justify-center">
+              <div className="aspect-square bg-gray-100 rounded-2xl overflow-hidden mb-4">
                 {product.heroImage ? (
                   <img
                     src={product.heroImage}
                     alt={product.name}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gray-50">
+                  <div className="w-full h-full flex items-center justify-center">
                     <Package className="h-24 w-24 text-gray-300" />
                   </div>
                 )}
@@ -244,8 +245,8 @@ export default function ProductDetail() {
               {images && images.length > 0 && (
                 <div className="grid grid-cols-4 gap-2">
                   {images.map((img: any) => (
-                    <div key={img.id} className="aspect-square bg-white border border-gray-100 rounded-lg overflow-hidden flex items-center justify-center p-1">
-                      <img src={img.imagePath} alt="" className="w-full h-full object-contain" />
+                    <div key={img.id} className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+                      <img src={img.imagePath} alt="" className="w-full h-full object-cover" />
                     </div>
                   ))}
                 </div>
@@ -301,42 +302,19 @@ export default function ProductDetail() {
                 </div>
               )}
 
-              {/* Product Accordions: Additional Details & Documents */}
-
-              <Accordion type="single" collapsible className="w-full mb-8">
-                <AccordionItem value="documents">
-                  <AccordionTrigger>Documents</AccordionTrigger>
-                  <AccordionContent>
-                    {documents && documents.length > 0 ? (
-                      <div className="space-y-3 pt-2">
-                        {documents.map((doc: any) => (
-                          <a
-                            key={doc.id}
-                            href={doc.filePath}
-                            download={doc.fileName}
-                            className="flex items-center justify-between p-3 bg-gray-50 rounded border hover:bg-gray-100 transition-colors group"
-                          >
-                            <div className="flex items-center gap-3 overflow-hidden">
-                              <FileText className="h-5 w-5 text-red-500 shrink-0" />
-                              <div className="min-w-0">
-                                <p className="font-medium text-gray-900 text-sm truncate">{doc.fileName || "Document"}</p>
-                                {doc.fileSize && (
-                                  <p className="text-xs text-gray-500">
-                                    {(doc.fileSize / 1024 / 1024).toFixed(2)} MB
-                                  </p>
-                                )}
-                              </div>
-                            </div>
-                            <Download className="h-4 w-4 text-gray-400 group-hover:text-emerald-600" />
-                          </a>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="text-sm text-gray-500 py-2">No documents available.</p>
-                    )}
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              {/* Quick Download - if documents exist */}
+              {documents && documents.length > 0 && (
+                <div className="mb-6">
+                  <a
+                    href={documents[0].filePath}
+                    download={documents[0].fileName}
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 transition-colors"
+                  >
+                    <Download className="h-5 w-5" />
+                    Download Brochure
+                  </a>
+                </div>
+              )}
 
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-4 mb-8">
@@ -381,26 +359,72 @@ export default function ProductDetail() {
         </div>
       </section>
 
-      {/* Additional Details Banner */}
-      <section className="bg-emerald-50 py-12 border-y border-emerald-100">
+      {/* Product Details Tabs */}
+      <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <FileText className="h-8 w-8 text-emerald-600" />
-            <h2 className="text-2xl md:text-3xl font-bold text-emerald-900 uppercase tracking-wide">
-              Additional Details
-            </h2>
-          </div>
-          <div className="prose prose-lg max-w-none text-gray-900 font-medium">
-            {product.contentHtml ? (
-              <div dangerouslySetInnerHTML={{ __html: product.contentHtml }} />
-            ) : (
-              <p>{product.shortDescription || "No additional details available."}</p>
+          <Tabs defaultValue="description" className="w-full">
+            <TabsList className="w-full justify-start bg-white p-1 rounded-lg mb-8">
+              <TabsTrigger value="description">Description</TabsTrigger>
+
+              {documents && documents.length > 0 && (
+                <TabsTrigger value="documents">Documents ({documents.length})</TabsTrigger>
+              )}
+            </TabsList>
+
+            <TabsContent value="description">
+              <Card>
+                <CardContent className="p-8">
+                  {product.contentHtml ? (
+                    <div
+                      className="prose max-w-none"
+                      dangerouslySetInnerHTML={{ __html: product.contentHtml }}
+                    />
+                  ) : (
+                    <p className="text-gray-600">
+                      {product.shortDescription || "No description available."}
+                    </p>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+
+
+            {documents && documents.length > 0 && (
+              <TabsContent value="documents">
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      {documents.map((doc: any) => (
+                        <a
+                          key={doc.id}
+                          href={doc.filePath}
+                          download={doc.fileName}
+                          className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                        >
+                          <div className="flex items-center gap-3">
+                            <FileText className="h-8 w-8 text-red-500" />
+                            <div>
+                              <p className="font-medium text-gray-900">{doc.fileName || "Document"}</p>
+                              <p className="text-sm text-gray-500">
+                                PDF Document {doc.fileSize && `• ${(doc.fileSize / 1024 / 1024).toFixed(2)} MB`}
+                              </p>
+                            </div>
+                          </div>
+                          <Button variant="ghost" size="sm">
+                            <Download className="h-4 w-4 mr-2" />
+                            Download
+                          </Button>
+                        </a>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
             )}
-          </div>
+          </Tabs>
         </div>
       </section>
-
-
 
       {/* Product Navigation */}
       <section className="py-8 bg-white border-y">
@@ -441,102 +465,94 @@ export default function ProductDetail() {
       </section>
 
       {/* Related Products - Same Company */}
-      {
-        relatedProducts.sameCompany.length > 0 && company && (
-          <section className="py-16 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4">
-              <div className="flex justify-between items-center mb-8">
-                <h2 className="text-2xl font-bold text-gray-900">
-                  More from {company.name}
-                </h2>
-              </div>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {relatedProducts.sameCompany.map((item: any) => (
-                  <Link key={item.product.id} href={`/products/${item.product.slug}`}>
-                    <Card className="h-full hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 shadow-md rounded-xl overflow-hidden">
-                      <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
-                        {item.product.heroImage ? (
-                          <img
-                            src={item.product.heroImage}
-                            alt={item.product.name}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50">
-                            <Package className="h-16 w-16 text-emerald-200" />
-                          </div>
-                        )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      </div>
-                      <CardContent className="p-4">
-                        <h3 className="font-bold text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-1">
-                          {item.product.name}
-                        </h3>
-                        <div className="flex items-center gap-2 mt-2 text-emerald-600 text-sm font-semibold group-hover:gap-3 transition-all">
-                          View Details <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
+      {relatedProducts.sameCompany.length > 0 && company && (
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-2xl font-bold text-gray-900">
+                More from {company.name}
+              </h2>
             </div>
-          </section>
-        )
-      }
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {relatedProducts.sameCompany.map((item: any) => (
+                <Link key={item.product.id} href={`/products/${item.product.slug}`}>
+                  <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
+                    <div className="aspect-video bg-gray-100 relative overflow-hidden">
+                      {item.product.heroImage ? (
+                        <img
+                          src={item.product.heroImage}
+                          alt={item.product.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <Package className="h-12 w-12 text-gray-300" />
+                        </div>
+                      )}
+                    </div>
+                    <CardContent className="p-4">
+                      <h3 className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-1">
+                        {item.product.name}
+                      </h3>
+                      <div className="flex items-center gap-2 mt-2 text-emerald-600 text-sm">
+                        View Details <ArrowRight className="h-4 w-4" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Related Products - Same Category */}
-      {
-        relatedProducts.sameCategory.length > 0 && categories && categories.length > 0 && (
-          <section className="py-16 bg-white">
-            <div className="max-w-7xl mx-auto px-4">
-              <div className="flex justify-between items-center mb-8">
-                <h2 className="text-2xl font-bold text-gray-900">
-                  Similar Products in {categories[0]?.name}
-                </h2>
-                <Link href="/products">
-                  <Button variant="outline">View All</Button>
-                </Link>
-              </div>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {relatedProducts.sameCategory.map((item: any) => (
-                  <Link key={item.product.id} href={`/products/${item.product.slug}`}>
-                    <Card className="h-full hover:shadow-xl transition-all duration-300 cursor-pointer group border-0 shadow-md rounded-xl overflow-hidden">
-                      <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
-                        {item.product.heroImage ? (
-                          <img
-                            src={item.product.heroImage}
-                            alt={item.product.name}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50">
-                            <Package className="h-16 w-16 text-emerald-200" />
-                          </div>
-                        )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      </div>
-                      <CardContent className="p-4">
-                        {item.company && (
-                          <p className="text-xs font-semibold text-emerald-600 uppercase tracking-wider mb-1">
-                            {item.company.name}
-                          </p>
-                        )}
-                        <h3 className="font-bold text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-1">
-                          {item.product.name}
-                        </h3>
-                        <div className="flex items-center gap-2 mt-2 text-emerald-600 text-sm font-semibold group-hover:gap-3 transition-all">
-                          View Details <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
+      {relatedProducts.sameCategory.length > 0 && categories && categories.length > 0 && (
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-2xl font-bold text-gray-900">
+                Similar Products in {categories[0]?.name}
+              </h2>
+              <Link href="/products">
+                <Button variant="outline">View All</Button>
+              </Link>
             </div>
-          </section>
-        )
-      }
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {relatedProducts.sameCategory.map((item: any) => (
+                <Link key={item.product.id} href={`/products/${item.product.slug}`}>
+                  <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer group">
+                    <div className="aspect-video bg-gray-100 relative overflow-hidden">
+                      {item.product.heroImage ? (
+                        <img
+                          src={item.product.heroImage}
+                          alt={item.product.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <Package className="h-12 w-12 text-gray-300" />
+                        </div>
+                      )}
+                    </div>
+                    <CardContent className="p-4">
+                      <h3 className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors line-clamp-1">
+                        {item.product.name}
+                      </h3>
+                      {item.company && (
+                        <p className="text-sm text-gray-500 mt-1">{item.company.name}</p>
+                      )}
+                      <div className="flex items-center gap-2 mt-2 text-emerald-600 text-sm">
+                        View Details <ArrowRight className="h-4 w-4" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section className="py-16 bg-emerald-600 text-white">

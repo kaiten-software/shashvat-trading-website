@@ -29,6 +29,8 @@ import AdminApplications from "@/pages/admin/Applications";
 import AdminProducts from "@/pages/admin/Products";
 import AdminBlog from "@/pages/admin/Blog";
 import AdminUsers from "@/pages/admin/Users";
+import AdminCallbacks from "@/pages/admin/Callbacks";
+import ChatBot from "@/components/ChatBot";
 
 // Protected Route Component
 function ProtectedRoute({ children, allowedRoles }: { children: ReactNode; allowedRoles?: string[] }) {
@@ -106,35 +108,35 @@ function Router() {
         </Route>
         <Route path="/admin/companies">
           {() => (
-            <ProtectedRoute allowedRoles={['admin']}>
+            <ProtectedRoute>
               <AdminCompanies />
             </ProtectedRoute>
           )}
         </Route>
         <Route path="/admin/categories">
           {() => (
-            <ProtectedRoute allowedRoles={['admin']}>
+            <ProtectedRoute>
               <AdminCategories />
             </ProtectedRoute>
           )}
         </Route>
         <Route path="/admin/features">
           {() => (
-            <ProtectedRoute allowedRoles={['admin']}>
+            <ProtectedRoute>
               <AdminFeatures />
             </ProtectedRoute>
           )}
         </Route>
         <Route path="/admin/applications">
           {() => (
-            <ProtectedRoute allowedRoles={['admin']}>
+            <ProtectedRoute>
               <AdminApplications />
             </ProtectedRoute>
           )}
         </Route>
         <Route path="/admin/products">
           {() => (
-            <ProtectedRoute allowedRoles={['admin']}>
+            <ProtectedRoute>
               <AdminProducts />
             </ProtectedRoute>
           )}
@@ -143,6 +145,13 @@ function Router() {
           {() => (
             <ProtectedRoute allowedRoles={['admin', 'editor']}>
               <AdminBlog />
+            </ProtectedRoute>
+          )}
+        </Route>
+        <Route path="/admin/callbacks">
+          {() => (
+            <ProtectedRoute>
+              <AdminCallbacks />
             </ProtectedRoute>
           )}
         </Route>
@@ -167,6 +176,7 @@ function App() {
         <AuthProvider>
           <Toaster />
           <Router />
+          <ChatBot />
         </AuthProvider>
       </TooltipProvider>
     </QueryClientProvider>
